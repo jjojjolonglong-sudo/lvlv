@@ -51,14 +51,16 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 .fp{position:relative;width:100%;height:100%;font-size:14px}.fp>*{position:absolute}
 .fp-ph{left:36px;top:40px;width:230px;padding:10px 10px 28px;background:#fff;box-shadow:0 3px 8px #0004;transform:rotate(-3deg)}
 .fp-ph:before{content:"";position:absolute;top:-10px;left:50%;width:56px;height:18px;margin-left:-28px;background:var(--tape);transform:rotate(-3deg)}
-.fp-ph img,.fp-ph span{width:100%;height:260px;display:flex;object-fit:cover;align-items:center;justify-content:center;color:var(--mut);background:#eee}.fp-ph img{cursor:zoom-in;background:none}
+.fp-ph img,.fp-ph span{width:100%;height:210px;display:flex;object-fit:cover;align-items:center;justify-content:center;color:var(--mut);background:#eee}.fp-ph img{cursor:zoom-in;background:none}
 .fp h2{left:296px;top:56px;width:270px;margin:0;font-size:34px;line-height:1.15}.fp-o{left:296px;top:140px;width:270px;color:var(--mut)}
-.fp .tg{left:296px;top:176px;width:270px}.fp .tg span{font-size:13px}
+.fp-k{left:296px;top:176px;width:270px}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}
 .fp-c{padding:10px 14px;box-shadow:0 3px 8px #0003;cursor:pointer;overflow:hidden}.fp-c small{display:block;color:var(--mut);margin-bottom:4px;letter-spacing:2px}
 .fp-c p{margin:0;white-space:pre-wrap;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:7}
-.fp-c.a{left:36px;top:370px;width:250px;height:190px;background:#dcebd6;transform:rotate(-1deg)}
-.fp-c.b{left:314px;top:366px;width:250px;height:190px;background:#fff3bd;transform:rotate(1.2deg);font-style:italic}
-.fp-c.c{left:36px;top:590px;width:528px;height:200px;background:#f6d9d9;transform:rotate(-.4deg)}
+.fp-c.b{left:36px;top:360px;width:528px;height:170px;background:#fff3bd;transform:rotate(.8deg);font-style:italic}.fp-c.b p{-webkit-line-clamp:5}
+.fp-c.c{left:36px;top:560px;width:528px;height:236px;background:#f6d9d9;transform:rotate(-.4deg)}.fp-c.c p{-webkit-line-clamp:9}
+.tl-t{margin:8px 0 2px;font-size:13px;color:var(--mut)}.chip.new{outline:1px dashed var(--ac)}
+#cr{max-width:min(94vw,820px)}#cr-box{position:relative;width:fit-content;margin:10px auto;touch-action:none;user-select:none}#cr-img{max-width:min(88vw,780px);max-height:60vh;display:block}
+#cr-sel{position:absolute;border:2px solid #fff;box-shadow:0 0 0 9999px #0008;cursor:move}#cr-rz{position:absolute;right:-9px;bottom:-9px;width:16px;height:16px;border-radius:50%;background:var(--ac);border:2px solid #fff;cursor:nwse-resize}
 .sb:not(.ed) .it{cursor:default}.sb:not(.ed) .it.i{cursor:zoom-in}
 dialog{border:1px solid var(--ln);border-radius:6px;background:var(--paper);color:var(--ink);padding:18px;max-width:min(560px,94vw);width:100%}
 dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{margin:0 0 8px}
@@ -88,21 +90,25 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <dialog id="nc"><form id="nf"><h3>새 인물</h3>
   <input name="name" placeholder="이름 *" required>
   <div class="row"><input name="origin" placeholder="출처 (소설·영화·현실…)"><select name="sex"><option value="">성별</option><option value="f">여</option><option value="m">남</option></select></div>
-  <div class="ti" id="ti"><input id="ti-in" placeholder="#키워드 입력 후 띄어쓰기 또는 쉼표"></div>
+  <div class="tl-t">인물 키워드 <small class="mut">성격·신분·직업 등</small></div><div class="ti" data-k="char"><input class="ti-in" data-k="char" list="dl-char" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div><div class="tl-t">외모 키워드</div><div class="ti" data-k="look"><input class="ti-in" data-k="look" list="dl-look" placeholder="#키워드"></div>
   <div><label class="btn">대표 사진 선택<input type="file" name="photo" id="nc-f" accept="image/*" hidden></label> <small id="nc-fn" class="mut"></small></div>
-  <textarea name="look" rows="2" placeholder="대표 외모 묘사"></textarea><textarea name="quote" rows="2" placeholder="대표 어록"></textarea><textarea name="profile" rows="3" placeholder="대표 프로필"></textarea>
+  <textarea name="quote" rows="2" placeholder="대표 어록"></textarea><textarea name="profile" rows="3" placeholder="대표 프로필"></textarea>
   <small class="mut">입력한 값으로 첫 페이지가 만들어지고, 빈 두 번째 페이지가 함께 생겨요. 나중에 편집 모드에서 바꿀 수 있어요.</small>
   <div class="row" style="justify-content:flex-end"><button type="button" id="nc-x">취소</button><button class="p">만들기</button></div></form></dialog>
 <dialog id="rd"><h3 id="rd-h"></h3><p id="rd-p" style="white-space:pre-wrap"></p><div class="row" style="justify-content:flex-end"><button id="rd-x">닫기</button></div></dialog>
 <dialog id="im"><img id="im-i" alt="" style="max-width:100%;max-height:46vh;display:block;margin:0 auto 10px"><input id="im-c" placeholder="캡션" style="width:100%">
-  <div class="row"><button data-m="cover">프로필 사진으로</button><button data-m="orig">원본 보기</button><button data-m="del">삭제</button></div>
+  <div class="row"><button data-m="cover">프로필 사진으로</button><button data-m="recrop">다시 자르기</button><button data-m="orig">원본 보기</button><button data-m="del">삭제</button></div>
   <div class="row" style="justify-content:flex-end"><button data-m="x">닫기</button><button class="p" data-m="save">저장</button></div></dialog>
+<dialog id="cr"><h3>썸네일 영역 선택</h3><small class="mut">정사각형 영역을 끌어서 옮기고, 오른쪽 아래 점으로 크기를 바꾸세요. 원본은 따로 보관돼요.</small>
+  <div id="cr-box"><img id="cr-img" alt=""><div id="cr-sel"><i id="cr-rz"></i></div></div>
+  <div class="row" style="justify-content:flex-end"><button type="button" id="cr-x">취소</button><button type="button" id="cr-full">자르지 않고 전체</button><button type="button" class="p" id="cr-ok">이 영역으로</button></div></dialog>
 <dialog id="lb"><img alt=""><p></p><button id="lb-x">닫기</button></dialog>
 <dialog id="st"><h3>설정</h3><p id="st-me"></p>
   <p><b>원본 사진 폴더 (PC)</b><br><small>이미지를 올릴 때 원본이 이 폴더에 저장돼요. 폰에서 올린 원본은 서버에 잠시 보관됐다가 여기서 받으면 폴더로 옮겨져요.</small><br>
   <button id="st-dir">폴더 연결</button> <button id="st-sync">원본 받기</button> <small id="st-msg"></small></p>
   <p><b>연결 확인</b><br><button id="st-test">테스트</button> <small id="st-t"></small></p>
   <div class="row" style="justify-content:space-between"><button id="st-out">로그아웃</button><button id="st-x">닫기</button></div></dialog>
+<datalist id="dl-char"></datalist><datalist id="dl-look"></datalist>
 <div id="toast" hidden></div>
 
 <script src="https://jjojjolonglong-sudo.github.io/mnmn/media.js"></script>
@@ -128,17 +134,18 @@ async function db(m,t,q,body){
 }
 
 /* ---------- 상태 ---------- */
-const S={chars:[],imgs:[],texts:[],cur:null,edit:false,kw:[],q:''};
+const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{char:[],look:[]},q:''};
 const cur=()=>S.chars.find(c=>c.id===S.cur);
-const REP={look:'look_id',quote:'quote_id',profile:'profile_id'},KL={look:'외모',quote:'어록',profile:'프로필'};
+const REP={quote:'quote_id',profile:'profile_id'},KL={quote:'어록',profile:'프로필',look:'외모'};
 const kws=s=>s.split(',').map(x=>x.trim()).filter(Boolean);
 const sortChars=()=>S.chars.sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+const charKw=(c,k)=>S.links.filter(l=>l.char_id===c.id).map(l=>S.kwAll.find(x=>x.id===l.keyword_id)).filter(x=>x&&x.kind===k).map(x=>x.name);
 async function loadAll(){
-  const [c,i]=await Promise.all([db('GET','lvlv_char','?select=*&order=name'),db('GET','lvlv_image','?select=*&order=sort_order,created_at')]);
-  S.chars=c;S.imgs=i;if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
+  const [c,i,k,l]=await Promise.all([db('GET','lvlv_char','?select=*&order=name'),db('GET','lvlv_image','?select=*&order=sort_order,created_at'),db('GET','lvlv_keyword','?select=*&order=name'),db('GET','lvlv_char_keyword','?select=char_id,keyword_id')]);
+  S.chars=c;S.imgs=i;S.kwAll=k;S.links=l;if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
 }
 function renderList(){
-  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...(c.keywords||[])].join(' ').toLowerCase().includes(q));
+  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...charKw(c,'char'),...charKw(c,'look')].join(' ').toLowerCase().includes(q));
   $('#cl').innerHTML=L.map(c=>{const im=S.imgs.find(x=>x.id===c.cover_id);
     return `<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"><div class="th"${im?` style="background-image:url('${Media.url(im.image)}')"`:''}>${im?'':E([...c.name][0]||'')}</div><div><b>${E(c.name)}</b><br><small>${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</small></div></div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
 }
@@ -155,7 +162,7 @@ function renderDet(){
   <div class="bar"><b class="nn">${E(c.name)}</b><button data-a="${S.edit?'ex':'ee'}"${S.edit?' class="p"':''}>${S.edit?'편집 끝내기':'편집'}</button>${S.edit?'<button id="del">인물 삭제</button>':''}</div>${S.edit?editPanel(c):''}
   <div class="sbn"><button data-p="-1">‹</button><span id="pn"></span><button data-p="1">›</button>${S.edit?'<button data-p="add">＋ 페이지</button><button data-p="del">마지막 페이지 삭제</button>':''}</div>
   <div id="sbw"><div class="sb" id="sb"></div></div>`;
-  if(S.edit)tiDraw();
+  if(S.edit){fillDl();tiDraw()}
   drawBoard();
 }
 function editPanel(c){
@@ -163,7 +170,7 @@ function editPanel(c){
   return `<details class="card"><summary>인물 정보 (첫 페이지에 반영)</summary>
     <input id="f-name" value="${E(c.name)}" style="width:100%;margin:8px 0">
     <div class="row"><input id="f-origin" placeholder="출처 (소설·영화·현실…)" value="${E(c.origin||'')}"><select id="f-sex"><option value="">성별</option><option value="f"${c.sex==='f'?' selected':''}>여</option><option value="m"${c.sex==='m'?' selected':''}>남</option></select></div>
-    <div class="ti" id="ti"><input id="ti-in" placeholder="#키워드 입력 후 띄어쓰기 또는 쉼표"></div><button class="p" data-a="cs">저장</button></details>
+    <div class="tl-t">인물 키워드 <small class="mut">성격·신분·직업 등</small></div><div class="ti" data-k="char"><input class="ti-in" data-k="char" list="dl-char" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div><div class="tl-t">외모 키워드</div><div class="ti" data-k="look"><input class="ti-in" data-k="look" list="dl-look" placeholder="#키워드"></div><button class="p" data-a="cs">저장</button></details>
   <div class="card"><div class="bar"><b>이미지</b><label class="btn">＋ 올리기<input type="file" id="fi" accept="image/*" multiple hidden></label><small class="mut">＋ 누르면 페이지에 붙이고, 더블클릭하면 설정(프로필 사진·캡션·삭제)</small></div>
     <div class="ml">${I.map(x=>`<div class="mi" data-i="${x.id}"><img src="${Media.url(x.image)}" loading="lazy" alt="">${c.cover_id===x.id?'<b class="star">★</b>':''}<i class="ad" data-add="i:${x.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
   <div class="card"><div class="bar"><b>글감</b><button data-a="tn">＋ 새 글감</button><small class="mut">＋ 누르면 붙이고, 더블클릭하면 설정(내용·종류·대표·삭제)</small></div>
@@ -171,18 +178,31 @@ function editPanel(c){
   <div class="tb"><b>선택한 오브젝트</b><button data-b="rl">⟲</button><button data-b="rr">⟳</button><button data-b="sm">−</button><button data-b="bg">＋</button><button data-b="fr">앞으로</button><button data-b="pl">◂ 앞 페이지로</button><button data-b="pr">뒤 페이지로 ▸</button><button data-b="rm">빼기</button></div>`;
 }
 function firstPage(c){
-  const im=S.imgs.find(x=>x.id===c.cover_id),card=(k,cl)=>{const t=S.texts.find(x=>x.id===c[REP[k]]);return `<div class="fp-c ${cl}"${t?` data-r="${t.id}"`:''}><small>${KL[k]}</small><p>${t?E(t.body):'<span class="mut">대표를 정해 주세요</span>'}</p></div>`};
+  const im=S.imgs.find(x=>x.id===c.cover_id),card=(k,cl)=>{const t=S.texts.find(x=>x.id===c[REP[k]]);return `<div class="fp-c ${cl}"${t?` data-r="${t.id}"`:''}><small>${KL[k]}</small><p>${t?E(t.body):'<span class="mut">대표를 정해 주세요</span>'}</p></div>`},chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
   return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><h2>${E(c.name)}</h2><div class="fp-o">${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</div>
-  <div class="tg">${(c.keywords||[]).map(k=>`<span>#${E(k)}</span>`).join('')}</div>${card('look','a')}${card('quote','b')}${card('profile','c')}</div>`;
+  <div class="fp-k"><div class="tg">${chips('char')}</div><div class="tg lk">${chips('look')}</div></div>${card('quote','b')}${card('profile','c')}</div>`;
 }
 
-/* ---------- #키워드 블록 입력 ---------- */
-function tiDraw(){const inp=$('#ti-in');if(!inp)return;$('#ti').querySelectorAll('.chip').forEach(x=>x.remove());S.kw.forEach(k=>inp.insertAdjacentHTML('beforebegin',`<span class="chip">#${E(k)}<b data-x="${E(k)}">✕</b></span>`))}
-function tiCommit(final){
-  const inp=$('#ti-in');if(!inp)return;const raw=inp.value,parts=raw.split(/[\s,]+/);
-  const keep=final||/[\s,]$/.test(raw)?'':parts.pop();
-  parts.map(x=>x.replace(/^#+/,'').trim()).filter(Boolean).forEach(k=>{if(!S.kw.includes(k))S.kw.push(k)});
+/* ---------- #키워드 블록 입력: 인물 키워드 / 외모 키워드. 같은 이름이 이미 있으면 그걸 쓰고, 없으면 저장할 때 새로 만들어요 ---------- */
+const kwFind=(k,n)=>S.kwAll.find(x=>x.kind===k&&x.name.toLowerCase()===n.toLowerCase());
+function tiDraw(){document.querySelectorAll('.ti').forEach(ti=>{const k=ti.dataset.k,inp=ti.querySelector('.ti-in');ti.querySelectorAll('.chip').forEach(x=>x.remove());
+  S.kw[k].forEach(n=>inp.insertAdjacentHTML('beforebegin',`<span class="chip${kwFind(k,n)?'':' new'}" title="${kwFind(k,n)?'':'새 키워드 (저장하면 만들어져요)'}">#${E(n)}<b data-x="${k}|${E(n)}">✕</b></span>`))})}
+function tiCommit(inp,final){
+  const k=inp.dataset.k,raw=inp.value,parts=raw.split(/[\s,]+/),keep=final||/[\s,]$/.test(raw)?'':parts.pop();
+  parts.map(x=>x.replace(/^#+/,'').trim()).filter(Boolean).forEach(n=>{const ex=kwFind(k,n),name=ex?ex.name:n;if(!S.kw[k].some(v=>v.toLowerCase()===name.toLowerCase()))S.kw[k].push(name)});
   inp.value=keep;tiDraw();
+}
+const commitAll=()=>document.querySelectorAll('.ti-in').forEach(i=>tiCommit(i,true));
+const isTi=t=>t&&t.classList&&t.classList.contains('ti-in');
+function fillDl(){for(const k of ['char','look'])$('#dl-'+k).innerHTML=S.kwAll.filter(x=>x.kind===k).map(x=>`<option value="${E(x.name)}">`).join('')}
+async function saveKw(cid){   // S.kw → lvlv_keyword(없으면 생성) + lvlv_char_keyword(연결)
+  const need=[];
+  for(const k of ['char','look'])for(const n of S.kw[k])if(!kwFind(k,n)&&!need.some(x=>x.kind===k&&x.name===n))need.push({kind:k,name:n,user_id:SES.user.id});
+  if(need.length)S.kwAll.push(...await db('POST','lvlv_keyword','',need));
+  const ids=[...new Set(['char','look'].flatMap(k=>S.kw[k].map(n=>kwFind(k,n).id)))];
+  await db('DELETE','lvlv_char_keyword',`?char_id=eq.${cid}`);
+  if(ids.length)await db('POST','lvlv_char_keyword','',ids.map(keyword_id=>({char_id:cid,keyword_id,user_id:SES.user.id})));
+  S.links=S.links.filter(l=>l.char_id!==cid).concat(ids.map(keyword_id=>({char_id:cid,keyword_id})));fillDl();
 }
 
 /* ---------- 글감(어록·외모·프로필) 편집: 더블클릭으로 열림 ---------- */
@@ -190,7 +210,7 @@ let EDT=null;
 function editText(t){
   EDT=t||null;const c=cur(),k=t?t.kind:'quote';
   $('#dlg-h').textContent=t?'글감 편집':'새 글감';
-  $('#dlg-b').innerHTML=`<select name="kind">${Object.keys(KL).map(x=>`<option value="${x}"${x===k?' selected':''}>${KL[x]}</option>`).join('')}</select><input name="title" placeholder="제목 (선택)" value="${E(t?.title||'')}"><textarea name="body" rows="6" placeholder="내용">${E(t?.body||'')}</textarea><input name="source" placeholder="출처 (선택)" value="${E(t?.source||'')}"><input name="tags" placeholder="상황 태그 (쉼표: 인사, 분노…)" value="${E((t?.tags||[]).join(', '))}"><label><input type="checkbox" name="rep"${t&&c[REP[t.kind]]===t.id?' checked':''}> 첫 페이지의 대표로 지정</label>`;
+  $('#dlg-b').innerHTML=`<select name="kind">${[...new Set(['quote','profile',k])].map(x=>`<option value="${x}"${x===k?' selected':''}>${KL[x]}</option>`).join('')}</select><input name="title" placeholder="제목 (선택)" value="${E(t?.title||'')}"><textarea name="body" rows="6" placeholder="내용">${E(t?.body||'')}</textarea><input name="source" placeholder="출처 (선택)" value="${E(t?.source||'')}"><input name="tags" placeholder="상황 태그 (쉼표: 인사, 분노…)" value="${E((t?.tags||[]).join(', '))}"><label><input type="checkbox" name="rep"${t&&c[REP[t.kind]]===t.id?' checked':''}> 첫 페이지의 대표로 지정</label>`;
   $('#dlg-d').hidden=!t;$('#dlg').showModal();
 }
 $('#df').onsubmit=guard(async e=>{
@@ -212,15 +232,43 @@ $('#dlg-x').onclick=()=>$('#dlg').close();
 $('#rd-x').onclick=()=>$('#rd').close();
 
 /* ---------- 이미지: 올리기 / 설정(더블클릭) / 크게 보기 ---------- */
+/* 썸네일 영역 고르기: 정사각형으로 잘라서(얼굴 클로즈업 등) 200px로 올리고, 원본은 따로 보관 */
+function cropPick(file){
+  return new Promise(res=>{
+    const dlg=$('#cr'),img=$('#cr-img'),sel=$('#cr-sel'),box=$('#cr-box'),url=URL.createObjectURL(file);let q={x:0,y:0,s:0};
+    const done=r=>{dlg.oncancel=null;URL.revokeObjectURL(url);if(dlg.open)dlg.close();res(r)};
+    const paint=()=>{sel.style.cssText=`left:${q.x}px;top:${q.y}px;width:${q.s}px;height:${q.s}px`};
+    img.onload=()=>{const W=img.clientWidth,H=img.clientHeight,s0=Math.min(W,H)*.7;q={x:(W-s0)/2,y:Math.max(0,(H-s0)*.25),s:s0};paint()};
+    box.onpointerdown=ev=>{
+      const W=img.clientWidth,H=img.clientHeight,rz=ev.target.id==='cr-rz';if(!rz&&ev.target.id!=='cr-sel')return;
+      box.setPointerCapture(ev.pointerId);const x0=q.x,y0=q.y,s0=q.s,cx=ev.clientX,cy=ev.clientY;
+      box.onpointermove=m=>{const dx=m.clientX-cx,dy=m.clientY-cy;
+        if(rz)q.s=Math.max(30,Math.min(s0+Math.max(dx,dy),W-q.x,H-q.y));
+        else{q.x=Math.max(0,Math.min(x0+dx,W-q.s));q.y=Math.max(0,Math.min(y0+dy,H-q.s))}
+        paint()};
+      box.onpointerup=()=>{box.onpointermove=box.onpointerup=null};
+    };
+    $('#cr-x').onclick=()=>done(null);$('#cr-full').onclick=()=>done({crop:null});dlg.oncancel=()=>done(null);
+    $('#cr-ok').onclick=async()=>{try{
+      const bmp=await createImageBitmap(file,{imageOrientation:'from-image'}),k=bmp.width/img.clientWidth,sz=Math.max(1,Math.round(q.s*k)),c=document.createElement('canvas');
+      c.width=c.height=sz;c.getContext('2d').drawImage(bmp,q.x*k,q.y*k,q.s*k,q.s*k,0,0,sz,sz);bmp.close();
+      const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.95));done({crop:new File([blob],'crop.jpg',{type:'image/jpeg'})});
+    }catch(e){toast('이미지를 읽을 수 없어요');done(null)}};
+    img.src=url;dlg.showModal();
+  });
+}
+async function saveImg(file,id,pre){   // 자른 영역(또는 전체)을 200px WebP로 R2에, 원본은 폴더(PC) 또는 서버 inbox에
+  const r=pre||await cropPick(file);if(!r)return null;toast('올리는 중…');
+  const p=await Media.process(r.crop||file);let hash;try{hash=await Media.upload(p)}finally{p.close()}
+  let original='failed',err='';try{original=await Media.original(id,file)}catch(e){err=e.message}
+  return {hash,original,err};
+}
 const addFiles=guard(async files=>{
-  const fs=[...files].filter(f=>f.type.startsWith('image/'));let n=0;
+  const fs=[...files].filter(f=>f.type.startsWith('image/'));
   for(const f of fs){
-    const id=Media.newId();toast(`올리는 중 ${++n}/${fs.length}`);
-    const s=await Media.save(f,{id});   // 200px WebP는 R2에, 원본은 폴더(PC) 또는 서버 inbox에
-    try{
-      const r=await db('POST','lvlv_image','',{id,char_id:S.cur,user_id:SES.user.id,image:s.hash,sort_order:S.imgs.length});S.imgs.push(r[0]);
-      if(s.original==='failed')toast('원본 보관에 실패했어요: '+s.originalError);
-    }finally{s.close()}
+    const id=Media.newId(),x=await saveImg(f,id);if(!x)continue;
+    const r=await db('POST','lvlv_image','',{id,char_id:S.cur,user_id:SES.user.id,image:x.hash,sort_order:S.imgs.length});S.imgs.push(r[0]);
+    if(x.original==='failed')toast('원본 보관에 실패했어요: '+x.err);
   }
   if(fs.length){renderList();renderDet()}
 });
@@ -239,6 +287,13 @@ const imAct=guard(async a=>{
   if(a==='save'){const r=await db('PATCH','lvlv_image',`?id=eq.${x.id}`,{caption:$('#im-c').value.trim()||null});Object.assign(x,r[0]);$('#im').close();return renderDet()}
   if(a==='cover'){const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{cover_id:c.cover_id===x.id?null:x.id});c.cover_id=r[0].cover_id;$('#im').close();renderList();return renderDet()}
   if(a==='orig'){$('#im').close();return openImg(x.id)}
+  if(a==='recrop'){   // PC에서 연결된 폴더의 원본으로 다시 자르기
+    const ok=Media.folder.supported&&await Media.folder.ensure(),f=ok&&await Media.folder.find(x.id);
+    if(!f)return toast('원본 폴더를 연결한 PC에서, 폴더에 원본이 있을 때만 다시 자를 수 있어요');
+    $('#im').close();const r=await cropPick(f);if(!r)return;
+    const p=await Media.process(r.crop||f);let h;try{h=await Media.upload(p)}finally{p.close()}
+    const u=await db('PATCH','lvlv_image',`?id=eq.${x.id}`,{image:h});Object.assign(x,u[0]);renderList();return renderDet();
+  }
   if(a==='del'){if(!confirm('이 이미지를 삭제할까요? (서버 파일은 mnmn에서 정리해요)'))return;await db('DELETE','lvlv_image',`?id=eq.${x.id}`);if(c.cover_id===x.id)c.cover_id=null;S.imgs=S.imgs.filter(i=>i.id!==x.id);$('#im').close();renderList();renderDet()}
 });
 addEventListener('paste',e=>{if(S.edit&&S.cur&&e.clipboardData.files.length)addFiles(e.clipboardData.files)});
@@ -318,7 +373,7 @@ function pageAct(a){
 addEventListener('resize',()=>{if(S.cur)drawBoard()});
 
 /* ---------- 이벤트 ---------- */
-function startEdit(){const c=cur();S.edit=true;S.kw=[...(c.keywords||[])];renderDet()}
+function startEdit(){const c=cur();S.edit=true;S.kw={char:charKw(c,'char'),look:charKw(c,'look')};renderDet()}
 document.addEventListener('click',guard(async e=>{
   const t=e.target,g=s=>t.closest(s);
   if(g('#bk')){document.body.classList.remove('det');return}
@@ -326,8 +381,8 @@ document.addEventListener('click',guard(async e=>{
   if(g('[data-add]')){const [k,r]=g('[data-add]').dataset.add.split(':');return addBoard(k,r)}
   if(g('[data-b]'))return boardAct(g('[data-b]').dataset.b);
   if(g('[data-p]'))return pageAct(g('[data-p]').dataset.p);
-  if(g('[data-x]')){S.kw=S.kw.filter(k=>k!==g('[data-x]').dataset.x);return tiDraw()}
-  if(g('#ti'))return $('#ti-in').focus();
+  if(g('[data-x]')){const [k,n]=g('[data-x]').dataset.x.split('|');S.kw[k]=S.kw[k].filter(v=>v!==n);return tiDraw()}
+  if(g('.ti'))return g('.ti').querySelector('.ti-in').focus();
   if(g('[data-m]'))return imAct(g('[data-m]').dataset.m);
   if(!S.edit&&g('[data-r]')){const x=S.texts.find(q=>q.id===g('[data-r]').dataset.r);if(x){$('#rd-h').textContent=KL[x.kind]+(x.title?' · '+x.title:'');$('#rd-p').textContent=x.body+(x.source?'\n— '+x.source:'');$('#rd').showModal()}return}
   if(!S.edit&&g('[data-ri]'))return openImg(g('[data-ri]').dataset.ri);
@@ -338,50 +393,49 @@ document.addEventListener('click',guard(async e=>{
     if(k==='ex'){S.edit=false;bsel=null;return renderDet()}
     if(k==='tn')return editText(null);
     if(k==='cs'){
-      tiCommit(true);const name=$('#f-name').value.trim();if(!name)return toast('이름을 입력하세요');
-      const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name,origin:$('#f-origin').value.trim()||null,sex:$('#f-sex').value||null,keywords:S.kw,updated_at:new Date().toISOString()});
-      Object.assign(c,r[0]);sortChars();renderList();toast('저장했어요');return renderDet();
+      commitAll();const name=$('#f-name').value.trim();if(!name)return toast('이름을 입력하세요');
+      const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name,origin:$('#f-origin').value.trim()||null,sex:$('#f-sex').value||null,updated_at:new Date().toISOString()});
+      Object.assign(c,r[0]);await saveKw(c.id);sortChars();renderList();toast('저장했어요');return renderDet();
     }
   }
-  if(g('#del')){const c=cur();if(!confirm(`'${c.name}' 과(와) 글감·이미지 연결을 모두 삭제할까요?`))return;await db('DELETE','lvlv_char',`?id=eq.${c.id}`);S.chars=S.chars.filter(x=>x.id!==c.id);S.imgs=S.imgs.filter(x=>x.char_id!==c.id);S.cur=null;S.edit=false;document.body.classList.remove('det');renderList();return emptyDet()}
+  if(g('#del')){const c=cur();if(!confirm(`'${c.name}' 과(와) 글감·이미지 연결을 모두 삭제할까요?`))return;await db('DELETE','lvlv_char',`?id=eq.${c.id}`);S.chars=S.chars.filter(x=>x.id!==c.id);S.imgs=S.imgs.filter(x=>x.char_id!==c.id);S.links=S.links.filter(l=>l.char_id!==c.id);S.cur=null;S.edit=false;document.body.classList.remove('det');renderList();return emptyDet()}
 }));
 addEventListener('dblclick',e=>{
   if(!S.edit||e.target.closest('.ad'))return;
   const i=e.target.closest('.mi'),x=e.target.closest('.tx2');
   if(i)openIm(i.dataset.i);else if(x)editText(S.texts.find(q=>q.id===x.dataset.t));
 });
-document.addEventListener('change',e=>{
-  if(e.target.id==='fi')addFiles(e.target.files);
-  if(e.target.id==='nc-f')$('#nc-fn').textContent=e.target.files[0]?e.target.files[0].name:'';
-});
-document.addEventListener('input',e=>{if(e.target.id==='ti-in'&&!e.isComposing)tiCommit(false)});
-document.addEventListener('compositionend',e=>{if(e.target.id==='ti-in')setTimeout(()=>tiCommit(false),0)});
+let NC=null;
+document.addEventListener('change',guard(async e=>{
+  if(e.target.id==='fi')return addFiles(e.target.files);
+  if(e.target.id==='nc-f'){const f=e.target.files[0];NC=null;$('#nc-fn').textContent='';if(!f)return;const r=await cropPick(f);if(r){NC={file:f,r};$('#nc-fn').textContent=f.name}else e.target.value=''}
+}));
+document.addEventListener('input',e=>{if(!isTi(e.target))return;if(e.inputType==='insertReplacementText')tiCommit(e.target,true);else if(!e.isComposing)tiCommit(e.target,false)});   // 추천 목록에서 고르면 바로 확정
+document.addEventListener('compositionend',e=>{if(isTi(e.target))setTimeout(()=>tiCommit(e.target,false),0)});
 document.addEventListener('keydown',e=>{
-  if(e.target.id==='ti-in'){if(e.key==='Enter'&&!e.isComposing){e.preventDefault();tiCommit(true)}else if(e.key==='Backspace'&&!e.target.value&&S.kw.length){S.kw.pop();tiDraw()}return}
+  if(isTi(e.target)){const k=e.target.dataset.k;if(e.key==='Enter'&&!e.isComposing){e.preventDefault();tiCommit(e.target,true)}else if(e.key==='Backspace'&&!e.target.value&&S.kw[k].length){S.kw[k].pop();tiDraw()}return}
   if(e.key==='Delete'&&S.edit&&bsel&&!e.target.isContentEditable&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))boardAct('rm');
 });
-document.addEventListener('focusout',e=>{if(e.target.id==='ti-in')tiCommit(true)});
+document.addEventListener('focusout',e=>{if(isTi(e.target))tiCommit(e.target,true)});
 $('#q').oninput=e=>{S.q=e.target.value;renderList()};
 
 /* ---------- 새 인물: 대표 값을 입력하면 첫 페이지 + 빈 2쪽이 만들어짐 ---------- */
 $('#add').onclick=()=>{
   if(S.edit){S.edit=false;renderDet()}   // 편집 폼의 키워드 입력과 겹치지 않게
-  S.kw=[];$('#nf').reset();$('#nc-fn').textContent='';$('#ti').querySelectorAll('.chip').forEach(x=>x.remove());$('#nc').showModal();
+  S.kw={char:[],look:[]};NC=null;$('#nf').reset();$('#nc-fn').textContent='';fillDl();tiDraw();$('#nc').showModal();
 };
 $('#nc-x').onclick=()=>$('#nc').close();
 $('#nf').onsubmit=guard(async e=>{
-  e.preventDefault();tiCommit(true);const f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;
+  e.preventDefault();commitAll();const f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;
   const btn=e.submitter;btn.disabled=true;
   try{
-    let r=await db('POST','lvlv_char','',{name,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,keywords:S.kw,user_id:SES.user.id,board:{n:2,items:[]}});
-    const c=r[0],patch={},file=f.get('photo');
-    if(file&&file.size){
-      const id=Media.newId(),s=await Media.save(file,{id});
-      try{const ir=await db('POST','lvlv_image','',{id,char_id:c.id,user_id:SES.user.id,image:s.hash,sort_order:0});S.imgs.push(ir[0]);patch.cover_id=id;if(s.original==='failed')toast('원본 보관에 실패했어요: '+s.originalError)}finally{s.close()}
-    }
+    let r=await db('POST','lvlv_char','',{name,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,user_id:SES.user.id,board:{n:2,items:[]}});
+    const c=r[0],patch={};
+    if(NC){const id=Media.newId(),x=await saveImg(NC.file,id,NC.r);
+      if(x){const ir=await db('POST','lvlv_image','',{id,char_id:c.id,user_id:SES.user.id,image:x.hash,sort_order:0});S.imgs.push(ir[0]);patch.cover_id=id;if(x.original==='failed')toast('원본 보관에 실패했어요: '+x.err)}}
     for(const k in REP){const body=String(f.get(k)||'').trim();if(body){const tr=await db('POST','lvlv_text','',{char_id:c.id,user_id:SES.user.id,kind:k,body,sort_order:0});patch[REP[k]]=tr[0].id}}
     if(Object.keys(patch).length)r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,patch);
-    S.chars.push(r[0]);sortChars();$('#nc').close();await pick(r[0].id);
+    await saveKw(c.id);S.chars.push(r[0]);sortChars();$('#nc').close();await pick(r[0].id);
   }finally{btn.disabled=false}
 });
 
