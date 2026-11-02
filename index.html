@@ -70,6 +70,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 #km{max-width:min(720px,96vw)}#km-b{max-height:68vh;overflow:auto}#km h4{margin:14px 0 4px}
 .kr{display:flex;gap:8px;align-items:center;margin:4px 0}.kr .kn{flex:1;min-width:0}.kr small{white-space:nowrap}.warn{color:#b0603a}
 #sv{margin-left:auto;font-size:12px}
+.kc-r{display:flex;gap:6px;align-items:center;margin:4px 0;flex-wrap:wrap}.kc-r .cn{flex:1;min-width:110px}.kc-r.sub{margin-left:22px}.kc-r small{white-space:nowrap}.kr .kc{max-width:120px}.kr .mv{padding:3px 7px}
 </style>
 </head>
 <body>
@@ -111,8 +112,8 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
   <button id="st-dir">폴더 연결</button> <button id="st-sync">원본 받기</button> <small id="st-msg"></small></p>
   <p><b>연결 확인</b><br><button id="st-test">테스트</button> <small id="st-t"></small></p>
   <div class="row" style="justify-content:space-between"><button id="st-out">로그아웃</button><button id="st-x">닫기</button></div></dialog>
-<datalist id="dl-char"></datalist><datalist id="dl-look"></datalist><datalist id="dl-setting"></datalist>
-<dialog id="km"><h3>키워드 관리</h3><small class="mut">이름을 고치면 모든 인물에 반영돼요. 종류를 바꾸거나, 같은 이름으로 바꾸면 하나로 합칠 수 있어요.</small><div id="km-b"></div>
+<span id="dls" hidden></span>
+<dialog id="km"><h3>키워드 관리</h3><small class="mut">분류를 만들고 정리한 뒤, 키워드를 분류별로 옮기세요. 한 키워드를 여러 분류에 걸 수도 있어요(fsfs는 이름이 같으면 같은 키워드로 읽어요).</small><div id="km-b"></div>
   <div class="row" style="justify-content:flex-end"><button id="km-x" class="p">닫기</button></div></dialog>
 <div id="toast" hidden></div>
 
@@ -141,8 +142,27 @@ async function db(m,t,q,body){
 }
 
 /* ---------- 상태 ---------- */
-const KINDS=[['char','성격','성격·신분 등'],['look','외모','머리색·체형 등'],['setting','설정','직업·출몰 장소 등']],KN=Object.fromEntries(KINDS.map(k=>[k[0],k[1]]));
-const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{char:[],look:[],setting:[]},q:''};
+/* 키워드 분류(kind): lvlv_kind 테이블에서 불러와요. 상위(설정) 아래에 하위(직업·나이대…)를 둘 수 있고, KINDS는 [코드, 표시이름, '']의 순서 있는 목록 */
+const DEF_KINDS=[['char','성격',null,'mood',0],['look','외모',null,'look',1],['setting','설정',null,null,2],['job','직업·신분','setting','role',3],['age','나이대','setting','story',4],['past','과거 사연','setting','story',5]];
+const GRPN={role:'직업·신분',mood:'성격·분위기',look:'외모',story:'사연·나이'};
+const KINDS=[],KN={};let KROWS=[];
+function rebuildKinds(){
+  const top=KROWS.filter(k=>!k.parent||!KROWS.some(x=>x.code===k.parent)).sort((a,b)=>a.sort_order-b.sort_order),out=[];
+  top.forEach(t=>{out.push([t.code,t.name,'',t]);KROWS.filter(x=>x.parent===t.code).sort((a,b)=>a.sort_order-b.sort_order).forEach(c=>out.push([c.code,t.name+' › '+c.name,'',c]))});
+  KINDS.length=0;KINDS.push(...out);Object.keys(KN).forEach(k=>delete KN[k]);out.forEach(([k,n])=>KN[k]=n);
+}
+const kwInit=f=>Object.fromEntries(KINDS.map(([k])=>[k,f?f(k):[]]));
+async function loadKinds(){
+  try{KROWS=await db('GET','lvlv_kind','?select=*&order=sort_order')}catch(e){KROWS=null}
+  if(KROWS===null){KROWS=DEF_KINDS.map(([code,name,parent,grp,sort_order])=>({code,name,parent,grp,sort_order}));toast('분류 테이블(lvlv_kind)이 없어서 기본 분류로 보여줘요. SQL을 실행해 주세요');rebuildKinds();return}
+  const have=new Set(KROWS.map(k=>k.code)),add=[];
+  if(!KROWS.length)DEF_KINDS.forEach(([code,name,parent,grp,sort_order])=>add.push({user_id:SES.user.id,code,name,parent,grp,sort_order}));
+  const mx=Math.max(-1,...KROWS.map(k=>k.sort_order||0),...add.map(k=>k.sort_order));
+  [...new Set(S.kwAll.map(x=>x.kind))].filter(c=>!have.has(c)&&!add.some(a=>a.code===c)).forEach((code,i)=>add.push({user_id:SES.user.id,code,name:code,parent:null,grp:null,sort_order:mx+1+i}));
+  if(add.length)KROWS.push(...await db('POST','lvlv_kind','',add));
+  rebuildKinds();
+}
+const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{},q:''};
 const cur=()=>S.chars.find(c=>c.id===S.cur);
 const qLines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean),oneLine=s=>String(s||'').replace(/\s*\n\s*/g,' ').trim();
 const kws=s=>s.split(',').map(x=>x.trim()).filter(Boolean);
@@ -150,7 +170,7 @@ const sortChars=()=>S.chars.sort((a,b)=>a.name.localeCompare(b.name,'ko'));
 const charKw=(c,k)=>S.links.filter(l=>l.char_id===c.id).map(l=>S.kwAll.find(x=>x.id===l.keyword_id)).filter(x=>x&&x.kind===k).map(x=>x.name);
 async function loadAll(){
   const [c,i,k,l]=await Promise.all([db('GET','lvlv_char','?select=*&order=name'),db('GET','lvlv_image','?select=*&order=sort_order,created_at'),db('GET','lvlv_keyword','?select=*&order=name'),db('GET','lvlv_char_keyword','?select=char_id,keyword_id')]);
-  S.chars=c;S.imgs=i;S.kwAll=k;S.links=l;if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
+  S.chars=c;S.imgs=i;S.kwAll=k;S.links=l;await loadKinds();if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
 }
 function renderList(){
   const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...KINDS.flatMap(([k])=>charKw(c,k))].join(' ').toLowerCase().includes(q));
@@ -174,7 +194,7 @@ function renderDet(){
   if(S.edit){fillDl();tiDraw()}
   drawBoard();
 }
-const kwBlocks=()=>KINDS.map(([k,n,h])=>`<div class="tl-t">${n} 키워드 <small class="mut">${h}</small></div><div class="ti" data-k="${k}"><input class="ti-in" data-k="${k}" list="dl-${k}" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div>`).join('');
+const kwBlocks=()=>KINDS.map(([k,n])=>`<div class="tl-t">${E(n)} 키워드</div><div class="ti" data-k="${k}"><input class="ti-in" data-k="${k}" list="dl-${k}" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div>`).join('');
 function editPanel(c){
   const I=S.imgs.filter(x=>x.char_id===c.id),T=S.texts;
   return `<div class="card"><div class="bar" style="margin-bottom:4px"><b>인물 정보</b><small class="mut">입력하면 자동으로 저장돼요</small><span id="sv" class="mut"></span></div>
@@ -193,7 +213,7 @@ function firstPage(c){
   const im=S.imgs.find(x=>x.id===c.cover_id),Q=qLines(c.quote),chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
   const qh=Q.length?Q.slice(0,4).map(x=>`<p class="ql">${E(x)}</p>`).join('')+(Q.length>4?`<small>외 ${Q.length-4}개</small>`:''):'<span class="mut">편집에서 어록을 입력해 주세요</span>';
   return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><h2>${E(c.name)}</h2><div class="fp-o">${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</div>
-  <div class="fp-k"><div class="tg">${chips('char')}</div><div class="tg lk">${chips('look')}</div><div class="tg st">${chips('setting')}</div></div>
+  <div class="fp-k">${KINDS.filter(k=>!k[3].parent||!KROWS.some(x=>x.code===k[3].parent)).map((t,i)=>{const ch=KINDS.filter(k=>k[0]===t[0]||k[3].parent===t[0]).map(k=>chips(k[0])).join('');return ch?`<div class="tg ${['','lk','st'][i%3]}">${ch}</div>`:''}).join('')}</div>
   <div class="fp-c b" data-r="quote"><small>어록</small>${qh}</div>
   <div class="fp-c c" data-r="profile"><small>프로필</small><p>${c.profile?E(c.profile):'<span class="mut">편집에서 프로필을 입력해 주세요</span>'}</p></div></div>`;
 }
@@ -210,7 +230,7 @@ function tiCommit(inp,final){
 }
 const commitAll=()=>document.querySelectorAll('.ti-in').forEach(i=>tiCommit(i,true));
 const isTi=t=>t&&t.classList&&t.classList.contains('ti-in');
-function fillDl(){for(const [k] of KINDS)$('#dl-'+k).innerHTML=S.kwAll.filter(x=>x.kind===k).map(x=>`<option value="${E(x.name)}">`).join('')}
+function fillDl(){$('#dls').innerHTML=KINDS.map(([k])=>`<datalist id="dl-${k}">`+S.kwAll.filter(x=>x.kind===k).map(x=>`<option value="${E(x.name)}">`).join('')+'</datalist>').join('')}
 async function saveKw(cid){   // S.kw → lvlv_keyword(없으면 생성) + lvlv_char_keyword(연결)
   const need=[];
   for(const [k] of KINDS)for(const n of S.kw[k])if(!kwFind(k,n)&&!need.some(x=>x.kind===k&&x.name===n))need.push({kind:k,name:n,user_id:SES.user.id});
@@ -405,7 +425,7 @@ function pageAct(a){
 addEventListener('resize',()=>{if(S.cur)drawBoard()});
 
 /* ---------- 이벤트 ---------- */
-function startEdit(){const c=cur();S.edit=true;S.kw=Object.fromEntries(KINDS.map(([k])=>[k,charKw(c,k)]));renderDet()}
+function startEdit(){const c=cur();S.edit=true;S.kw=kwInit(k=>charKw(c,k));renderDet()}
 document.addEventListener('click',guard(async e=>{
   const t=e.target,g=s=>t.closest(s);
   if(g('#bk')){document.body.classList.remove('det');return}
@@ -451,7 +471,7 @@ $('#q').oninput=e=>{S.q=e.target.value;renderList()};
 /* ---------- 새 인물: 대표 값을 입력하면 첫 페이지 + 빈 2쪽이 만들어짐 ---------- */
 $('#add').onclick=()=>{
   if(S.edit){S.edit=false;renderDet()}   // 편집 폼의 키워드 입력과 겹치지 않게
-  S.kw={char:[],look:[],setting:[]};NC=null;$('#nf').reset();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
+  S.kw=kwInit();NC=null;$('#nf').reset();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
 };
 $('#nc-x').onclick=()=>$('#nc').close();
 $('#nf').onsubmit=guard(async e=>{
@@ -475,35 +495,71 @@ async function kwUpdate(id,patch){
   if(kind===k.kind&&name===k.name)return;
   const same=S.kwAll.find(x=>x.id!==id&&x.kind===kind&&x.name.toLowerCase()===name.toLowerCase());
   if(!same){const r=await db('PATCH','lvlv_keyword',`?id=eq.${id}`,{kind,name});Object.assign(k,r[0]);return}
-  if(!confirm(`'${same.name}' (${KN[kind]}) 키워드가 이미 있어요. 하나로 합칠까요?`))return;
+  if(!confirm(`'${same.name}' (${KN[kind]||kind}) 키워드가 이미 있어요. 하나로 합칠까요?`))return;
   const have=new Set(S.links.filter(l=>l.keyword_id===same.id).map(l=>l.char_id)),mv=S.links.filter(l=>l.keyword_id===id&&!have.has(l.char_id));
   if(mv.length)await db('POST','lvlv_char_keyword','',mv.map(l=>({char_id:l.char_id,keyword_id:same.id,user_id:SES.user.id})));
   await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
   S.links=S.links.filter(l=>l.keyword_id!==id).concat(mv.map(l=>({char_id:l.char_id,keyword_id:same.id})));S.kwAll=S.kwAll.filter(x=>x.id!==id);
 }
+const kindOpts=sel=>KINDS.map(([v,vn])=>`<option value="${v}"${v===sel?' selected':''}>${E(vn)}</option>`).join('');
 function renderKm(){
-  const cnt={};S.links.forEach(l=>cnt[l.keyword_id]=(cnt[l.keyword_id]||0)+1);
-  $('#km-b').innerHTML=KINDS.map(([k,n,h])=>{const L=S.kwAll.filter(x=>x.kind===k).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
-    return `<h4>${n} <small class="mut">${L.length}개 · ${h}</small></h4>`+(L.map(x=>`<div class="kr" data-kid="${x.id}"><input class="kn" value="${E(x.name)}"><select class="kk">${KINDS.map(([v,vn])=>`<option value="${v}"${v===x.kind?' selected':''}>${vn}</option>`).join('')}</select><small class="mut">${cnt[x.id]||0}명</small>${KMAP&&!KMAP.has(x.name.trim().toLowerCase())?'<small class="warn">fsfs 번역 없음</small>':''}<button data-kd="${x.id}">삭제</button></div>`).join('')||'<small class="mut">없어요</small>')}).join('');
+  const cnt={},kcnt={};S.links.forEach(l=>cnt[l.keyword_id]=(cnt[l.keyword_id]||0)+1);S.kwAll.forEach(x=>kcnt[x.kind]=(kcnt[x.kind]||0)+1);
+  const tops=KROWS.filter(k=>!k.parent||!KROWS.some(x=>x.code===k.parent));
+  const catRow=(k,sub)=>{const hasCh=KROWS.some(x=>x.parent===k.code);
+    return `<div class="kc-r${sub?' sub':''}" data-cid="${k.code}"><input class="cn" value="${E(k.name)}"><select class="cp"${hasCh?' disabled title="하위 분류가 있어서 옮길 수 없어요"':''}><option value="">(최상위)</option>${tops.filter(t=>t.code!==k.code).map(t=>`<option value="${t.code}"${t.code===k.parent?' selected':''}>${E(t.name)} 아래</option>`).join('')}</select><select class="cg" title="fsfs 번역표에서 새 키워드를 만들 때 기본 분류"><option value="">fsfs 분류 없음</option>${Object.entries(GRPN).map(([v,n])=>`<option value="${v}"${v===k.grp?' selected':''}>fsfs: ${n}</option>`).join('')}</select><small class="mut">${kcnt[k.code]||0}개</small><button class="mv" data-cm="${k.code}|-1" title="위로">▲</button><button class="mv" data-cm="${k.code}|1" title="아래로">▼</button><button data-cd="${k.code}">삭제</button></div>`};
+  let h=`<h4>분류 관리 <small class="mut">성격·외모·설정 외에도 자유롭게 추가할 수 있어요</small></h4>`+KINDS.map(([k,n,_,r])=>catRow(r,!!(r.parent&&KROWS.some(x=>x.code===r.parent)))).join('')+`<div class="kc-r"><input id="ca-n" class="cn" placeholder="새 분류 이름"><button id="ca">＋ 분류 추가</button></div>`;
+  h+=KINDS.map(([k,n])=>{const L=S.kwAll.filter(x=>x.kind===k).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+    return `<h4>${E(n)} <small class="mut">${L.length}개</small></h4>`+(L.map(x=>`<div class="kr" data-kid="${x.id}"><input class="kn" value="${E(x.name)}"><select class="kk" title="분류 옮기기">${kindOpts(x.kind)}</select><select class="kc" title="다른 분류에도 걸기"><option value="">＋ 다른 분류에도</option>${KINDS.filter(([v])=>v!==x.kind).map(([v,vn])=>`<option value="${v}">${E(vn)}</option>`).join('')}</select><small class="mut">${cnt[x.id]||0}명</small>${KMAP&&!KMAP.has(x.name.trim().toLowerCase())?'<small class="warn">fsfs 번역 없음</small>':''}<button data-kd="${x.id}">삭제</button></div>`).join('')||'<small class="mut">없어요</small>')}).join('');
+  $('#km-b').innerHTML=h;
 }
+async function kwCopy(id,toKind){
+  const k=S.kwAll.find(x=>x.id===id);let t=S.kwAll.find(x=>x.kind===toKind&&x.name.toLowerCase()===k.name.toLowerCase());
+  if(!t){t=(await db('POST','lvlv_keyword','',{kind:toKind,name:k.name,user_id:SES.user.id}))[0];S.kwAll.push(t)}
+  const have=new Set(S.links.filter(l=>l.keyword_id===t.id).map(l=>l.char_id)),add=S.links.filter(l=>l.keyword_id===id&&!have.has(l.char_id));
+  if(add.length)await db('POST','lvlv_char_keyword','',add.map(l=>({char_id:l.char_id,keyword_id:t.id,user_id:SES.user.id})));
+  S.links=S.links.concat(add.map(l=>({char_id:l.char_id,keyword_id:t.id})));
+}
+async function kindPatch(code,patch){const r=await db('PATCH','lvlv_kind',`?code=eq.${encodeURIComponent(code)}`,patch);Object.assign(KROWS.find(x=>x.code===code),r[0]);rebuildKinds()}
 $('#kmb').onclick=guard(async()=>{
   if(dirty)await infoFlush();KMAP=null;
   try{const s=new Set((await db('GET','fsfs_keymap','?select=keyword')).map(r=>String(r.keyword||'').trim().toLowerCase()));KMAP=s.size?s:null}catch(e){}
   renderKm();$('#km').showModal();
 });
 $('#km-b').addEventListener('change',guard(async e=>{
-  const r=e.target.closest('.kr');if(!r)return;const id=r.dataset.kid;
-  if(e.target.classList.contains('kn'))await kwUpdate(id,{name:e.target.value});else if(e.target.classList.contains('kk'))await kwUpdate(id,{kind:e.target.value});
+  const t=e.target,cr=t.closest('.kc-r'),r=t.closest('.kr');
+  if(t.id==='ca-n')return;
+  if(cr&&cr.dataset.cid){const code=cr.dataset.cid;
+    if(t.classList.contains('cn')){const v=t.value.trim();if(v)await kindPatch(code,{name:v})}
+    else if(t.classList.contains('cp')){const p=t.value||null,sibs=KROWS.filter(x=>x.parent===p&&x.code!==code);await kindPatch(code,{parent:p,sort_order:Math.max(-1,...sibs.map(x=>x.sort_order||0))+1})}
+    else if(t.classList.contains('cg'))await kindPatch(code,{grp:t.value||null});
+  }else if(r){const id=r.dataset.kid;
+    if(t.classList.contains('kn'))await kwUpdate(id,{name:t.value});
+    else if(t.classList.contains('kk'))await kwUpdate(id,{kind:t.value});
+    else if(t.classList.contains('kc')&&t.value)await kwCopy(id,t.value);
+  }
   renderKm();renderList();
 }));
 $('#km-b').addEventListener('click',guard(async e=>{
-  const b=e.target.closest('[data-kd]');if(!b)return;const id=b.dataset.kd,k=S.kwAll.find(x=>x.id===id),n=S.links.filter(l=>l.keyword_id===id).length;
+  const b=e.target.closest('[data-kd],[data-cd],[data-cm],#ca');if(!b)return;
+  if(b.id==='ca'){const n=$('#ca-n').value.trim();if(!n)return;
+    const code='k_'+crypto.randomUUID().slice(0,8),r=await db('POST','lvlv_kind','',{user_id:SES.user.id,code,name:n,parent:null,grp:null,sort_order:Math.max(-1,...KROWS.map(x=>x.sort_order||0))+1});
+    KROWS.push(r[0]);rebuildKinds();renderKm();return}
+  if(b.dataset.cm){const [code,d]=b.dataset.cm.split('|'),me=KROWS.find(x=>x.code===code),sibs=KROWS.filter(x=>(x.parent||null)===(me.parent||null)).sort((a,b)=>a.sort_order-b.sort_order),i=sibs.indexOf(me),o=sibs[i+(+d)];if(!o)return;
+    const a=me.sort_order,c=o.sort_order;if(a===c){sibs.forEach((x,j)=>x.sort_order=j);}
+    const x1=me.sort_order,x2=o.sort_order;await kindPatch(code,{sort_order:x2});await kindPatch(o.code,{sort_order:x1});
+    if(x1===x2){KROWS.sort((p,q)=>p.sort_order-q.sort_order)}renderKm();return}
+  if(b.dataset.cd){const code=b.dataset.cd,k=KROWS.find(x=>x.code===code);
+    if(KROWS.some(x=>x.parent===code))return toast('하위 분류가 있어요. 먼저 옮기거나 지워 주세요');
+    const n=S.kwAll.filter(x=>x.kind===code).length;if(n)return toast(`이 분류에 키워드 ${n}개가 있어요. 먼저 다른 분류로 옮기거나 지워 주세요`);
+    if(!confirm(`'${k.name}' 분류를 삭제할까요?`))return;
+    await db('DELETE','lvlv_kind',`?code=eq.${encodeURIComponent(code)}`);KROWS=KROWS.filter(x=>x.code!==code);rebuildKinds();renderKm();return}
+  const id=b.dataset.kd,k=S.kwAll.find(x=>x.id===id),n=S.links.filter(l=>l.keyword_id===id).length;
   if(!confirm(n?`'${k.name}' 키워드를 ${n}명에게서 떼고 삭제할까요?`:`'${k.name}' 키워드를 삭제할까요?`))return;
   await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
   S.links=S.links.filter(l=>l.keyword_id!==id);S.kwAll=S.kwAll.filter(x=>x.id!==id);renderKm();renderList();
 }));
 $('#km-x').onclick=()=>$('#km').close();
-$('#km').onclose=()=>{const c=cur();if(!c)return;if(S.edit)S.kw=Object.fromEntries(KINDS.map(([k])=>[k,charKw(c,k)]));renderDet()};
+$('#km').onclose=()=>{const c=cur();if(!c)return;if(S.edit)S.kw=kwInit(k=>charKw(c,k));renderDet()};
 
 /* ---------- 설정 ---------- */
 $('#set').onclick=async()=>{
