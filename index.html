@@ -111,13 +111,15 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <datalist id="dl-char"></datalist><datalist id="dl-look"></datalist>
 <div id="toast" hidden></div>
 
-<script src="https://jjojjolonglong-sudo.github.io/mnmn/media.js"></script>
+<script src="https://jjojjolonglong-sudo.github.io/mnmn/config.js"></script>
+<script src="https://jjojjolonglong-sudo.github.io/mnmn/media.v1.js"></script>
 <script>
-const SB='https://rtvvajhsnwkkrmncyfbs.supabase.co';
-const ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0dnZhamhzbndra3JtbmN5ZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NjkwMTEsImV4cCI6MjEwNzA0NTAxMX0.O2aLLeazv_FhUhbVAkp4vz3pw8GPb_683dUu7Et1Cwk';
+const CFG=window.APP_CONFIG||{};
+const SB=CFG.SB||'https://rtvvajhsnwkkrmncyfbs.supabase.co';
+const ANON=CFG.ANON||'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0dnZhamhzbndra3JtbmN5ZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NjkwMTEsImV4cCI6MjEwNzA0NTAxMX0.O2aLLeazv_FhUhbVAkp4vz3pw8GPb_683dUu7Et1Cwk';
 const W='https://media.jjojjolonglong.workers.dev';
 const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-if(!window.Media){const f=async()=>{throw new Error('media.js를 불러오지 못했어요')};window.Media={init(){},url:()=>'',newId:()=>crypto.randomUUID(),folder:{supported:false,name:async()=>''},save:f}}
+if(!window.Media){const f=async()=>{throw new Error('media.v1.js를 불러오지 못했어요')};window.Media={init(){},url:()=>'',newId:()=>crypto.randomUUID(),folder:{supported:false,name:async()=>''},save:f}}
 const toast=t=>{const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3000)};
 const guard=f=>async(...a)=>{try{return await f(...a)}catch(e){toast(e.message)}};
 
