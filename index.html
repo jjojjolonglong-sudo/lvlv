@@ -5,39 +5,39 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lvlv</title>
 <style>
-:root{--bg:#f1ebdd;--paper:#fbf7ee;--ink:#3a342c;--mut:#8b8274;--ln:#d9cfbd;--ac:#8a6a45;--tape:rgba(190,160,110,.55)}
+:root{--bg:#eef1f5;--paper:#fff;--ink:#26303b;--mut:#7a8794;--ln:#d5dce4;--ac:#4a6785;--tape:rgba(150,170,195,.5)}
 *{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg) radial-gradient(#0000000d 1px,transparent 1px) 0 0/18px 18px;color:var(--ink);font:15px/1.6 "Noto Serif KR","Nanum Myeongjo",Batang,Georgia,serif}
-button,input,select,textarea{font:inherit;color:inherit;background:var(--paper);border:1px solid var(--ln);border-radius:4px;padding:5px 9px}
+body{background:var(--bg);color:var(--ink);font:14px/1.6 "Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit;background:var(--paper);border:1px solid var(--ln);border-radius:6px;padding:5px 10px}
 button{cursor:pointer}button:hover{border-color:var(--ac)}.p{background:var(--ac);color:#fff;border-color:var(--ac)}
 textarea{width:100%;resize:vertical}[hidden]{display:none!important}.mut,small{color:var(--mut)}
 #login{max-width:300px;margin:18vh auto;display:grid;gap:8px;padding:0 14px}
 #app{display:grid;grid-template-columns:270px 1fr;height:100%}
-#list{border-right:1px dashed var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
+#list{border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
 #list h1{margin:0;font-size:21px;letter-spacing:2px;display:flex;gap:6px;align-items:center}#list h1 span{flex:1}
 #cl{overflow:auto;flex:1}
-.ci{display:flex;gap:10px;align-items:center;padding:7px;border-radius:6px;cursor:pointer}.ci:hover,.ci.on{background:#e9dfc9}
-.th{width:44px;height:44px;border-radius:50%;background:#ddd2bb center/cover;flex:none;border:2px solid #fff;box-shadow:0 1px 3px #0003}
+.ci{display:flex;gap:10px;align-items:center;padding:7px;border-radius:6px;cursor:pointer}.ci:hover,.ci.on{background:#e2e9f1}
+.th{width:44px;height:44px;border-radius:50%;background:#dbe3ec center/cover;flex:none;border:2px solid #fff;box-shadow:0 1px 3px #0003}
 #det{overflow:auto;padding:18px 24px;min-width:0}.bk{display:none;margin-bottom:8px}
 .hd{display:flex;gap:8px}.nm{font-size:22px;font-weight:600;flex:1;background:none;border-color:transparent;border-bottom:1px dashed var(--ln)}
 .row{display:flex;gap:8px;margin:8px 0}.row input{flex:1}.kw{width:100%}
 .card{background:var(--paper);border:1px solid var(--ln);border-radius:3px;padding:12px 14px;margin:0 0 10px;box-shadow:0 1px 2px #0001}
-.card p{margin:4px 0;white-space:pre-wrap}.tg span{display:inline-block;background:#e9dfc9;border-radius:10px;padding:0 8px;margin:4px 4px 0 0;font-size:12px}
+.card p{margin:4px 0;white-space:pre-wrap}.tg span{display:inline-block;background:#e1e8f0;border-radius:10px;padding:0 8px;margin:4px 4px 0 0;font-size:12px}
 .ac{margin-top:6px;display:flex;gap:6px}.ac button{font-size:12px;padding:2px 8px}
 .bar{display:flex;gap:10px;align-items:center;margin-bottom:12px}.btn{display:inline-block;border:1px solid var(--ln);border-radius:4px;padding:5px 9px;background:var(--paper);cursor:pointer}
 .tray{display:flex;gap:6px;align-items:center;overflow-x:auto;padding:4px 0;white-space:nowrap}.tt{height:40px;border:2px solid #fff;box-shadow:0 1px 3px #0003;cursor:pointer}
 .tb{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap}
 .it{position:absolute;touch-action:none;user-select:none;cursor:grab;box-shadow:0 3px 8px #0004}.it.sel{outline:2px dashed var(--ac);outline-offset:3px}
 .it.i{background:#fff;padding:7px 7px 22px}.it.i img{width:100%;display:block;pointer-events:none}
-.it.q,.it.t{padding:12px 14px;background:#fff3bd}.it.t.c1,.it.q.c1{background:#dcebd6}.it.t.c2,.it.q.c2{background:#f6d9d9}
+.it.q,.it.t{padding:12px 14px;background:#e1ebf6}.it.t.c1,.it.q.c1{background:#e5e9ee}.it.t.c2,.it.q.c2{background:#e0eeee}
 .it p{margin:0;white-space:pre-wrap;min-height:1.4em;outline:0}.it small{display:block;margin-top:6px}
 .rz{position:absolute;right:-7px;bottom:-7px;width:14px;height:14px;background:var(--ac);border-radius:50%;cursor:nwse-resize;display:none}.it.sel .rz{display:block}
 h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--ac)}
 .ti{display:flex;flex-wrap:wrap;gap:6px;align-items:center;border:1px solid var(--ln);background:var(--paper);border-radius:4px;padding:4px 8px;margin:8px 0;cursor:text}
-.ti input{border:0;outline:0;flex:1;min-width:130px;padding:3px}.chip{background:#e9dfc9;border-radius:12px;padding:0 4px 0 10px;font-size:13px}.chip b{cursor:pointer;color:var(--mut);padding:0 4px}
-.star{position:absolute;top:2px;right:6px;color:#c9962e;font-size:18px;text-shadow:0 0 3px #fff}
+.ti input{border:0;outline:0;flex:1;min-width:130px;padding:3px}.chip{background:#e1e8f0;border-radius:12px;padding:0 4px 0 10px;font-size:13px}.chip b{cursor:pointer;color:var(--mut);padding:0 4px}
+.star{position:absolute;top:2px;right:6px;color:#c9a23c;font-size:18px;text-shadow:0 0 3px #fff}
 .sbn{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}#sbw{width:100%}.sb{display:flex;justify-content:center}
-.pg{position:relative;overflow:hidden;flex:none;background:var(--paper) radial-gradient(#8a6a4522 1px,transparent 1px) 0 0/22px 22px;box-shadow:0 2px 10px #0003}
+.pg{position:relative;overflow:hidden;flex:none;background:var(--paper) radial-gradient(#4a678518 1px,transparent 1px) 0 0/22px 22px;box-shadow:0 2px 10px #0003}
 .pg.blank{background:none;box-shadow:none;border:1px dashed var(--ln)}.pgi{position:absolute;left:0;top:0;width:600px;height:840px;transform-origin:0 0}
 .pg.l{border-radius:3px 0 0 3px}.pg.r{border-radius:0 3px 3px 0}
 .pg.l:after,.pg.r:after{content:"";position:absolute;top:0;bottom:0;width:22px;pointer-events:none}
@@ -46,18 +46,18 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 .ml,.tl{display:flex;flex-wrap:wrap;gap:8px;max-height:150px;overflow:auto;padding:4px}
 .mi{position:relative;width:64px;height:64px;border:2px solid #fff;box-shadow:0 1px 3px #0004;cursor:pointer;flex:none;background:#ddd}.mi img{width:100%;height:100%;object-fit:cover;display:block}
 .ad{position:absolute;right:2px;bottom:2px;width:20px;height:20px;border-radius:50%;background:var(--ac);color:#fff;font-style:normal;text-align:center;line-height:20px;cursor:pointer;font-size:14px}
-.tx2{position:relative;width:150px;height:84px;background:#fff3bd;padding:6px 8px;box-shadow:0 1px 3px #0003;cursor:pointer;overflow:hidden;font-size:12px;line-height:1.4;flex:none}
-.tx2 small{display:block}.tx2 p{margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.tx2.k-look{background:#dcebd6}.tx2.k-profile{background:#f6d9d9}
+.tx2{position:relative;width:150px;height:84px;background:#e1ebf6;padding:6px 8px;box-shadow:0 1px 3px #0003;cursor:pointer;overflow:hidden;font-size:12px;line-height:1.4;flex:none}
+.tx2 small{display:block}.tx2 p{margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .fp{position:relative;width:100%;height:100%;font-size:14px}.fp>*{position:absolute}
 .fp-ph{left:36px;top:40px;width:230px;padding:10px 10px 28px;background:#fff;box-shadow:0 3px 8px #0004;transform:rotate(-3deg)}
 .fp-ph:before{content:"";position:absolute;top:-10px;left:50%;width:56px;height:18px;margin-left:-28px;background:var(--tape);transform:rotate(-3deg)}
 .fp-ph img,.fp-ph span{width:100%;height:210px;display:flex;object-fit:cover;align-items:center;justify-content:center;color:var(--mut);background:#eee}.fp-ph img{cursor:zoom-in;background:none}
 .fp h2{left:296px;top:56px;width:270px;margin:0;font-size:34px;line-height:1.15}.fp-o{left:296px;top:140px;width:270px;color:var(--mut)}
-.fp-k{left:296px;top:176px;width:270px}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}
+.fp-k{left:296px;top:176px;width:270px}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}.tg.st span{background:none;border:1px dashed var(--mut)}
 .fp-c{padding:10px 14px;box-shadow:0 3px 8px #0003;cursor:pointer;overflow:hidden}.fp-c small{display:block;color:var(--mut);margin-bottom:4px;letter-spacing:2px}
 .fp-c p{margin:0;white-space:pre-wrap;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:7}
-.fp-c.b{left:36px;top:360px;width:528px;height:170px;background:#fff3bd;transform:rotate(.8deg);font-style:italic}.fp-c.b p{-webkit-line-clamp:5}
-.fp-c.c{left:36px;top:560px;width:528px;height:236px;background:#f6d9d9;transform:rotate(-.4deg)}.fp-c.c p{-webkit-line-clamp:9}
+.fp-c.b{left:36px;top:360px;width:528px;height:170px;background:#e1ebf6;transform:rotate(.8deg)}.fp-c.b .ql{margin:0 0 4px;-webkit-line-clamp:2}.fp-c.b small{margin:2px 0 0;letter-spacing:0}
+.fp-c.c{left:36px;top:560px;width:528px;height:236px;background:#e7ecf1;transform:rotate(-.4deg)}.fp-c.c p{-webkit-line-clamp:9}
 .tl-t{margin:8px 0 2px;font-size:13px;color:var(--mut)}.chip.new{outline:1px dashed var(--ac)}
 #cr{max-width:min(94vw,820px)}#cr-box{position:relative;width:fit-content;margin:10px auto;touch-action:none;user-select:none}#cr-img{max-width:min(88vw,780px);max-height:60vh;display:block}
 #cr-sel{position:absolute;border:2px solid #fff;box-shadow:0 0 0 9999px #0008;cursor:move}#cr-rz{position:absolute;right:-9px;bottom:-9px;width:16px;height:16px;border-radius:50%;background:var(--ac);border:2px solid #fff;cursor:nwse-resize}
@@ -65,8 +65,11 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 dialog{border:1px solid var(--ln);border-radius:6px;background:var(--paper);color:var(--ink);padding:18px;max-width:min(560px,94vw);width:100%}
 dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{margin:0 0 8px}
 #lb{max-width:94vw;width:auto;text-align:center}#lb img{max-width:90vw;max-height:78vh;display:block;margin:0 auto 8px}
-#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#3a342c;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;max-width:90vw}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#26303b;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;max-width:90vw}
 @media(max-width:760px){#app{display:block}#det{display:none;height:100%}body.det #list{display:none}body.det #det{display:block}.bk{display:block}}
+#km{max-width:min(720px,96vw)}#km-b{max-height:68vh;overflow:auto}#km h4{margin:14px 0 4px}
+.kr{display:flex;gap:8px;align-items:center;margin:4px 0}.kr .kn{flex:1;min-width:0}.kr small{white-space:nowrap}.warn{color:#b0603a}
+#sv{margin-left:auto;font-size:12px}
 </style>
 </head>
 <body>
@@ -78,7 +81,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 </div>
 <div id="app" hidden>
   <aside id="list">
-    <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="set" title="설정">⚙</button></h1>
+    <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="kmb" title="키워드 관리">#</button><button id="set" title="설정">⚙</button></h1>
     <input id="q" placeholder="이름·출처·키워드 검색">
     <div id="cl"></div>
   </aside>
@@ -90,15 +93,15 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <dialog id="nc"><form id="nf"><h3>새 인물</h3>
   <input name="name" placeholder="이름 *" required>
   <div class="row"><input name="origin" placeholder="출처 (소설·영화·현실…)"><select name="sex"><option value="">성별</option><option value="f">여</option><option value="m">남</option></select></div>
-  <div class="tl-t">인물 키워드 <small class="mut">성격·신분·직업 등</small></div><div class="ti" data-k="char"><input class="ti-in" data-k="char" list="dl-char" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div><div class="tl-t">외모 키워드</div><div class="ti" data-k="look"><input class="ti-in" data-k="look" list="dl-look" placeholder="#키워드"></div>
+  <div id="nc-kw"></div>
   <div><label class="btn">대표 사진 선택<input type="file" name="photo" id="nc-f" accept="image/*" hidden></label> <small id="nc-fn" class="mut"></small></div>
-  <textarea name="quote" rows="2" placeholder="대표 어록"></textarea><textarea name="profile" rows="3" placeholder="대표 프로필"></textarea>
+  <textarea name="quote" rows="3" placeholder="어록 (한 줄에 하나, Enter로 구분)"></textarea><input name="profile" placeholder="프로필 한 줄">
   <small class="mut">입력한 값으로 첫 페이지가 만들어지고, 빈 두 번째 페이지가 함께 생겨요. 나중에 편집 모드에서 바꿀 수 있어요.</small>
   <div class="row" style="justify-content:flex-end"><button type="button" id="nc-x">취소</button><button class="p">만들기</button></div></form></dialog>
 <dialog id="rd"><h3 id="rd-h"></h3><p id="rd-p" style="white-space:pre-wrap"></p><div class="row" style="justify-content:flex-end"><button id="rd-x">닫기</button></div></dialog>
 <dialog id="im"><img id="im-i" alt="" style="max-width:100%;max-height:46vh;display:block;margin:0 auto 10px"><input id="im-c" placeholder="캡션" style="width:100%">
   <div class="row"><button data-m="cover">프로필 사진으로</button><button data-m="recrop">다시 자르기</button><button data-m="orig">원본 보기</button><button data-m="del">삭제</button></div>
-  <div class="row" style="justify-content:flex-end"><button data-m="x">닫기</button><button class="p" data-m="save">저장</button></div></dialog>
+  <div class="row" style="justify-content:flex-end"><small class="mut" style="margin-right:auto;align-self:center">닫으면 캡션이 저장돼요</small><button data-m="x" class="p">닫기</button></div></dialog>
 <dialog id="cr"><h3>썸네일 영역 선택</h3><small class="mut">정사각형 영역을 끌어서 옮기고, 오른쪽 아래 점으로 크기를 바꾸세요. 원본은 따로 보관돼요.</small>
   <div id="cr-box"><img id="cr-img" alt=""><div id="cr-sel"><i id="cr-rz"></i></div></div>
   <div class="row" style="justify-content:flex-end"><button type="button" id="cr-x">취소</button><button type="button" id="cr-full">자르지 않고 전체</button><button type="button" class="p" id="cr-ok">이 영역으로</button></div></dialog>
@@ -108,7 +111,9 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
   <button id="st-dir">폴더 연결</button> <button id="st-sync">원본 받기</button> <small id="st-msg"></small></p>
   <p><b>연결 확인</b><br><button id="st-test">테스트</button> <small id="st-t"></small></p>
   <div class="row" style="justify-content:space-between"><button id="st-out">로그아웃</button><button id="st-x">닫기</button></div></dialog>
-<datalist id="dl-char"></datalist><datalist id="dl-look"></datalist>
+<datalist id="dl-char"></datalist><datalist id="dl-look"></datalist><datalist id="dl-setting"></datalist>
+<dialog id="km"><h3>키워드 관리</h3><small class="mut">이름을 고치면 모든 인물에 반영돼요. 종류를 바꾸거나, 같은 이름으로 바꾸면 하나로 합칠 수 있어요.</small><div id="km-b"></div>
+  <div class="row" style="justify-content:flex-end"><button id="km-x" class="p">닫기</button></div></dialog>
 <div id="toast" hidden></div>
 
 <script src="https://jjojjolonglong-sudo.github.io/mnmn/config.js"></script>
@@ -117,7 +122,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 const CFG=window.APP_CONFIG||{};
 const SB=CFG.SB||'https://rtvvajhsnwkkrmncyfbs.supabase.co';
 const ANON=CFG.ANON||'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0dnZhamhzbndra3JtbmN5ZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NjkwMTEsImV4cCI6MjEwNzA0NTAxMX0.O2aLLeazv_FhUhbVAkp4vz3pw8GPb_683dUu7Et1Cwk';
-const W='https://media.jjojjolonglong.workers.dev';
+const W=CFG.MEDIA||'https://media.jjojjolonglong.workers.dev';
 const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 if(!window.Media){const f=async()=>{throw new Error('media.v1.js를 불러오지 못했어요')};window.Media={init(){},url:()=>'',newId:()=>crypto.randomUUID(),folder:{supported:false,name:async()=>''},save:f}}
 const toast=t=>{const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3000)};
@@ -136,9 +141,10 @@ async function db(m,t,q,body){
 }
 
 /* ---------- 상태 ---------- */
-const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{char:[],look:[]},q:''};
+const KINDS=[['char','성격','성격·신분 등'],['look','외모','머리색·체형 등'],['setting','설정','직업·출몰 장소 등']],KN=Object.fromEntries(KINDS.map(k=>[k[0],k[1]]));
+const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{char:[],look:[],setting:[]},q:''};
 const cur=()=>S.chars.find(c=>c.id===S.cur);
-const REP={quote:'quote_id',profile:'profile_id'},KL={quote:'어록',profile:'프로필',look:'외모'};
+const qLines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean),oneLine=s=>String(s||'').replace(/\s*\n\s*/g,' ').trim();
 const kws=s=>s.split(',').map(x=>x.trim()).filter(Boolean);
 const sortChars=()=>S.chars.sort((a,b)=>a.name.localeCompare(b.name,'ko'));
 const charKw=(c,k)=>S.links.filter(l=>l.char_id===c.id).map(l=>S.kwAll.find(x=>x.id===l.keyword_id)).filter(x=>x&&x.kind===k).map(x=>x.name);
@@ -147,12 +153,13 @@ async function loadAll(){
   S.chars=c;S.imgs=i;S.kwAll=k;S.links=l;if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
 }
 function renderList(){
-  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...charKw(c,'char'),...charKw(c,'look')].join(' ').toLowerCase().includes(q));
+  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...KINDS.flatMap(([k])=>charKw(c,k))].join(' ').toLowerCase().includes(q));
   $('#cl').innerHTML=L.map(c=>{const im=S.imgs.find(x=>x.id===c.cover_id);
     return `<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"><div class="th"${im?` style="background-image:url('${Media.url(im.image)}')"`:''}>${im?'':E([...c.name][0]||'')}</div><div><b>${E(c.name)}</b><br><small>${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</small></div></div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
 }
 const emptyDet=()=>{$('#dc').innerHTML='<p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p>'};
 async function pick(id){
+  if(dirty)await infoFlush();
   S.cur=id;S.edit=false;bpg=0;bsel=null;S.texts=await db('GET','lvlv_text',`?char_id=eq.${id}&select=*&order=sort_order,created_at`);
   document.body.classList.add('det');renderList();renderDet();
 }
@@ -167,22 +174,28 @@ function renderDet(){
   if(S.edit){fillDl();tiDraw()}
   drawBoard();
 }
+const kwBlocks=()=>KINDS.map(([k,n,h])=>`<div class="tl-t">${n} 키워드 <small class="mut">${h}</small></div><div class="ti" data-k="${k}"><input class="ti-in" data-k="${k}" list="dl-${k}" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div>`).join('');
 function editPanel(c){
   const I=S.imgs.filter(x=>x.char_id===c.id),T=S.texts;
-  return `<details class="card"><summary>인물 정보 (첫 페이지에 반영)</summary>
-    <input id="f-name" value="${E(c.name)}" style="width:100%;margin:8px 0">
+  return `<div class="card"><div class="bar" style="margin-bottom:4px"><b>인물 정보</b><small class="mut">입력하면 자동으로 저장돼요</small><span id="sv" class="mut"></span></div>
+    <input id="f-name" value="${E(c.name)}" style="width:100%;margin:6px 0">
     <div class="row"><input id="f-origin" placeholder="출처 (소설·영화·현실…)" value="${E(c.origin||'')}"><select id="f-sex"><option value="">성별</option><option value="f"${c.sex==='f'?' selected':''}>여</option><option value="m"${c.sex==='m'?' selected':''}>남</option></select></div>
-    <div class="tl-t">인물 키워드 <small class="mut">성격·신분·직업 등</small></div><div class="ti" data-k="char"><input class="ti-in" data-k="char" list="dl-char" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div><div class="tl-t">외모 키워드</div><div class="ti" data-k="look"><input class="ti-in" data-k="look" list="dl-look" placeholder="#키워드"></div><button class="p" data-a="cs">저장</button></details>
+    <textarea id="f-quote" rows="4" placeholder="어록 (한 줄에 하나, Enter로 구분)">${E(c.quote||'')}</textarea>
+    <input id="f-profile" placeholder="프로필 한 줄" value="${E(c.profile||'')}" style="width:100%;margin-top:8px">
+    ${kwBlocks()}</div>
   <div class="card"><div class="bar"><b>이미지</b><label class="btn">＋ 올리기<input type="file" id="fi" accept="image/*" multiple hidden></label><small class="mut">＋ 누르면 페이지에 붙이고, 더블클릭하면 설정(프로필 사진·캡션·삭제)</small></div>
     <div class="ml">${I.map(x=>`<div class="mi" data-i="${x.id}"><img src="${Media.url(x.image)}" loading="lazy" alt="">${c.cover_id===x.id?'<b class="star">★</b>':''}<i class="ad" data-add="i:${x.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
-  <div class="card"><div class="bar"><b>글감</b><button data-a="tn">＋ 새 글감</button><small class="mut">＋ 누르면 붙이고, 더블클릭하면 설정(내용·종류·대표·삭제)</small></div>
-    <div class="tl">${T.map(t=>`<div class="tx2 k-${t.kind}" data-t="${t.id}"><small>${KL[t.kind]||t.kind}${c[REP[t.kind]]===t.id?' ★':''}</small><p>${E(t.body)}</p><i class="ad" data-add="q:${t.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
+  <div class="card"><div class="bar"><b>글감</b><button data-a="tn">＋ 새 글감</button><small class="mut">＋ 누르면 붙이고, 더블클릭하면 설정(내용·삭제)</small></div>
+    <div class="tl">${T.map(t=>`<div class="tx2" data-t="${t.id}"><p>${E(t.body)}</p><i class="ad" data-add="q:${t.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
   <div class="tb"><b>선택한 오브젝트</b><button data-b="rl">⟲</button><button data-b="rr">⟳</button><button data-b="sm">−</button><button data-b="bg">＋</button><button data-b="fr">앞으로</button><button data-b="pl">◂ 앞 페이지로</button><button data-b="pr">뒤 페이지로 ▸</button><button data-b="rm">빼기</button></div>`;
 }
 function firstPage(c){
-  const im=S.imgs.find(x=>x.id===c.cover_id),card=(k,cl)=>{const t=S.texts.find(x=>x.id===c[REP[k]]);return `<div class="fp-c ${cl}"${t?` data-r="${t.id}"`:''}><small>${KL[k]}</small><p>${t?E(t.body):'<span class="mut">대표를 정해 주세요</span>'}</p></div>`},chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
+  const im=S.imgs.find(x=>x.id===c.cover_id),Q=qLines(c.quote),chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
+  const qh=Q.length?Q.slice(0,4).map(x=>`<p class="ql">${E(x)}</p>`).join('')+(Q.length>4?`<small>외 ${Q.length-4}개</small>`:''):'<span class="mut">편집에서 어록을 입력해 주세요</span>';
   return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><h2>${E(c.name)}</h2><div class="fp-o">${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</div>
-  <div class="fp-k"><div class="tg">${chips('char')}</div><div class="tg lk">${chips('look')}</div></div>${card('quote','b')}${card('profile','c')}</div>`;
+  <div class="fp-k"><div class="tg">${chips('char')}</div><div class="tg lk">${chips('look')}</div><div class="tg st">${chips('setting')}</div></div>
+  <div class="fp-c b" data-r="quote"><small>어록</small>${qh}</div>
+  <div class="fp-c c" data-r="profile"><small>프로필</small><p>${c.profile?E(c.profile):'<span class="mut">편집에서 프로필을 입력해 주세요</span>'}</p></div></div>`;
 }
 
 /* ---------- #키워드 블록 입력: 인물 키워드 / 외모 키워드. 같은 이름이 이미 있으면 그걸 쓰고, 없으면 저장할 때 새로 만들어요 ---------- */
@@ -191,43 +204,60 @@ function tiDraw(){document.querySelectorAll('.ti').forEach(ti=>{const k=ti.datas
   S.kw[k].forEach(n=>inp.insertAdjacentHTML('beforebegin',`<span class="chip${kwFind(k,n)?'':' new'}" title="${kwFind(k,n)?'':'새 키워드 (저장하면 만들어져요)'}">#${E(n)}<b data-x="${k}|${E(n)}">✕</b></span>`))})}
 function tiCommit(inp,final){
   const k=inp.dataset.k,raw=inp.value,parts=raw.split(/[\s,]+/),keep=final||/[\s,]$/.test(raw)?'':parts.pop();
+  const n0=S.kw[k].length;
   parts.map(x=>x.replace(/^#+/,'').trim()).filter(Boolean).forEach(n=>{const ex=kwFind(k,n),name=ex?ex.name:n;if(!S.kw[k].some(v=>v.toLowerCase()===name.toLowerCase()))S.kw[k].push(name)});
-  inp.value=keep;tiDraw();
+  inp.value=keep;tiDraw();if(S.kw[k].length!==n0)kwChanged();
 }
 const commitAll=()=>document.querySelectorAll('.ti-in').forEach(i=>tiCommit(i,true));
 const isTi=t=>t&&t.classList&&t.classList.contains('ti-in');
-function fillDl(){for(const k of ['char','look'])$('#dl-'+k).innerHTML=S.kwAll.filter(x=>x.kind===k).map(x=>`<option value="${E(x.name)}">`).join('')}
+function fillDl(){for(const [k] of KINDS)$('#dl-'+k).innerHTML=S.kwAll.filter(x=>x.kind===k).map(x=>`<option value="${E(x.name)}">`).join('')}
 async function saveKw(cid){   // S.kw → lvlv_keyword(없으면 생성) + lvlv_char_keyword(연결)
   const need=[];
-  for(const k of ['char','look'])for(const n of S.kw[k])if(!kwFind(k,n)&&!need.some(x=>x.kind===k&&x.name===n))need.push({kind:k,name:n,user_id:SES.user.id});
+  for(const [k] of KINDS)for(const n of S.kw[k])if(!kwFind(k,n)&&!need.some(x=>x.kind===k&&x.name===n))need.push({kind:k,name:n,user_id:SES.user.id});
   if(need.length)S.kwAll.push(...await db('POST','lvlv_keyword','',need));
-  const ids=[...new Set(['char','look'].flatMap(k=>S.kw[k].map(n=>kwFind(k,n).id)))];
+  const ids=[...new Set(KINDS.flatMap(([k])=>S.kw[k].map(n=>kwFind(k,n).id)))];
   await db('DELETE','lvlv_char_keyword',`?char_id=eq.${cid}`);
   if(ids.length)await db('POST','lvlv_char_keyword','',ids.map(keyword_id=>({char_id:cid,keyword_id,user_id:SES.user.id})));
   S.links=S.links.filter(l=>l.char_id!==cid).concat(ids.map(keyword_id=>({char_id:cid,keyword_id})));fillDl();
 }
 
-/* ---------- 글감(어록·외모·프로필) 편집: 더블클릭으로 열림 ---------- */
+/* ---------- 인물 정보 자동 저장 (입력 후 0.8초) ---------- */
+let it=null,saving=false,dirty=false,kwDirty=false,infoCid=null;
+const readInfo=()=>{const c=cur();if(!c||!$('#f-name'))return;const n=$('#f-name').value.trim();if(n)c.name=n;c.origin=$('#f-origin').value.trim()||null;c.sex=$('#f-sex').value||null;c.quote=qLines($('#f-quote').value).join('\n')||null;c.profile=oneLine($('#f-profile').value)||null};
+function infoDirty(){if(!S.edit||!$('#f-name'))return;readInfo();dirty=true;infoCid=S.cur;const v=$('#sv');if(v)v.textContent='저장 중…';clearTimeout(it);it=setTimeout(infoFlush,800)}
+const kwChanged=()=>{kwDirty=true;infoDirty()};
+const infoFlush=guard(async()=>{
+  if(!dirty)return;clearTimeout(it);
+  if(saving){it=setTimeout(infoFlush,300);return}
+  const c=S.chars.find(x=>x.id===infoCid);if(!c){dirty=false;return}
+  saving=true;dirty=false;const kd=kwDirty;kwDirty=false;
+  try{
+    await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name:c.name,origin:c.origin,sex:c.sex,quote:c.quote,profile:c.profile,updated_at:new Date().toISOString()});
+    if(kd)await saveKw(c.id);
+    sortChars();renderList();drawBoard();const n=$('.nn');if(n)n.textContent=c.name;const v=$('#sv');if(v)v.textContent='저장됨';
+  }catch(e){dirty=true;if(kd)kwDirty=true;const v=$('#sv');if(v)v.textContent='저장 실패';throw e}
+  finally{saving=false}
+  if(dirty)infoFlush();
+});
+
+/* ---------- 글감 편집: 더블클릭으로 열림 (내용·출처만) ---------- */
 let EDT=null;
 function editText(t){
-  EDT=t||null;const c=cur(),k=t?t.kind:'quote';
+  EDT=t||null;
   $('#dlg-h').textContent=t?'글감 편집':'새 글감';
-  $('#dlg-b').innerHTML=`<select name="kind">${[...new Set(['quote','profile',k])].map(x=>`<option value="${x}"${x===k?' selected':''}>${KL[x]}</option>`).join('')}</select><input name="title" placeholder="제목 (선택)" value="${E(t?.title||'')}"><textarea name="body" rows="6" placeholder="내용">${E(t?.body||'')}</textarea><input name="source" placeholder="출처 (선택)" value="${E(t?.source||'')}"><input name="tags" placeholder="상황 태그 (쉼표: 인사, 분노…)" value="${E((t?.tags||[]).join(', '))}"><label><input type="checkbox" name="rep"${t&&c[REP[t.kind]]===t.id?' checked':''}> 첫 페이지의 대표로 지정</label>`;
+  $('#dlg-b').innerHTML=`<textarea name="body" rows="6" placeholder="내용">${E(t?.body||'')}</textarea><input name="source" placeholder="출처 (선택)" value="${E(t?.source||'')}">`;
   $('#dlg-d').hidden=!t;$('#dlg').showModal();
 }
 $('#df').onsubmit=guard(async e=>{
   e.preventDefault();const f=new FormData(e.target),body=String(f.get('body')||'').trim();if(!body)return;const c=cur();
-  const row={kind:f.get('kind'),title:String(f.get('title')).trim()||null,body,source:String(f.get('source')).trim()||null,tags:kws(String(f.get('tags')||''))};let t;
-  if(EDT){const r=await db('PATCH','lvlv_text',`?id=eq.${EDT.id}`,row);t=Object.assign(S.texts.find(x=>x.id===EDT.id),r[0])}
-  else{const r=await db('POST','lvlv_text','',{...row,char_id:c.id,user_id:SES.user.id,sort_order:S.texts.length});t=r[0];S.texts.push(t)}
-  const want=f.get('rep')==='on',patch={};
-  for(const k in REP){const was=c[REP[k]]===t.id;if(k===t.kind){if(want&&!was)patch[REP[k]]=t.id;if(!want&&was)patch[REP[k]]=null}else if(was)patch[REP[k]]=null}
-  if(Object.keys(patch).length){const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,patch);Object.assign(c,r[0])}
+  const row={body,source:String(f.get('source')).trim()||null};
+  if(EDT){const r=await db('PATCH','lvlv_text',`?id=eq.${EDT.id}`,row);Object.assign(S.texts.find(x=>x.id===EDT.id),r[0])}
+  else{const r=await db('POST','lvlv_text','',{...row,char_id:c.id,user_id:SES.user.id,sort_order:S.texts.length});S.texts.push(r[0])}
   $('#dlg').close();renderDet();
 });
 $('#dlg-d').onclick=guard(async()=>{
-  if(!EDT||!confirm('이 글감을 삭제할까요?'))return;const c=cur();
-  await db('DELETE','lvlv_text',`?id=eq.${EDT.id}`);for(const k in REP)if(c[REP[k]]===EDT.id)c[REP[k]]=null;
+  if(!EDT||!confirm('이 글감을 삭제할까요?'))return;
+  await db('DELETE','lvlv_text',`?id=eq.${EDT.id}`);
   S.texts=S.texts.filter(x=>x.id!==EDT.id);$('#dlg').close();renderDet();
 });
 $('#dlg-x').onclick=()=>$('#dlg').close();
@@ -286,7 +316,6 @@ function openIm(id){const x=S.imgs.find(i=>i.id===id),c=cur();IMID=id;$('#im-i')
 const imAct=guard(async a=>{
   const x=S.imgs.find(i=>i.id===IMID),c=cur();
   if(a==='x')return $('#im').close();
-  if(a==='save'){const r=await db('PATCH','lvlv_image',`?id=eq.${x.id}`,{caption:$('#im-c').value.trim()||null});Object.assign(x,r[0]);$('#im').close();return renderDet()}
   if(a==='cover'){const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{cover_id:c.cover_id===x.id?null:x.id});c.cover_id=r[0].cover_id;$('#im').close();renderList();return renderDet()}
   if(a==='orig'){$('#im').close();return openImg(x.id)}
   if(a==='recrop'){   // PC에서 연결된 폴더의 원본으로 다시 자르기
@@ -296,8 +325,9 @@ const imAct=guard(async a=>{
     const p=await Media.process(r.crop||f);let h;try{h=await Media.upload(p)}finally{p.close()}
     const u=await db('PATCH','lvlv_image',`?id=eq.${x.id}`,{image:h});Object.assign(x,u[0]);renderList();return renderDet();
   }
-  if(a==='del'){if(!confirm('이 이미지를 삭제할까요? (서버 파일은 mnmn에서 정리해요)'))return;await db('DELETE','lvlv_image',`?id=eq.${x.id}`);if(c.cover_id===x.id)c.cover_id=null;S.imgs=S.imgs.filter(i=>i.id!==x.id);$('#im').close();renderList();renderDet()}
+  if(a==='del'){if(!confirm('이 이미지를 삭제할까요? (서버 파일은 mnmn에서 정리해요)'))return;await db('DELETE','lvlv_image',`?id=eq.${x.id}`);if(c.cover_id===x.id)c.cover_id=null;S.imgs=S.imgs.filter(i=>i.id!==x.id);IMID=null;$('#im').close();renderList();renderDet()}
 });
+$('#im').onclose=guard(async()=>{const x=S.imgs.find(i=>i.id===IMID);if(!x)return;const v=$('#im-c').value.trim()||null;if(v===(x.caption||null))return;const r=await db('PATCH','lvlv_image',`?id=eq.${x.id}`,{caption:v});x.caption=r[0].caption});
 addEventListener('paste',e=>{if(S.edit&&S.cur&&e.clipboardData.files.length)addFiles(e.clipboardData.files)});
 addEventListener('dragover',e=>{if(S.edit)e.preventDefault()});
 addEventListener('drop',e=>{if(S.edit&&S.cur){e.preventDefault();addFiles(e.dataTransfer.files)}});
@@ -375,7 +405,7 @@ function pageAct(a){
 addEventListener('resize',()=>{if(S.cur)drawBoard()});
 
 /* ---------- 이벤트 ---------- */
-function startEdit(){const c=cur();S.edit=true;S.kw={char:charKw(c,'char'),look:charKw(c,'look')};renderDet()}
+function startEdit(){const c=cur();S.edit=true;S.kw=Object.fromEntries(KINDS.map(([k])=>[k,charKw(c,k)]));renderDet()}
 document.addEventListener('click',guard(async e=>{
   const t=e.target,g=s=>t.closest(s);
   if(g('#bk')){document.body.classList.remove('det');return}
@@ -383,24 +413,19 @@ document.addEventListener('click',guard(async e=>{
   if(g('[data-add]')){const [k,r]=g('[data-add]').dataset.add.split(':');return addBoard(k,r)}
   if(g('[data-b]'))return boardAct(g('[data-b]').dataset.b);
   if(g('[data-p]'))return pageAct(g('[data-p]').dataset.p);
-  if(g('[data-x]')){const [k,n]=g('[data-x]').dataset.x.split('|');S.kw[k]=S.kw[k].filter(v=>v!==n);return tiDraw()}
+  if(g('[data-x]')){const [k,n]=g('[data-x]').dataset.x.split('|');S.kw[k]=S.kw[k].filter(v=>v!==n);tiDraw();return kwChanged()}
   if(g('.ti'))return g('.ti').querySelector('.ti-in').focus();
   if(g('[data-m]'))return imAct(g('[data-m]').dataset.m);
-  if(!S.edit&&g('[data-r]')){const x=S.texts.find(q=>q.id===g('[data-r]').dataset.r);if(x){$('#rd-h').textContent=KL[x.kind]+(x.title?' · '+x.title:'');$('#rd-p').textContent=x.body+(x.source?'\n— '+x.source:'');$('#rd').showModal()}return}
+  if(!S.edit&&g('[data-r]')){const k=g('[data-r]').dataset.r,c=cur();$('#rd-h').textContent=k==='quote'?'어록':'프로필';$('#rd-p').textContent=k==='quote'?qLines(c.quote).join('\n\n'):(c.profile||'');$('#rd').showModal();return}
   if(!S.edit&&g('[data-ri]'))return openImg(g('[data-ri]').dataset.ri);
   const a=g('[data-a]');
   if(a){
     const k=a.dataset.a,c=cur();
     if(k==='ee')return startEdit();
-    if(k==='ex'){S.edit=false;bsel=null;return renderDet()}
+    if(k==='ex'){await infoFlush();S.edit=false;bsel=null;return renderDet()}
     if(k==='tn')return editText(null);
-    if(k==='cs'){
-      commitAll();const name=$('#f-name').value.trim();if(!name)return toast('이름을 입력하세요');
-      const r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name,origin:$('#f-origin').value.trim()||null,sex:$('#f-sex').value||null,updated_at:new Date().toISOString()});
-      Object.assign(c,r[0]);await saveKw(c.id);sortChars();renderList();toast('저장했어요');return renderDet();
-    }
   }
-  if(g('#del')){const c=cur();if(!confirm(`'${c.name}' 과(와) 글감·이미지 연결을 모두 삭제할까요?`))return;await db('DELETE','lvlv_char',`?id=eq.${c.id}`);S.chars=S.chars.filter(x=>x.id!==c.id);S.imgs=S.imgs.filter(x=>x.char_id!==c.id);S.links=S.links.filter(l=>l.char_id!==c.id);S.cur=null;S.edit=false;document.body.classList.remove('det');renderList();return emptyDet()}
+  if(g('#del')){const c=cur();dirty=false;if(!confirm(`'${c.name}' 과(와) 글감·이미지 연결을 모두 삭제할까요?`))return;await db('DELETE','lvlv_char',`?id=eq.${c.id}`);S.chars=S.chars.filter(x=>x.id!==c.id);S.imgs=S.imgs.filter(x=>x.char_id!==c.id);S.links=S.links.filter(l=>l.char_id!==c.id);S.cur=null;S.edit=false;document.body.classList.remove('det');renderList();return emptyDet()}
 }));
 addEventListener('dblclick',e=>{
   if(!S.edit||e.target.closest('.ad'))return;
@@ -415,31 +440,70 @@ document.addEventListener('change',guard(async e=>{
 document.addEventListener('input',e=>{if(!isTi(e.target))return;if(e.inputType==='insertReplacementText')tiCommit(e.target,true);else if(!e.isComposing)tiCommit(e.target,false)});   // 추천 목록에서 고르면 바로 확정
 document.addEventListener('compositionend',e=>{if(isTi(e.target))setTimeout(()=>tiCommit(e.target,false),0)});
 document.addEventListener('keydown',e=>{
-  if(isTi(e.target)){const k=e.target.dataset.k;if(e.key==='Enter'&&!e.isComposing){e.preventDefault();tiCommit(e.target,true)}else if(e.key==='Backspace'&&!e.target.value&&S.kw[k].length){S.kw[k].pop();tiDraw()}return}
+  if(isTi(e.target)){const k=e.target.dataset.k;if(e.key==='Enter'&&!e.isComposing){e.preventDefault();tiCommit(e.target,true)}else if(e.key==='Backspace'&&!e.target.value&&S.kw[k].length){S.kw[k].pop();tiDraw();kwChanged()}return}
   if(e.key==='Delete'&&S.edit&&bsel&&!e.target.isContentEditable&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))boardAct('rm');
 });
 document.addEventListener('focusout',e=>{if(isTi(e.target))tiCommit(e.target,true)});
+document.addEventListener('input',e=>{if(S.edit&&e.target.closest&&e.target.closest('#f-name,#f-origin,#f-quote,#f-profile'))infoDirty()});
+document.addEventListener('change',e=>{if(e.target.id==='f-sex')infoDirty()});
 $('#q').oninput=e=>{S.q=e.target.value;renderList()};
 
 /* ---------- 새 인물: 대표 값을 입력하면 첫 페이지 + 빈 2쪽이 만들어짐 ---------- */
 $('#add').onclick=()=>{
   if(S.edit){S.edit=false;renderDet()}   // 편집 폼의 키워드 입력과 겹치지 않게
-  S.kw={char:[],look:[]};NC=null;$('#nf').reset();$('#nc-fn').textContent='';fillDl();tiDraw();$('#nc').showModal();
+  S.kw={char:[],look:[],setting:[]};NC=null;$('#nf').reset();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
 };
 $('#nc-x').onclick=()=>$('#nc').close();
 $('#nf').onsubmit=guard(async e=>{
   e.preventDefault();commitAll();const f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;
   const btn=e.submitter;btn.disabled=true;
   try{
-    let r=await db('POST','lvlv_char','',{name,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,user_id:SES.user.id,board:{n:2,items:[]}});
+    let r=await db('POST','lvlv_char','',{name,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,user_id:SES.user.id,board:{n:2,items:[]},quote:qLines(f.get('quote')).join('\n')||null,profile:oneLine(f.get('profile'))||null});
     const c=r[0],patch={};
     if(NC){const id=Media.newId(),x=await saveImg(NC.file,id,NC.r);
       if(x){const ir=await db('POST','lvlv_image','',{id,char_id:c.id,user_id:SES.user.id,image:x.hash,sort_order:0});S.imgs.push(ir[0]);patch.cover_id=id;if(x.original==='failed')toast('원본 보관에 실패했어요: '+x.err)}}
-    for(const k in REP){const body=String(f.get(k)||'').trim();if(body){const tr=await db('POST','lvlv_text','',{char_id:c.id,user_id:SES.user.id,kind:k,body,sort_order:0});patch[REP[k]]=tr[0].id}}
     if(Object.keys(patch).length)r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,patch);
     await saveKw(c.id);S.chars.push(r[0]);sortChars();$('#nc').close();await pick(r[0].id);
   }finally{btn.disabled=false}
 });
+
+/* ---------- 키워드 관리: 종류별 목록 · 이름 바꾸기 · 종류 옮기기 · 합치기 · 삭제 ---------- */
+let KMAP=null;
+async function kwUpdate(id,patch){
+  const k=S.kwAll.find(x=>x.id===id),kind=patch.kind??k.kind,name=String(patch.name??k.name).trim().replace(/^#+/,'');
+  if(!name)throw new Error('이름이 비었어요');
+  if(kind===k.kind&&name===k.name)return;
+  const same=S.kwAll.find(x=>x.id!==id&&x.kind===kind&&x.name.toLowerCase()===name.toLowerCase());
+  if(!same){const r=await db('PATCH','lvlv_keyword',`?id=eq.${id}`,{kind,name});Object.assign(k,r[0]);return}
+  if(!confirm(`'${same.name}' (${KN[kind]}) 키워드가 이미 있어요. 하나로 합칠까요?`))return;
+  const have=new Set(S.links.filter(l=>l.keyword_id===same.id).map(l=>l.char_id)),mv=S.links.filter(l=>l.keyword_id===id&&!have.has(l.char_id));
+  if(mv.length)await db('POST','lvlv_char_keyword','',mv.map(l=>({char_id:l.char_id,keyword_id:same.id,user_id:SES.user.id})));
+  await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
+  S.links=S.links.filter(l=>l.keyword_id!==id).concat(mv.map(l=>({char_id:l.char_id,keyword_id:same.id})));S.kwAll=S.kwAll.filter(x=>x.id!==id);
+}
+function renderKm(){
+  const cnt={};S.links.forEach(l=>cnt[l.keyword_id]=(cnt[l.keyword_id]||0)+1);
+  $('#km-b').innerHTML=KINDS.map(([k,n,h])=>{const L=S.kwAll.filter(x=>x.kind===k).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+    return `<h4>${n} <small class="mut">${L.length}개 · ${h}</small></h4>`+(L.map(x=>`<div class="kr" data-kid="${x.id}"><input class="kn" value="${E(x.name)}"><select class="kk">${KINDS.map(([v,vn])=>`<option value="${v}"${v===x.kind?' selected':''}>${vn}</option>`).join('')}</select><small class="mut">${cnt[x.id]||0}명</small>${KMAP&&!KMAP.has(x.name.trim().toLowerCase())?'<small class="warn">fsfs 번역 없음</small>':''}<button data-kd="${x.id}">삭제</button></div>`).join('')||'<small class="mut">없어요</small>')}).join('');
+}
+$('#kmb').onclick=guard(async()=>{
+  if(dirty)await infoFlush();KMAP=null;
+  try{const s=new Set((await db('GET','fsfs_keymap','?select=keyword')).map(r=>String(r.keyword||'').trim().toLowerCase()));KMAP=s.size?s:null}catch(e){}
+  renderKm();$('#km').showModal();
+});
+$('#km-b').addEventListener('change',guard(async e=>{
+  const r=e.target.closest('.kr');if(!r)return;const id=r.dataset.kid;
+  if(e.target.classList.contains('kn'))await kwUpdate(id,{name:e.target.value});else if(e.target.classList.contains('kk'))await kwUpdate(id,{kind:e.target.value});
+  renderKm();renderList();
+}));
+$('#km-b').addEventListener('click',guard(async e=>{
+  const b=e.target.closest('[data-kd]');if(!b)return;const id=b.dataset.kd,k=S.kwAll.find(x=>x.id===id),n=S.links.filter(l=>l.keyword_id===id).length;
+  if(!confirm(n?`'${k.name}' 키워드를 ${n}명에게서 떼고 삭제할까요?`:`'${k.name}' 키워드를 삭제할까요?`))return;
+  await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
+  S.links=S.links.filter(l=>l.keyword_id!==id);S.kwAll=S.kwAll.filter(x=>x.id!==id);renderKm();renderList();
+}));
+$('#km-x').onclick=()=>$('#km').close();
+$('#km').onclose=()=>{const c=cur();if(!c)return;if(S.edit)S.kw=Object.fromEntries(KINDS.map(([k])=>[k,charKw(c,k)]));renderDet()};
 
 /* ---------- 설정 ---------- */
 $('#set').onclick=async()=>{
