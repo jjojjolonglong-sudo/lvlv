@@ -1,0 +1,18 @@
+{
+  "id": "lvlv",
+  "name": "lvlv 덕질노트",
+  "short_name": "lvlv",
+  "description": "인물 덕질노트",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#e2e7ed",
+  "theme_color": "#e2e7ed",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lvlv</title>
 <script src="https://jjojjolonglong-sudo.github.io/mnmn/fonts.v1.js" data-app="lvlv"></script>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#e2e7ed"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="lvlv">
 <style>
 :root{--bg:#eef1f5;--paper:#fff;--ink:#26303b;--mut:#7a8794;--ln:#d5dce4;--ac:#4a6785;--tape:rgba(150,170,195,.5)}
 *{box-sizing:border-box}html,body{height:100%;margin:0}
@@ -13,7 +14,7 @@ button,input,select,textarea{font:inherit;color:inherit;background:var(--paper);
 button{cursor:pointer}button:hover{border-color:var(--ac)}.p{background:var(--ac);color:#fff;border-color:var(--ac)}
 textarea{width:100%;resize:vertical}[hidden]{display:none!important}.mut,small{color:var(--mut)}
 #login{max-width:300px;margin:18vh auto;display:grid;gap:8px;padding:0 14px}
-#app{display:flex;width:fit-content;max-width:calc(100vw - 32px);height:calc(100vh - 32px);height:calc(100dvh - 32px);margin:16px auto;background:var(--bg);border:1px solid var(--ln);border-radius:6px;box-shadow:0 2px 16px #0000001c;overflow:hidden}
+body:has(#app:not([hidden])){padding:16px}#app{display:flex;width:fit-content;max-width:100%;height:100%;margin:0 auto;background:var(--bg);border:1px solid var(--ln);border-radius:6px;box-shadow:0 2px 16px #0000001c;overflow:hidden}
 #list{width:220px;flex:none;border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
 #list h1{margin:0;font-size:21px;letter-spacing:2px;display:flex;gap:6px;align-items:center}#list h1 span{flex:1}
 #cl{overflow:auto;flex:1}
@@ -58,8 +59,10 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 .fp-k{}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}.tg.st span{background:none;border:1px dashed var(--mut)}
 .fp-c{padding:10px 14px;box-shadow:0 3px 8px #0003;cursor:pointer;overflow:hidden}.fp-c small{display:block;color:var(--mut);margin-bottom:4px;letter-spacing:2px}
 .fp-c p{margin:0;white-space:pre-wrap;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:7}
-.fp-c.b{left:36px;top:360px;width:528px;height:170px;background:#e1ebf6;transform:rotate(.8deg)}.fp-c.b .ql{margin:0 0 4px;-webkit-line-clamp:2}.fp-c.b small{margin:2px 0 0;letter-spacing:0}
-.fp-c.c{left:36px;top:560px;width:528px;height:236px;background:#e7ecf1;transform:rotate(-.4deg)}.fp-c.c p{-webkit-line-clamp:9}
+.fp-c.c{left:36px;top:352px;width:528px;height:118px;background:#e7ecf1;transform:rotate(-.4deg)}.fp-c.c p{-webkit-line-clamp:3}
+.fp-c.b{left:36px;top:494px;width:528px;height:304px;background:#e1ebf6;transform:rotate(.6deg);display:flex;flex-direction:column}
+.qb{flex:1;min-height:0;overflow:hidden;line-height:1.5}.fp-c .qb .ql{display:block;-webkit-line-clamp:none;margin:0 0 .45em}
+.fp-c small.qm{flex:none;margin:6px 0 0;letter-spacing:0;color:var(--ac);border-top:1px dashed #4a678555;padding-top:5px}
 .tl-t{margin:8px 0 2px;font-size:13px;color:var(--mut)}.chip.new{outline:1px dashed var(--ac)}
 #cr{max-width:min(94vw,820px)}#cr-box{position:relative;width:fit-content;margin:10px auto;touch-action:none;user-select:none}#cr-img{max-width:min(88vw,780px);max-height:60vh;display:block}
 #cr-sel{position:absolute;border:2px solid #fff;box-shadow:0 0 0 9999px #0008;cursor:move}#cr-rz{position:absolute;right:-9px;bottom:-9px;width:16px;height:16px;border-radius:50%;background:var(--ac);border:2px solid #fff;cursor:nwse-resize}
@@ -68,9 +71,7 @@ dialog{border:1px solid var(--ln);border-radius:6px;background:var(--paper);colo
 dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{margin:0 0 8px}
 #lb{max-width:94vw;width:auto;text-align:center}#lb img{max-width:90vw;max-height:78vh;display:block;margin:0 auto 8px}
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#26303b;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;max-width:90vw}
-@media(max-width:760px){#app{display:block;width:auto;max-width:none;height:100%;margin:0;border:0;border-radius:0;box-shadow:none}#list{width:auto;height:100%;border:0}#det{display:none;height:100%;padding:12px}body.det #list{display:none}body.det #det{display:block}.bk{display:block}#det .ptl{flex-wrap:wrap;white-space:normal}#det .ipg{height:auto!important;min-height:0}}
-#km{max-width:min(720px,96vw)}#km-b{max-height:68vh;overflow:auto}#km h4{margin:14px 0 4px}
-.kr{display:flex;gap:8px;align-items:center;margin:4px 0}.kr .kn{flex:1;min-width:0}.kr small{white-space:nowrap}.warn{color:#b0603a}
+@media(max-width:760px){body:has(#app:not([hidden])){padding:0}#app{display:block;width:auto;max-width:none;height:100%;margin:0;border:0;border-radius:0;box-shadow:none}#list{width:auto;height:100%;border:0}#det{display:none;height:100%;padding:12px}body.det #list{display:none}body.det #det{display:block}.bk{display:block}#det .ptl{flex-wrap:wrap;white-space:normal}#det .ipg{height:auto!important;min-height:0}}
 #sv{font-size:12px}
 .wrap{max-width:100%}
 .hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;min-height:34px}.hfn{color:var(--mut);font-size:14px}
@@ -83,8 +84,8 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 .w2 .ipg{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.w2 .ipc{overflow:auto;min-height:0;display:flex;flex-direction:column}
 .ipc{padding:24px 26px}.w2 .ipc:first-child{box-shadow:inset -22px 0 22px -22px #0000001f}.w2 .ipc+.ipc{box-shadow:inset 22px 0 22px -22px #0000001f}
 .ih{display:flex;align-items:center;gap:10px;margin-bottom:12px}.ih b{font-size:15px}
-.fg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 12px;align-items:center}.w2 .fg{flex:1;grid-template-rows:repeat(5,auto) minmax(110px,1fr)}
-.fg>label{font-size:13px;color:var(--mut);white-space:nowrap}.fg input,.fg textarea{width:100%;min-width:0}.fg .tp{align-self:start;padding-top:6px}.w2 #f-quote{height:100%;resize:none}
+.fg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 12px;align-items:center}.w2 .fg.grow{flex:1;grid-template-rows:repeat(var(--n),auto) minmax(110px,1fr)}
+.fg>label{font-size:13px;color:var(--mut);white-space:nowrap}.fg input,.fg textarea{width:100%;min-width:0}.fg .tp{align-self:start;padding-top:6px}.w2 .fq{height:100%;resize:none}
 .ipc .tl-t:first-of-type{margin-top:0}
 .emp{display:flex;align-items:center;justify-content:center;border:1px dashed var(--ln);border-radius:3px}
 .ptl{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;white-space:nowrap;margin:0 0 10px;min-height:30px}.ptl .vr{width:1px;height:20px;background:var(--ln);margin:0 6px}.ptl small{margin-right:2px}
@@ -95,7 +96,21 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 .dock-h .tg2{padding:3px 9px;margin-left:auto}.dock .ml,.dock .tl{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;margin-top:8px;padding:4px 2px 6px;height:102px;align-items:flex-start}.dock .mi{width:84px;height:84px}
 .dock.ns .ad{display:none}
 #f-sex{justify-self:start}.wn .dock-h small,.wn .ptl .vr{display:none}
-.kc-r{display:flex;gap:6px;align-items:center;margin:4px 0;flex-wrap:wrap}.kc-r .cn{flex:1;min-width:110px}.kc-r.sub{margin-left:22px}.kc-r small{white-space:nowrap}.kr .kc{max-width:120px}.kr .mv{padding:3px 7px}
+/* 키워드 관리 */
+.kc-r,.kc-h{display:grid;grid-template-columns:minmax(0,1fr) 118px 44px 28px 28px 28px;gap:6px;align-items:center;margin:0 0 6px}
+.kr{display:grid;grid-template-columns:minmax(0,1fr) 104px 108px 40px 28px 28px;gap:6px;align-items:center;margin:0 0 6px}
+.kc-h{margin-bottom:4px;font-size:12px;color:var(--mut)}.kc-r input,.kc-r select,.kr input,.kr select{width:100%;min-width:0;font-size:13px;padding:4px 7px}
+.kc-r.sub .cn{width:calc(100% - 18px);margin-left:18px}.kc-r small,.kr small{white-space:nowrap;text-align:right;font-size:12px}
+.mv{width:28px;height:30px;padding:0;font-size:12px;text-align:center;color:var(--mut)}.mv:hover{color:var(--ink)}[data-cm].mv{font-size:9px}.mv.x:hover{color:#b0603a;border-color:#e3c3b3}
+.kc-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:12px}
+#kq{margin-left:auto;width:150px;padding:3px 9px;font-size:13px}
+.ks-h{display:flex;gap:6px;align-items:baseline;font-weight:600;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--ln)}.ks:first-of-type .ks-h{margin-top:4px}
+.mg-r{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:-2px 0 10px;padding:8px 10px;border:1px dashed var(--ac);border-radius:4px;background:#f3f6f9;font-size:13px}.mg-r select{flex:1;min-width:140px;font-size:13px;padding:4px 7px}
+.nc-ft{display:flex;gap:8px;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--ln)}.nc-ft small{flex:1}.w2 .nc-ft{margin-top:auto}
+.stp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}.ipc .ih+.stp{margin-top:-4px}.ipc .stp+.ih{margin-top:20px}
+.w2 .ipg.one{grid-template-columns:1fr}
+.wn .kc-h{display:none}.wn .kc-r{grid-template-columns:minmax(0,1fr) 44px 28px 28px 28px}.wn .kc-r .cn{grid-column:1/-1}.wn .kc-r.sub .cn{width:calc(100% - 18px)}
+.wn .kr{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 40px 28px 28px;padding-bottom:8px;border-bottom:1px solid #eef1f5}.wn .kr .kn{grid-column:1/-1}
 </style>
 </head>
 <body>
@@ -116,14 +131,6 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 
 <dialog id="dlg"><form id="df"><h3 id="dlg-h"></h3><div id="dlg-b" style="display:grid;gap:8px"></div>
   <div class="row" style="justify-content:flex-end"><button type="button" id="dlg-d" hidden>삭제</button><button type="button" id="dlg-x">취소</button><button class="p">저장</button></div></form></dialog>
-<dialog id="nc"><form id="nf"><h3>새 인물</h3>
-  <div class="row" style="margin:0"><input name="name" placeholder="이름 *" required><input name="full_name" id="nc-full" placeholder="풀네임 (선택)"></div>
-  <div class="row"><input name="origin" placeholder="출처 (소설·영화·현실…)"><select name="sex"><option value="">성별</option><option value="f">여</option><option value="m">남</option></select></div>
-  <div id="nc-kw"></div>
-  <div><label class="btn">대표 사진 선택<input type="file" name="photo" id="nc-f" accept="image/*" hidden></label> <small id="nc-fn" class="mut"></small></div>
-  <textarea name="quote" rows="3" placeholder="어록 (한 줄에 하나, Enter로 구분)"></textarea><input name="profile" placeholder="프로필 한 줄">
-  <small class="mut">입력한 값으로 첫 페이지가 만들어지고, 빈 두 번째 페이지가 함께 생겨요. 나중에 편집 모드에서 바꿀 수 있어요.</small>
-  <div class="row" style="justify-content:flex-end"><button type="button" id="nc-x">취소</button><button class="p">만들기</button></div></form></dialog>
 <dialog id="rd"><h3 id="rd-h"></h3><p id="rd-p" style="white-space:pre-wrap"></p><div class="row" style="justify-content:flex-end"><button id="rd-x">닫기</button></div></dialog>
 <dialog id="im"><img id="im-i" alt="" style="max-width:100%;max-height:46vh;display:block;margin:0 auto 10px"><input id="im-c" placeholder="캡션" style="width:100%">
   <div class="row"><button data-m="cover">프로필 사진으로</button><button data-m="recrop">다시 자르기</button><button data-m="orig">원본 보기</button><button data-m="del">삭제</button></div>
@@ -132,14 +139,30 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
   <div id="cr-box"><img id="cr-img" alt=""><div id="cr-sel"><i id="cr-rz"></i></div></div>
   <div class="row" style="justify-content:flex-end"><button type="button" id="cr-x">취소</button><button type="button" id="cr-full">자르지 않고 전체</button><button type="button" class="p" id="cr-ok">이 영역으로</button></div></dialog>
 <dialog id="lb"><img alt=""><p></p><button id="lb-x">닫기</button></dialog>
-<dialog id="st"><h3>설정</h3><p id="st-me"></p>
-  <p><b>원본 사진 폴더 (PC)</b><br><small>이미지를 올릴 때 원본이 이 폴더에 저장돼요. 폰에서 올린 원본은 서버에 잠시 보관됐다가 여기서 받으면 폴더로 옮겨져요.</small><br>
-  <button id="st-dir">폴더 연결</button> <button id="st-sync">원본 받기</button> <small id="st-msg"></small></p>
-  <p><b>연결 확인</b><br><button id="st-test">테스트</button> <small id="st-t"></small></p>
-  <div class="row" style="justify-content:space-between"><button id="st-out">로그아웃</button><button id="st-x">닫기</button></div></dialog>
 <span id="dls" hidden></span>
-<dialog id="km"><h3>키워드 관리</h3><small class="mut">분류를 만들고 정리한 뒤, 키워드를 분류별로 옮기세요. 한 키워드를 여러 분류에 걸 수도 있어요(fsfs는 이름이 같으면 같은 키워드로 읽어요).</small><div id="km-b"></div>
-  <div class="row" style="justify-content:flex-end"><button id="km-x" class="p">닫기</button></div></dialog>
+<div id="park" hidden>
+<form id="nf" class="ipg area">
+  <div class="ipc"><div class="ih"><b>기본 정보</b></div>
+    <div class="fg grow" style="--n:6">
+      <label>이름</label><input name="name" placeholder="이름 (필수)" required>
+      <label id="nc-full-l">풀네임</label><input name="full_name" id="nc-full" placeholder="풀네임 (선택)">
+      <label>출처</label><input name="origin" placeholder="소설·영화·현실…">
+      <label>성별</label><select name="sex" style="justify-self:start"><option value="">—</option><option value="f">여</option><option value="m">남</option></select>
+      <label>사진</label><div><label class="btn">대표 사진 선택<input type="file" name="photo" id="nc-f" accept="image/*" hidden></label> <small id="nc-fn" class="mut"></small></div>
+      <label>프로필</label><input name="profile" placeholder="프로필 한 줄">
+      <label class="tp">어록</label><textarea name="quote" class="fq" rows="5" placeholder="한 줄에 하나, Enter로 구분"></textarea>
+    </div></div>
+  <div class="ipc"><div class="ih"><b>키워드</b><small class="mut">띄어쓰기·쉼표·Enter로 넣어요</small></div><div id="nc-kw"></div>
+    <div class="nc-ft"><small class="mut">첫 페이지가 자동으로 만들어지고, 빈 두 번째 페이지가 함께 생겨요.</small><button type="button" id="nc-x">취소</button><button class="p">만들기</button></div></div>
+</form>
+<div id="km-b" class="ipg area"></div>
+<div id="st" class="ipg area one"><div class="ipc">
+  <div class="ih"><b>계정</b></div><p class="stp"><span id="st-me"></span><button id="st-out">로그아웃</button></p>
+  <div class="ih"><b>원본 사진 폴더 (PC)</b></div><p class="stp"><small class="mut">이미지를 올릴 때 원본이 이 폴더에 저장돼요. 폰에서 올린 원본은 서버에 잠시 보관됐다가 여기서 받으면 폴더로 옮겨져요.</small></p>
+  <p class="stp"><button id="st-dir">폴더 연결</button><button id="st-sync">원본 받기</button><small id="st-msg" class="mut"></small></p>
+  <div class="ih"><b>연결 확인</b></div><p class="stp"><button id="st-test">테스트</button><small id="st-t" class="mut"></small></p>
+</div></div>
+</div>
 <div id="toast" hidden></div>
 
 <script src="https://jjojjolonglong-sudo.github.io/mnmn/config.js"></script>
@@ -169,7 +192,6 @@ async function db(m,t,q,body){
 /* ---------- 상태 ---------- */
 /* 키워드 분류(kind): lvlv_kind 테이블에서 불러와요. 상위(설정) 아래에 하위(직업·나이대…)를 둘 수 있고, KINDS는 [코드, 표시이름, '']의 순서 있는 목록 */
 const DEF_KINDS=[['char','성격',null,'mood',0],['look','외모',null,'look',1],['setting','설정',null,null,2],['job','직업·신분','setting','role',3],['age','나이대','setting','story',4],['past','과거 사연','setting','story',5]];
-const GRPN={role:'직업·신분',mood:'성격·분위기',look:'외모',story:'사연·나이'};
 const KINDS=[],KN={};let KROWS=[];
 function rebuildKinds(){
   const top=KROWS.filter(k=>!k.parent||!KROWS.some(x=>x.code===k.parent)).sort((a,b)=>a.sort_order-b.sort_order),out=[];
@@ -211,10 +233,10 @@ function renderList(){
     const tip=[c.full_name,c.origin,SEXN[c.sex]].filter(Boolean).join(' · ');
     return `${gh}<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"${tip?` title="${E(tip)}"`:''}>${E(c.name)}</div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
 }
-const emptyDet=()=>{$('#dc').innerHTML='<div class="wrap"><div class="hdr"></div><div class="ptl"></div><div class="area emp"><p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p></div></div>';layout()};
+const emptyDet=()=>{park();$('#dc').innerHTML='<div class="wrap"><div class="hdr"></div><div class="ptl"></div><div class="area emp"><p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p></div></div>';layout()};
 async function pick(id){
   if(dirty)await infoFlush();
-  S.cur=id;S.edit=false;bpg=0;bsel=null;S.texts=await db('GET','lvlv_text',`?char_id=eq.${id}&select=*&order=sort_order,created_at`);
+  S.cur=id;S.view=null;S.edit=false;bpg=0;bsel=null;S.texts=await db('GET','lvlv_text',`?char_id=eq.${id}&select=*&order=sort_order,created_at`);
   document.body.classList.add('det');renderList();renderDet();
 }
 
@@ -229,11 +251,24 @@ function layout(){
   const put=sc=>{const pw=Math.floor(PW*sc),cw=pw*n,ah=Math.round(pw*PH/PW);Object.assign(LAY,{two,pw,ah});
     wr.style.width=cw+'px';ar.style.width=cw+'px';ar.style.height=ah+'px';wr.classList.toggle('w2',two);wr.classList.toggle('wn',cw<520)};
   let sc=Math.min(1,avW/(n*PW));put(sc);
-  if(!mob)for(let k=0;k<3;k++){const used=wr.offsetHeight-ar.offsetHeight,avH=$('#app').clientHeight-padY-used;   // 위 줄·띠 높이를 빼고 남은 높이
+  const app=$('#app'),maxH=document.body.clientHeight-parseFloat(getComputedStyle(document.body).paddingTop)*2;app.style.height='';
+  if(!mob)for(let k=0;k<3;k++){const used=wr.offsetHeight-ar.offsetHeight,avH=maxH-2-padY-used;   // 위 줄·띠 높이를 빼고 남은 높이
     const s2=Math.max(Math.min(avW,two?760:520)/(n*PW),Math.min(1,avW/(n*PW),avH/PH));   /* 너무 작아지지 않게: 한 쪽이면 폭 520px, 두 쪽이면 760px까지만 줄임 */if(Math.abs(s2-sc)<.001)break;sc=s2;put(sc)}
+  if(!mob)app.style.height=Math.min(maxH,wr.offsetHeight+padY+2)+'px';   /* 앱 높이 = 내용 높이 (창보다 크면 창 높이) */
 }
 const info=()=>S.edit&&S.tab==='info';
+/* ＋ · # · ⚙ 화면: 팝업 대신 인물 상세 자리에 열려요 */
+const PN={nc:['새 인물','nf','이름만 적어도 만들 수 있어요'],km:['키워드 관리','km-b','왼쪽은 분류, 오른쪽은 키워드예요. 비슷한 키워드는 ⇄ 버튼으로 하나로 합쳐요'],st:['설정','st','']};
+function park(){Object.values(PN).forEach(([,id])=>{const n=document.getElementById(id);if(n&&n.parentNode!==$('#park'))$('#park').appendChild(n)})}
+function renderPanel(){
+  const [t,id,h]=PN[S.view];
+  $('#dc').innerHTML=`<div class="wrap"><button class="bk" id="bk">‹ 목록</button><div class="hdr"><b class="nn">${t}</b><button data-a="pclose">닫기</button></div><div class="ptl"><small class="mut">${h}</small></div><i id="pslot"></i></div>`;
+  $('#pslot').replaceWith(document.getElementById(id));layout();
+}
+async function openPanel(v){if(dirty)await infoFlush();S.edit=false;bsel=null;S.view=v;document.body.classList.add('det');renderDet()}
+function closePanel(){S.view=null;S.mg=null;if(S.cur)renderDet();else{emptyDet();document.body.classList.remove('det')}}
 function renderDet(){
+  park();if(S.view)return renderPanel();
   const c=cur();if(!c)return emptyDet();
   const fn=c.full_name?`<span class="hfn">${E(c.full_name)}</span>`:'';
   const hd=S.edit?`<b class="nn">${E(c.name)}</b>${fn}<div class="seg"><button data-tab="info"${S.tab==='info'?' class="on"':''}>인물 정보</button><button data-tab="page"${S.tab==='page'?' class="on"':''}>페이지 꾸미기</button></div><button data-a="ex" class="p">편집 끝내기</button><button id="del" class="dl" title="인물 삭제">인물 삭제</button>`
@@ -275,11 +310,18 @@ function dock(c){
 }
 function firstPage(c){
   const im=S.imgs.find(x=>x.id===c.cover_id),Q=qLines(c.quote),chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
-  const qh=Q.length?Q.slice(0,4).map(x=>`<p class="ql">${E(x)}</p>`).join('')+(Q.length>4?`<small>외 ${Q.length-4}개</small>`:''):'<span class="mut">편집에서 어록을 입력해 주세요</span>';
+  const qh=Q.length?`<div class="qb">${Q.map(x=>`<p class="ql">${E(x)}</p>`).join('')}</div><small class="qm" hidden></small>`:'<span class="mut">편집에서 어록을 입력해 주세요</span>';
   return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><div class="fp-r"><h2>${E(c.name)}</h2>${c.full_name?`<div class="fp-fn">${E(c.full_name)}</div>`:''}<div class="fp-o">${E(c.origin||'')}${c.sex?' · '+SEXN[c.sex]:''}</div>
   <div class="fp-k">${KINDS.filter(k=>!k[3].parent||!KROWS.some(x=>x.code===k[3].parent)).map((t,i)=>{const ch=KINDS.filter(k=>k[0]===t[0]||k[3].parent===t[0]).map(k=>chips(k[0])).join('');return ch?`<div class="tg ${['','lk','st'][i%3]}">${ch}</div>`:''}).join('')}</div></div>
-  <div class="fp-c b" data-r="quote"><small>어록</small>${qh}</div>
-  <div class="fp-c c" data-r="profile"><small>프로필</small><p>${c.profile?E(c.profile):'<span class="mut">편집에서 프로필을 입력해 주세요</span>'}</p></div></div>`;
+  <div class="fp-c c" data-r="profile"><small>프로필</small><p>${c.profile?E(c.profile):'<span class="mut">편집에서 프로필을 입력해 주세요</span>'}</p></div>
+  <div class="fp-c b" data-r="quote"><small>어록</small>${qh}</div></div>`;
+}
+/* 어록 맞추기: 글자를 14px → 11px까지 줄여 다 보이게 하고, 그래도 넘치면 뒤쪽을 '외 N개 · 눌러서 모두 보기'로 */
+function fitQ(root){
+  const qb=root.querySelector('.qb');if(!qb)return;const m=root.querySelector('.qm'),ps=[...qb.children],ok=()=>qb.scrollHeight<=qb.clientHeight+1;
+  ps.forEach(p=>p.hidden=false);m.hidden=true;
+  for(const f of [14,13,12,11]){qb.style.fontSize=f+'px';if(ok())return}
+  m.hidden=false;let n=0;for(let i=ps.length-1;i>0&&!ok();i--){ps[i].hidden=true;n++;m.textContent=`외 ${n}개 · 눌러서 모두 보기`}
 }
 
 /* ---------- #키워드 블록 입력: 인물 키워드 / 외모 키워드. 같은 이름이 이미 있으면 그걸 쓰고, 없으면 저장할 때 새로 만들어요 ---------- */
@@ -433,7 +475,7 @@ function drawBoard(){
     const pg=document.createElement('div');pg.className='pg'+(two?(k?' r':' l'):'')+(pi>=b.n?' blank':'');pg.style.cssText=`width:${pw}px;height:${LAY.ah}px`;
     if(pi<b.n){const inn=document.createElement('div');inn.className='pgi';inn.style.transform=`scale(${s})`;
       if(pi===0)inn.innerHTML=firstPage(c);else b.items.filter(o=>o.p===pi).forEach(o=>inn.appendChild(itemEl(o,s,b)));pg.appendChild(inn)}
-    sb.appendChild(pg);
+    sb.appendChild(pg);if(pi===0&&pi<b.n)fitQ(pg);
   });
   $('#pn').textContent=`${ps.filter(p=>p<b.n).map(p=>p+1).join('–')} / ${b.n}쪽`;
 }
@@ -487,6 +529,7 @@ function pageAct(a){
   drawBoard();if(a==='add'||a==='del')bsave();
 }
 addEventListener('resize',()=>{layout();if(S.cur)drawBoard()});
+if(document.fonts)document.fonts.ready.then(()=>{if(S.cur&&!S.view){layout();drawBoard()}});
 
 /* ---------- 이벤트 ---------- */
 function startEdit(){const c=cur();S.edit=true;S.kw=kwInit(k=>charKw(c,k));renderDet()}
@@ -513,6 +556,7 @@ document.addEventListener('click',guard(async e=>{
     if(k==='ee')return startEdit();
     if(k==='ex'){await infoFlush();S.edit=false;bsel=null;return renderDet()}
     if(k==='tn')return editText(null);
+    if(k==='pclose')return closePanel();
   }
   if(g('#del')){const c=cur();dirty=false;if(!confirm(`'${c.name}' 과(와) 글감·이미지 연결을 모두 삭제할까요?`))return;await db('DELETE','lvlv_char',`?id=eq.${c.id}`);S.chars=S.chars.filter(x=>x.id!==c.id);S.imgs=S.imgs.filter(x=>x.char_id!==c.id);S.links=S.links.filter(l=>l.char_id!==c.id);S.cur=null;S.edit=false;document.body.classList.remove('det');renderList();return emptyDet()}
 }));
@@ -537,11 +581,12 @@ document.addEventListener('input',e=>{if(S.edit&&e.target.closest&&e.target.clos
 $('#q').oninput=e=>{S.q=e.target.value;renderList()};
 
 /* ---------- 새 인물: 대표 값을 입력하면 첫 페이지 + 빈 2쪽이 만들어짐 ---------- */
-$('#add').onclick=()=>{
-  if(S.edit){S.edit=false;renderDet()}   // 편집 폼의 키워드 입력과 겹치지 않게
-  S.kw=kwInit();NC=null;$('#nf').reset();$('#nc-full').hidden=!hasFN();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
-};
-$('#nc-x').onclick=()=>$('#nc').close();
+$('#add').onclick=guard(async()=>{
+  if(dirty)await infoFlush();S.edit=false;   // 편집 중인 키워드 입력과 겹치지 않게
+  S.kw=kwInit();NC=null;$('#nf').reset();$('#nc-full').hidden=$('#nc-full-l').hidden=!hasFN();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();
+  await openPanel('nc');fillDl();tiDraw();$('#nf [name=name]').focus();
+});
+$('#nc-x').onclick=closePanel;
 $('#nf').onsubmit=guard(async e=>{
   e.preventDefault();commitAll();const f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;
   const btn=e.submitter;btn.disabled=true;
@@ -552,12 +597,11 @@ $('#nf').onsubmit=guard(async e=>{
     if(NC){const id=Media.newId(),x=await saveImg(NC.file,id,NC.r);
       if(x){const ir=await db('POST','lvlv_image','',{id,char_id:c.id,user_id:SES.user.id,image:x.hash,sort_order:0});S.imgs.push(ir[0]);patch.cover_id=id;if(x.original==='failed')toast('원본 보관에 실패했어요: '+x.err)}}
     if(Object.keys(patch).length)r=await db('PATCH','lvlv_char',`?id=eq.${c.id}`,patch);
-    await saveKw(c.id);S.chars.push(r[0]);sortChars();$('#nc').close();await pick(r[0].id);
+    await saveKw(c.id);S.chars.push(r[0]);sortChars();S.view=null;await pick(r[0].id);
   }finally{btn.disabled=false}
 });
 
 /* ---------- 키워드 관리: 종류별 목록 · 이름 바꾸기 · 종류 옮기기 · 합치기 · 삭제 ---------- */
-let KMAP=null;
 async function kwUpdate(id,patch){
   const k=S.kwAll.find(x=>x.id===id),kind=patch.kind??k.kind,name=String(patch.name??k.name).trim().replace(/^#+/,'');
   if(!name)throw new Error('이름이 비었어요');
@@ -565,22 +609,36 @@ async function kwUpdate(id,patch){
   const same=S.kwAll.find(x=>x.id!==id&&x.kind===kind&&x.name.toLowerCase()===name.toLowerCase());
   if(!same){const r=await db('PATCH','lvlv_keyword',`?id=eq.${id}`,{kind,name});Object.assign(k,r[0]);return}
   if(!confirm(`'${same.name}' (${KN[kind]||kind}) 키워드가 이미 있어요. 하나로 합칠까요?`))return;
-  const have=new Set(S.links.filter(l=>l.keyword_id===same.id).map(l=>l.char_id)),mv=S.links.filter(l=>l.keyword_id===id&&!have.has(l.char_id));
-  if(mv.length)await db('POST','lvlv_char_keyword','',mv.map(l=>({char_id:l.char_id,keyword_id:same.id,user_id:SES.user.id})));
+  await kwMerge(id,same.id);
+}
+/* 합치기: id 키워드에 걸린 인물을 모두 toId로 옮기고(이미 걸려 있으면 그대로), id 키워드는 지워요 */
+async function kwMerge(id,toId){
+  const have=new Set(S.links.filter(l=>l.keyword_id===toId).map(l=>l.char_id)),mv=S.links.filter(l=>l.keyword_id===id&&!have.has(l.char_id));
+  if(mv.length)await db('POST','lvlv_char_keyword','',mv.map(l=>({char_id:l.char_id,keyword_id:toId,user_id:SES.user.id})));
   await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
-  S.links=S.links.filter(l=>l.keyword_id!==id).concat(mv.map(l=>({char_id:l.char_id,keyword_id:same.id})));S.kwAll=S.kwAll.filter(x=>x.id!==id);
+  S.links=S.links.filter(l=>l.keyword_id!==id).concat(mv.map(l=>({char_id:l.char_id,keyword_id:toId})));S.kwAll=S.kwAll.filter(x=>x.id!==id);
+  return mv.length;
 }
 const kindOpts=sel=>KINDS.map(([v,vn])=>`<option value="${v}"${v===sel?' selected':''}>${E(vn)}</option>`).join('');
 function renderKm(){
+  const box=$('#km-b'),sc=[...box.querySelectorAll('.ipc')].map(e=>e.scrollTop);
   const cnt={},kcnt={};S.links.forEach(l=>cnt[l.keyword_id]=(cnt[l.keyword_id]||0)+1);S.kwAll.forEach(x=>kcnt[x.kind]=(kcnt[x.kind]||0)+1);
   const tops=KROWS.filter(k=>!k.parent||!KROWS.some(x=>x.code===k.parent));
   const catRow=(k,sub)=>{const hasCh=KROWS.some(x=>x.parent===k.code);
-    return `<div class="kc-r${sub?' sub':''}" data-cid="${k.code}"><input class="cn" value="${E(k.name)}"><select class="cp"${hasCh?' disabled title="하위 분류가 있어서 옮길 수 없어요"':''}><option value="">(최상위)</option>${tops.filter(t=>t.code!==k.code).map(t=>`<option value="${t.code}"${t.code===k.parent?' selected':''}>${E(t.name)} 아래</option>`).join('')}</select><select class="cg" title="fsfs 번역표에서 새 키워드를 만들 때 기본 분류"><option value="">fsfs 분류 없음</option>${Object.entries(GRPN).map(([v,n])=>`<option value="${v}"${v===k.grp?' selected':''}>fsfs: ${n}</option>`).join('')}</select><small class="mut">${kcnt[k.code]||0}개</small><button class="mv" data-cm="${k.code}|-1" title="위로">▲</button><button class="mv" data-cm="${k.code}|1" title="아래로">▼</button><button data-cd="${k.code}">삭제</button></div>`};
-  let h=`<h4>분류 관리 <small class="mut">성격·외모·설정 외에도 자유롭게 추가할 수 있어요</small></h4>`+KINDS.map(([k,n,_,r])=>catRow(r,!!(r.parent&&KROWS.some(x=>x.code===r.parent)))).join('')+`<div class="kc-r"><input id="ca-n" class="cn" placeholder="새 분류 이름"><button id="ca">＋ 분류 추가</button></div>`;
-  h+=KINDS.map(([k,n])=>{const L=S.kwAll.filter(x=>x.kind===k).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
-    return `<h4>${E(n)} <small class="mut">${L.length}개</small></h4>`+(L.map(x=>`<div class="kr" data-kid="${x.id}"><input class="kn" value="${E(x.name)}"><select class="kk" title="분류 옮기기">${kindOpts(x.kind)}</select><select class="kc" title="다른 분류에도 걸기"><option value="">＋ 다른 분류에도</option>${KINDS.filter(([v])=>v!==x.kind).map(([v,vn])=>`<option value="${v}">${E(vn)}</option>`).join('')}</select><small class="mut">${cnt[x.id]||0}명</small>${KMAP&&!KMAP.has(x.name.trim().toLowerCase())?'<small class="warn">fsfs 번역 없음</small>':''}<button data-kd="${x.id}">삭제</button></div>`).join('')||'<small class="mut">없어요</small>')}).join('');
-  $('#km-b').innerHTML=h;
+    return `<div class="kc-r${sub?' sub':''}" data-cid="${k.code}"><input class="cn" value="${E(k.name)}" title="분류 이름"><select class="cp"${hasCh?' disabled title="하위 분류가 있어서 옮길 수 없어요"':' title="위치"'}><option value="">맨 위</option>${tops.filter(t=>t.code!==k.code).map(t=>`<option value="${t.code}"${t.code===k.parent?' selected':''}>${E(t.name)} 아래</option>`).join('')}</select><small class="mut">${kcnt[k.code]||0}개</small><button class="mv" data-cm="${k.code}|-1" title="위로">▲</button><button class="mv" data-cm="${k.code}|1" title="아래로">▼</button><button class="mv x" data-cd="${k.code}" title="분류 삭제">✕</button></div>`};
+  const left=`<div class="ipc"><div class="ih"><b>분류</b><small class="mut">성격·외모·설정 말고도 자유롭게 만들 수 있어요</small></div>
+    <div class="kc-h"><span>이름</span><span>위치</span><span style="text-align:right">키워드</span><span></span><span></span><span></span></div>
+    ${KINDS.map(([k,n,_,r])=>catRow(r,!!(r.parent&&KROWS.some(x=>x.code===r.parent)))).join('')}
+    <div class="kc-add"><input id="ca-n" placeholder="새 분류 이름"><button id="ca">＋ 분류 추가</button></div></div>`;
+  const mgRow=x=>`<div class="mg-r"><span>‘${E(x.name)}’ ${cnt[x.id]||0}명을</span><select id="mg-to"><option value="">합칠 키워드 고르기</option>${KINDS.map(([k,n])=>{const o=S.kwAll.filter(y=>y.kind===k&&y.id!==x.id).sort((a,b)=>a.name.localeCompare(b.name,'ko'));return o.length?`<optgroup label="${E(n)}">${o.map(y=>`<option value="${y.id}">${E(y.name)} (${cnt[y.id]||0}명)</option>`).join('')}</optgroup>`:''}).join('')}</select><span>에 합치기</span><button class="p" data-mgo="${x.id}">합치기</button><button data-mgx>취소</button></div>`;
+  const right=`<div class="ipc"><div class="ih"><b>키워드</b><small class="mut">${S.kwAll.length}개</small><input id="kq" placeholder="키워드 찾기" value="${E(S.kq||'')}"></div>`+KINDS.map(([k,n])=>{const L=S.kwAll.filter(x=>x.kind===k).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+    return `<div class="ks"><div class="ks-h">${E(n)} <small class="mut">${L.length}개</small></div>`+(L.map(x=>`<div class="kr" data-kid="${x.id}" data-n="${E(x.name.toLowerCase())}"><input class="kn" value="${E(x.name)}" title="이름 (같은 분류에 같은 이름이 있으면 합칠지 물어봐요)"><select class="kk" title="분류 옮기기">${kindOpts(x.kind)}</select><select class="kc" title="다른 분류에도 걸기"><option value="">＋ 다른 분류</option>${KINDS.filter(([v])=>v!==x.kind).map(([v,vn])=>`<option value="${v}">${E(vn)}</option>`).join('')}</select><small class="mut">${cnt[x.id]||0}명</small><button class="mv" data-mg="${x.id}" title="다른 키워드와 합치기">⇄</button><button class="mv x" data-kd="${x.id}" title="삭제">✕</button></div>`+(S.mg===x.id?mgRow(x):'')).join('')||'<small class="mut">없어요</small>')+'</div>'}).join('')+'</div>';
+  box.innerHTML=left+right;box.querySelectorAll('.ipc').forEach((e,i)=>e.scrollTop=sc[i]||0);kqFilter();
 }
+function kqFilter(){const q=(S.kq||'').trim().toLowerCase(),box=$('#km-b');
+  box.querySelectorAll('.kr').forEach(r=>r.hidden=!!q&&!r.dataset.n.includes(q));
+  box.querySelectorAll('.ks').forEach(k=>k.hidden=!!q&&!k.querySelector('.kr:not([hidden])'))}
+$('#km-b').addEventListener('input',e=>{if(e.target.id==='kq'){S.kq=e.target.value;kqFilter()}});
 async function kwCopy(id,toKind){
   const k=S.kwAll.find(x=>x.id===id);let t=S.kwAll.find(x=>x.kind===toKind&&x.name.toLowerCase()===k.name.toLowerCase());
   if(!t){t=(await db('POST','lvlv_keyword','',{kind:toKind,name:k.name,user_id:SES.user.id}))[0];S.kwAll.push(t)}
@@ -589,18 +647,13 @@ async function kwCopy(id,toKind){
   S.links=S.links.concat(add.map(l=>({char_id:l.char_id,keyword_id:t.id})));
 }
 async function kindPatch(code,patch){const r=await db('PATCH','lvlv_kind',`?code=eq.${encodeURIComponent(code)}`,patch);Object.assign(KROWS.find(x=>x.code===code),r[0]);rebuildKinds()}
-$('#kmb').onclick=guard(async()=>{
-  if(dirty)await infoFlush();KMAP=null;
-  try{const s=new Set((await db('GET','fsfs_keymap','?select=keyword')).map(r=>String(r.keyword||'').trim().toLowerCase()));KMAP=s.size?s:null}catch(e){}
-  renderKm();$('#km').showModal();
-});
+$('#kmb').onclick=guard(async()=>{S.mg=null;renderKm();await openPanel('km')});
 $('#km-b').addEventListener('change',guard(async e=>{
   const t=e.target,cr=t.closest('.kc-r'),r=t.closest('.kr');
-  if(t.id==='ca-n')return;
+  if(t.id==='ca-n'||t.id==='kq'||t.id==='mg-to')return;
   if(cr&&cr.dataset.cid){const code=cr.dataset.cid;
     if(t.classList.contains('cn')){const v=t.value.trim();if(v)await kindPatch(code,{name:v})}
     else if(t.classList.contains('cp')){const p=t.value||null,sibs=KROWS.filter(x=>x.parent===p&&x.code!==code);await kindPatch(code,{parent:p,sort_order:Math.max(-1,...sibs.map(x=>x.sort_order||0))+1})}
-    else if(t.classList.contains('cg'))await kindPatch(code,{grp:t.value||null});
   }else if(r){const id=r.dataset.kid;
     if(t.classList.contains('kn'))await kwUpdate(id,{name:t.value});
     else if(t.classList.contains('kk'))await kwUpdate(id,{kind:t.value});
@@ -609,7 +662,13 @@ $('#km-b').addEventListener('change',guard(async e=>{
   renderKm();renderList();
 }));
 $('#km-b').addEventListener('click',guard(async e=>{
-  const b=e.target.closest('[data-kd],[data-cd],[data-cm],#ca');if(!b)return;
+  const b=e.target.closest('[data-kd],[data-cd],[data-cm],[data-mg],[data-mgo],[data-mgx],#ca');if(!b)return;
+  if(b.dataset.mg){S.mg=S.mg===b.dataset.mg?null:b.dataset.mg;renderKm();const m=$('#mg-to');if(m)m.focus();return}
+  if(b.hasAttribute('data-mgx')){S.mg=null;return renderKm()}
+  if(b.dataset.mgo){const id=b.dataset.mgo,to=$('#mg-to').value,a=S.kwAll.find(x=>x.id===id),z=S.kwAll.find(x=>x.id===to);if(!z)return toast('합칠 키워드를 골라 주세요');
+    const n=S.links.filter(l=>l.keyword_id===id).length;
+    if(!confirm(`‘${a.name}’(${KN[a.kind]||a.kind})을 ‘${z.name}’(${KN[z.kind]||z.kind})에 합칠까요?\n‘${a.name}’이 걸린 ${n}명은 ‘${z.name}’으로 옮겨지고, ‘${a.name}’은 없어져요.`))return;
+    const mv=await kwMerge(id,to);S.mg=null;renderKm();renderList();return toast(`합쳤어요 · ${n}명 중 ${mv}명을 새로 연결했어요 (나머지는 이미 연결돼 있었어요)`)}
   if(b.id==='ca'){const n=$('#ca-n').value.trim();if(!n)return;
     const code='k_'+crypto.randomUUID().slice(0,8),r=await db('POST','lvlv_kind','',{user_id:SES.user.id,code,name:n,parent:null,grp:null,sort_order:Math.max(-1,...KROWS.map(x=>x.sort_order||0))+1});
     KROWS.push(r[0]);rebuildKinds();renderKm();return}
@@ -627,16 +686,14 @@ $('#km-b').addEventListener('click',guard(async e=>{
   await db('DELETE','lvlv_char_keyword',`?keyword_id=eq.${id}`);await db('DELETE','lvlv_keyword',`?id=eq.${id}`);
   S.links=S.links.filter(l=>l.keyword_id!==id);S.kwAll=S.kwAll.filter(x=>x.id!==id);renderKm();renderList();
 }));
-$('#km-x').onclick=()=>$('#km').close();
-$('#km').onclose=()=>{const c=cur();if(!c)return;if(S.edit)S.kw=kwInit(k=>charKw(c,k));renderDet()};
 
 /* ---------- 설정 ---------- */
 $('#set').onclick=async()=>{
+  $('#st-msg').textContent=$('#st-t').textContent='';
   $('#st-me').textContent=(SES&&SES.user&&SES.user.email)||'';
   $('#st-dir').textContent=await Media.folder.name().then(n=>n?'폴더: '+n+' (변경)':'폴더 연결').catch(()=>'폴더 연결');
-  $('#st').showModal();
+  await openPanel('st');
 };
-$('#st-x').onclick=()=>$('#st').close();
 $('#st-dir').onclick=async()=>{try{await Media.folder.connect();$('#st-dir').textContent='폴더: '+await Media.folder.name()+' (변경)'}catch(e){if(e.name!=='AbortError')$('#st-msg').textContent=e.message||'이 브라우저에서는 지원하지 않아요'}};
 $('#st-sync').onclick=async()=>{const m=$('#st-msg');try{m.textContent='받는 중…';const r=await Media.sync({onProgress:p=>m.textContent=p.done+'/'+p.total});m.textContent=r.total?`완료 ${r.done}/${r.total}`+(r.failed.length?` · 실패 ${r.failed.length}`:''):'받을 원본이 없어요'}catch(e){m.textContent=e.message}};
 $('#st-test').onclick=async()=>{
@@ -645,13 +702,14 @@ $('#st-test').onclick=async()=>{
   try{await db('GET','lvlv_char','?select=id&limit=1');out.push('Supabase ✓')}catch(e){out.push('Supabase ✗ '+e.message)}
   o.textContent=out.join(' · ');
 };
-$('#st-out').onclick=()=>{saveSes(null);$('#st').close();show()};
+$('#st-out').onclick=()=>{saveSes(null);S.view=null;S.cur=null;document.body.classList.remove('det');show()};
 
 /* ---------- 시작 ---------- */
 $('#go').onclick=async()=>{$('#lmsg').textContent='';try{saveSes(await gotrue('password',{email:$('#em').value.trim(),password:$('#pw').value}));show()}catch(e){$('#lmsg').textContent=e.message}};
 $('#pw').addEventListener('keydown',e=>{if(e.key==='Enter')$('#go').click()});
 function show(){$('#login').hidden=!!SES;$('#app').hidden=!SES;if(SES)guard(loadAll)()}
 show();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
