@@ -17,7 +17,7 @@ textarea{width:100%;resize:vertical}[hidden]{display:none!important}.mut,small{c
 body:has(#app:not([hidden])){padding:16px}#app{display:flex;width:fit-content;max-width:100%;height:100%;margin:0 auto;background:var(--bg);border:1px solid var(--ln);border-radius:6px;box-shadow:0 2px 16px #0000001c;overflow:hidden}
 #list{width:220px;flex:none;border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
 #list h1{margin:0;font-size:21px;letter-spacing:2px;display:flex;gap:6px;align-items:center}#list h1 span{flex:1}
-#cl{overflow:auto;flex:1}
+#cl{overflow:auto;flex:1;min-height:0}.lsort{display:flex}.lsort button{flex:1}
 .ci{padding:3px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ci:hover,.ci.on{background:#e2e9f1}.ci.on{color:var(--ac);font-weight:600}
 .gh{position:sticky;top:0;z-index:1;background:var(--bg);font-size:12px;color:var(--mut);padding:8px 10px 2px;border-bottom:1px solid var(--ln);margin-bottom:2px}.gh:first-child{padding-top:0}
 .th{width:44px;height:44px;border-radius:50%;background:#dbe3ec center/cover;flex:none;border:2px solid #fff;box-shadow:0 1px 3px #0003}
@@ -124,6 +124,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
   <aside id="list">
     <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="kmb" title="키워드 관리">#</button><button id="set" title="설정">⚙</button></h1>
     <input id="q" placeholder="이름·풀네임·출처·키워드 검색">
+    <div class="seg sm lsort"><button data-ls="name">이름순</button><button data-ls="origin">출신별</button></div>
     <div id="cl"></div>
   </aside>
   <main id="det"><div id="dc"></div></main>
@@ -209,8 +210,8 @@ async function loadKinds(){
   if(add.length)KROWS.push(...await db('POST','lvlv_kind','',add));
   rebuildKinds();
 }
-const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{},q:'',tab:'info',dtab:'i',dock:true};
-try{S.dock=localStorage.getItem('lvlv_dock')!=='0';S.tab=localStorage.getItem('lvlv_tab')==='page'?'page':'info'}catch(e){}
+const S={ls:'name',chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{},q:'',tab:'info',dtab:'i',dock:true};
+try{S.dock=localStorage.getItem('lvlv_dock')!=='0';S.ls=localStorage.getItem('lvlv_sort')==='origin'?'origin':'name';S.tab=localStorage.getItem('lvlv_tab')==='page'?'page':'info'}catch(e){}
 const hasFN=()=>S.chars.some(c=>'full_name' in c);   // 풀네임 칸(SQL)이 있는지
 const SEXN={f:'여',m:'남'};
 const cur=()=>S.chars.find(c=>c.id===S.cur);
@@ -228,10 +229,14 @@ const initial=n=>{const ch=String(n||'').trim()[0]||'',x=ch.charCodeAt(0);
   if(/[a-z]/i.test(ch))return ch.toUpperCase();return '#'};
 function renderList(){
   const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.full_name,c.origin,...KINDS.flatMap(([k])=>charKw(c,k))].join(' ').toLowerCase().includes(q));
-  let g=null;
-  $('#cl').innerHTML=L.map(c=>{const h=initial(c.name),gh=h!==g?`<div class="gh">${E(h)}</div>`:'';g=h;
+  const byO=S.ls==='origin',NO='출신 없음',grp=c=>byO?((c.origin||'').trim()||NO):initial(c.name);
+  document.querySelectorAll('[data-ls]').forEach(b=>b.classList.toggle('on',b.dataset.ls===(byO?'origin':'name')));
+  if(byO)L.sort((a,b)=>{const x=grp(a),y=grp(b);return x===y?a.name.localeCompare(b.name,'ko'):x===NO?1:y===NO?-1:x.localeCompare(y,'ko')});
+  const cl=$('#cl'),top=cl.scrollTop;let g=null;   // 목록을 다시 그려도 스크롤 위치는 그대로
+  cl.innerHTML=L.map(c=>{const h=grp(c),gh=h!==g?`<div class="gh">${E(h)}</div>`:'';g=h;
     const tip=[c.full_name,c.origin,SEXN[c.sex]].filter(Boolean).join(' · ');
     return `${gh}<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"${tip?` title="${E(tip)}"`:''}>${E(c.name)}</div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
+  cl.scrollTop=top;
 }
 const emptyDet=()=>{park();$('#dc').innerHTML='<div class="wrap"><div class="hdr"></div><div class="ptl"></div><div class="area emp"><p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p></div></div>';layout()};
 async function pick(id){
@@ -536,12 +541,13 @@ function startEdit(){const c=cur();S.edit=true;S.kw=kwInit(k=>charKw(c,k));rende
 const keep=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 document.addEventListener('click',guard(async e=>{
   const t=e.target,g=s=>t.closest(s);
-  if(g('#bk')){document.body.classList.remove('det');return}
+  if(g('#bk')){const top=$('#cl').scrollTop;document.body.classList.remove('det');$('#cl').scrollTop=S.lsc??top;return}
+  if(g('[data-ls]')){S.ls=g('[data-ls]').dataset.ls;keep('lvlv_sort',S.ls);$('#cl').scrollTop=0;return renderList()}
   if(g('[data-tab]')){const v=g('[data-tab]').dataset.tab;if(v===S.tab)return;commitAll();S.tab=v;keep('lvlv_tab',v);bsel=null;return renderDet()}
   if(g('[data-dt]')){S.dtab=g('[data-dt]').dataset.dt;if(!S.dock){S.dock=true;keep('lvlv_dock','1')}return renderDet()}
   if(g('[data-dk]')){S.dock=!S.dock;keep('lvlv_dock',S.dock?'1':'0');return renderDet()}
   if(g('[data-sex]')){const b=g('[data-sex]'),w=$('#f-sex');w.dataset.v=b.dataset.sex;w.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));return infoDirty()}
-  if(g('.ci'))return pick(g('.ci').dataset.id);
+  if(g('.ci')){S.lsc=$('#cl').scrollTop;await pick(g('.ci').dataset.id);$('#cl').scrollTop=S.lsc;return}
   if(g('[data-add]')){const [k,r]=g('[data-add]').dataset.add.split(':');return addBoard(k,r)}
   if(g('[data-b]'))return boardAct(g('[data-b]').dataset.b);
   if(g('[data-p]'))return pageAct(g('[data-p]').dataset.p);
