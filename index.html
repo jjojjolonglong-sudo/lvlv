@@ -8,19 +8,19 @@
 <style>
 :root{--bg:#eef1f5;--paper:#fff;--ink:#26303b;--mut:#7a8794;--ln:#d5dce4;--ac:#4a6785;--tape:rgba(150,170,195,.5)}
 *{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--ink);font:14px/1.6 "Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+body{background:#e2e7ed;color:var(--ink);font:14px/1.6 "Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
 button,input,select,textarea{font:inherit;color:inherit;background:var(--paper);border:1px solid var(--ln);border-radius:6px;padding:5px 10px}
 button{cursor:pointer}button:hover{border-color:var(--ac)}.p{background:var(--ac);color:#fff;border-color:var(--ac)}
 textarea{width:100%;resize:vertical}[hidden]{display:none!important}.mut,small{color:var(--mut)}
 #login{max-width:300px;margin:18vh auto;display:grid;gap:8px;padding:0 14px}
-#app{display:grid;grid-template-columns:240px 1fr;height:100%}
-#list{border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
+#app{display:flex;width:fit-content;max-width:calc(100vw - 32px);height:calc(100vh - 32px);height:calc(100dvh - 32px);margin:16px auto;background:var(--bg);border:1px solid var(--ln);border-radius:6px;box-shadow:0 2px 16px #0000001c;overflow:hidden}
+#list{width:220px;flex:none;border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
 #list h1{margin:0;font-size:21px;letter-spacing:2px;display:flex;gap:6px;align-items:center}#list h1 span{flex:1}
 #cl{overflow:auto;flex:1}
 .ci{padding:3px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ci:hover,.ci.on{background:#e2e9f1}.ci.on{color:var(--ac);font-weight:600}
 .gh{position:sticky;top:0;z-index:1;background:var(--bg);font-size:12px;color:var(--mut);padding:8px 10px 2px;border-bottom:1px solid var(--ln);margin-bottom:2px}.gh:first-child{padding-top:0}
 .th{width:44px;height:44px;border-radius:50%;background:#dbe3ec center/cover;flex:none;border:2px solid #fff;box-shadow:0 1px 3px #0003}
-#det{overflow:auto;padding:18px 24px 0;min-width:0;scrollbar-gutter:stable;display:flex;flex-direction:column}#dc{flex:1;display:flex;flex-direction:column}.bk{display:none;margin-bottom:8px}
+#det{flex:none;overflow:auto;padding:14px 16px 16px}.bk{display:none;margin-bottom:8px}
 .hd{display:flex;gap:8px}.nm{font-size:22px;font-weight:600;flex:1;background:none;border-color:transparent;border-bottom:1px dashed var(--ln)}
 .row{display:flex;gap:8px;margin:8px 0}.row input{flex:1}.kw{width:100%}
 .card{background:var(--paper);border:1px solid var(--ln);border-radius:3px;padding:12px 14px;margin:0 0 10px;box-shadow:0 1px 2px #0001}
@@ -68,28 +68,31 @@ dialog{border:1px solid var(--ln);border-radius:6px;background:var(--paper);colo
 dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{margin:0 0 8px}
 #lb{max-width:94vw;width:auto;text-align:center}#lb img{max-width:90vw;max-height:78vh;display:block;margin:0 auto 8px}
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#26303b;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;max-width:90vw}
-@media(max-width:760px){#app{display:block}#det{display:none;height:100%}body.det #list{display:none}body.det #det{display:flex}#det{padding:12px 12px 0}.bk{display:block}}
+@media(max-width:760px){#app{display:block;width:auto;max-width:none;height:100%;margin:0;border:0;border-radius:0;box-shadow:none}#list{width:auto;height:100%;border:0}#det{display:none;height:100%;padding:12px}body.det #list{display:none}body.det #det{display:block}.bk{display:block}#det .ptl{flex-wrap:wrap;white-space:normal}#det .ipg{height:auto!important;min-height:0}}
 #km{max-width:min(720px,96vw)}#km-b{max-height:68vh;overflow:auto}#km h4{margin:14px 0 4px}
 .kr{display:flex;gap:8px;align-items:center;margin:4px 0}.kr .kn{flex:1;min-width:0}.kr small{white-space:nowrap}.warn{color:#b0603a}
 #sv{font-size:12px}
-.wrap{margin:0 auto;max-width:100%;flex:1;padding-bottom:18px}
-.hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;min-height:34px}.hfn{color:var(--mut);font-size:14px}
+.wrap{max-width:100%}
+.hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;min-height:34px}.hfn{color:var(--mut);font-size:14px}
 .hdr .nn{margin-right:4px}.dl{background:none;border-color:transparent;color:var(--mut);font-size:12px;padding:4px 6px;margin-left:6px}.dl:hover{color:#b0603a;border-color:#e3c3b3}
 .seg{display:inline-flex;border:1px solid var(--ln);border-radius:6px;overflow:hidden;background:var(--paper);flex:none}
 .seg button{border:0;border-radius:0;padding:5px 12px;background:none}.seg button+button{border-left:1px solid var(--ln)}.seg button:hover{background:#eef2f6}.seg button.on{background:var(--ac);color:#fff}
 .seg.sm button{padding:3px 12px}
-.info{display:grid;gap:18px;align-items:start}.w2 .info{grid-template-columns:1fr 1fr;gap:24px}
-.info .card{margin:0}.ih{display:flex;align-items:center;gap:10px;margin-bottom:10px}.ih b{font-size:15px}
-.fg{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1.3fr);gap:10px 10px;align-items:center}
-.fg>label{font-size:13px;color:var(--mut);white-space:nowrap}.fg input,.fg textarea{width:100%;min-width:0}.fg .s3{grid-column:2/-1}.fg .tp{align-self:start;padding-top:6px}
-.wn .fg{grid-template-columns:auto minmax(0,1fr)}.wn .fg .s3{grid-column:2}
-.info .tl-t:first-of-type{margin-top:0}
-.ptl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 10px}.ptl .vr{width:1px;height:20px;background:var(--ln);margin:0 6px}.ptl small{margin-right:2px}
-.ptl button{padding:3px 9px}
-.dock{position:sticky;bottom:0;z-index:5;margin:0 auto;padding-bottom:10px;background:var(--bg)}
-.dock-in{background:var(--paper);border:1px solid var(--ln);border-radius:6px;box-shadow:0 -2px 10px #0000000f;padding:8px 10px}
-.dock-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.dock-h small{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dock-h .tg2{padding:3px 9px;margin-left:auto}.dock .ml,.dock .tl{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;margin-top:8px;padding:4px 2px 6px}
+/* 인물 정보: 스크랩북 펼침면과 같은 크기의 종이 한 장 */
+.ipg{background:var(--paper);box-shadow:0 2px 10px #0003;border-radius:3px;overflow:auto}
+.w2 .ipg{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.w2 .ipc{overflow:auto;min-height:0;display:flex;flex-direction:column}
+.ipc{padding:24px 26px}.w2 .ipc:first-child{box-shadow:inset -22px 0 22px -22px #0000001f}.w2 .ipc+.ipc{box-shadow:inset 22px 0 22px -22px #0000001f}
+.ih{display:flex;align-items:center;gap:10px;margin-bottom:12px}.ih b{font-size:15px}
+.fg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 12px;align-items:center}.w2 .fg{flex:1;grid-template-rows:repeat(5,auto) minmax(110px,1fr)}
+.fg>label{font-size:13px;color:var(--mut);white-space:nowrap}.fg input,.fg textarea{width:100%;min-width:0}.fg .tp{align-self:start;padding-top:6px}.w2 #f-quote{height:100%;resize:none}
+.ipc .tl-t:first-of-type{margin-top:0}
+.emp{display:flex;align-items:center;justify-content:center;border:1px dashed var(--ln);border-radius:3px}
+.ptl{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;white-space:nowrap;margin:0 0 10px;min-height:30px}.ptl .vr{width:1px;height:20px;background:var(--ln);margin:0 6px}.ptl small{margin-right:2px}
+.ptl button{padding:3px 8px}.ptl .i{display:none}.wrap:not(.w2) .ptl .l{display:none}.wrap:not(.w2) .ptl .i{display:inline}.wrap:not(.w2) .ptl{overflow-x:auto}
+.dock{margin-top:10px}
+.dock-in{background:var(--paper);border:1px solid var(--ln);border-radius:4px;padding:8px 10px}
+.dock-h{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}.dock-h>*{flex:none;white-space:nowrap}.dock-h>small{flex:1}.dock-h small{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dock-h .tg2{padding:3px 9px;margin-left:auto}.dock .ml,.dock .tl{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;margin-top:8px;padding:4px 2px 6px;height:102px;align-items:flex-start}.dock .mi{width:84px;height:84px}
 .dock.ns .ad{display:none}
 #f-sex{justify-self:start}.wn .dock-h small,.wn .ptl .vr{display:none}
 .kc-r{display:flex;gap:6px;align-items:center;margin:4px 0;flex-wrap:wrap}.kc-r .cn{flex:1;min-width:110px}.kc-r.sub{margin-left:22px}.kc-r small{white-space:nowrap}.kr .kc{max-width:120px}.kr .mv{padding:3px 7px}
@@ -208,7 +211,7 @@ function renderList(){
     const tip=[c.full_name,c.origin,SEXN[c.sex]].filter(Boolean).join(' · ');
     return `${gh}<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"${tip?` title="${E(tip)}"`:''}>${E(c.name)}</div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
 }
-const emptyDet=()=>{$('#dc').innerHTML='<p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p>'};
+const emptyDet=()=>{$('#dc').innerHTML='<div class="wrap"><div class="hdr"></div><div class="ptl"></div><div class="area emp"><p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p></div></div>';layout()};
 async function pick(id){
   if(dirty)await infoFlush();
   S.cur=id;S.edit=false;bpg=0;bsel=null;S.texts=await db('GET','lvlv_text',`?char_id=eq.${id}&select=*&order=sort_order,created_at`);
@@ -216,41 +219,48 @@ async function pick(id){
 }
 
 /* ---------- 인물 화면: 스크랩북 하나. 첫 페이지는 입력값으로 자동 생성, 편집 모드에서만 수정 ---------- */
-/* 폭: 스크랩북 페이지에 맞춰요. 넓으면 두 쪽(최대 1200px), 좁으면 한 쪽(최대 600px). 두 탭 모두 같은 폭 */
-function fitW(){
-  const d=$('#det');if(!d)return 600;const cs=getComputedStyle(d),av=d.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
-  if(!(av>0))return 600;const two=av>=760,w=Math.floor(two?Math.min(av,PW*2):Math.min(av,PW));
-  document.querySelectorAll('#dc .wrap,#dc .dock').forEach(e=>{e.style.width=w+'px';e.classList.toggle('w2',two);e.classList.toggle('wn',w<520)});
-  return w;
+/* 앱 크기: 창 높이에 꽉 차게(위아래 16px 여백) 정하고, 페이지 영역(두 쪽 또는 한 쪽)이 남은 높이·폭에 맞게 줄어들어요.
+   앱 가로 = 목록 + 페이지 영역. 인물 정보 탭도 페이지 영역과 똑같은 크기. 이미지·글감 띠는 페이지 영역 바로 아래 */
+const LAY={two:true,pw:600,ah:840};
+function layout(){
+  const d=$('#det'),wr=$('#dc .wrap'),ar=wr&&wr.querySelector('.area');if(!ar)return;
+  const mob=innerWidth<=760,cs=getComputedStyle(d),padX=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight),padY=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
+  const avW=Math.max(200,mob?d.clientWidth-padX:innerWidth-34-$('#list').offsetWidth-padX),two=!mob&&avW>=760,n=two?2:1;
+  const put=sc=>{const pw=Math.floor(PW*sc),cw=pw*n,ah=Math.round(pw*PH/PW);Object.assign(LAY,{two,pw,ah});
+    wr.style.width=cw+'px';ar.style.width=cw+'px';ar.style.height=ah+'px';wr.classList.toggle('w2',two);wr.classList.toggle('wn',cw<520)};
+  let sc=Math.min(1,avW/(n*PW));put(sc);
+  if(!mob)for(let k=0;k<3;k++){const used=wr.offsetHeight-ar.offsetHeight,avH=$('#app').clientHeight-padY-used;   // 위 줄·띠 높이를 빼고 남은 높이
+    const s2=Math.max(Math.min(avW,two?760:520)/(n*PW),Math.min(1,avW/(n*PW),avH/PH));   /* 너무 작아지지 않게: 한 쪽이면 폭 520px, 두 쪽이면 760px까지만 줄임 */if(Math.abs(s2-sc)<.001)break;sc=s2;put(sc)}
 }
 const info=()=>S.edit&&S.tab==='info';
 function renderDet(){
   const c=cur();if(!c)return emptyDet();
   const fn=c.full_name?`<span class="hfn">${E(c.full_name)}</span>`:'';
-  const hd=S.edit?`<b class="nn">${E(c.name)}</b>${fn}<div class="seg"><button data-tab="info"${S.tab==='info'?' class="on"':''}>인물 정보</button><button data-tab="page"${S.tab==='page'?' class="on"':''}>페이지 꾸미기</button></div><button data-a="ex" class="p">편집 끝내기</button><small id="sv" class="mut"></small><button id="del" class="dl" title="인물 삭제">인물 삭제</button>`
+  const hd=S.edit?`<b class="nn">${E(c.name)}</b>${fn}<div class="seg"><button data-tab="info"${S.tab==='info'?' class="on"':''}>인물 정보</button><button data-tab="page"${S.tab==='page'?' class="on"':''}>페이지 꾸미기</button></div><button data-a="ex" class="p">편집 끝내기</button><button id="del" class="dl" title="인물 삭제">인물 삭제</button>`
     :`<b class="nn">${E(c.name)}</b>${fn}<button data-a="ee">편집</button>`;
   const nav=`<button data-p="-1">‹</button><span id="pn"></span><button data-p="1">›</button>`;
-  const body=info()?infoPanel(c)
-    :S.edit?`<div class="ptl">${nav}<button data-p="add">＋ 페이지</button><button data-p="del">마지막 페이지 삭제</button><span class="vr"></span><small class="mut">선택한 오브젝트</small><button data-b="rl" title="왼쪽으로 돌리기">⟲</button><button data-b="rr" title="오른쪽으로 돌리기">⟳</button><button data-b="sm" title="작게">−</button><button data-b="bg" title="크게">＋</button><button data-b="fr">앞으로</button><button data-b="pl">◂ 앞 페이지로</button><button data-b="pr">뒤 페이지로 ▸</button><button data-b="rm">빼기</button></div><div id="sbw"><div class="sb" id="sb"></div></div>`
-    :`<div class="ptl">${nav}</div><div id="sbw"><div class="sb" id="sb"></div></div>`;
-  $('#dc').innerHTML=`<div class="wrap"><button class="bk" id="bk">‹ 목록</button><div class="hdr">${hd}</div>${body}</div>${S.edit?dock(c):''}`;
-  fitW();
+  const board='<div id="sbw" class="area"><div class="sb" id="sb"></div></div>';
+  const body=info()?`<div class="ptl"><small class="mut">입력하면 자동으로 저장돼요</small><small id="sv" class="mut"></small></div>${infoPanel(c)}`
+    :S.edit?`<div class="ptl">${nav}<button data-p="add" title="페이지 추가">＋<span class="l"> 쪽</span></button><button data-p="del" title="마지막 페이지 삭제"><span class="l">쪽 삭제</span><span class="i">－쪽</span></button><span class="vr"></span><small class="mut l" title="페이지에서 누른 오브젝트에 적용돼요">선택:</small><button data-b="rl" title="왼쪽으로 돌리기">⟲</button><button data-b="rr" title="오른쪽으로 돌리기">⟳</button><button data-b="sm" title="작게">−</button><button data-b="bg" title="크게">＋</button><button data-b="fr" title="맨 앞으로"><span class="l">앞으로</span><span class="i">⤒</span></button><button data-b="pl" title="앞 페이지로 옮기기">◂<span class="l"> 앞쪽</span></button><button data-b="pr" title="뒤 페이지로 옮기기"><span class="l">뒤쪽 </span>▸</button><button data-b="rm" title="페이지에서 빼기"><span class="l">빼기</span><span class="i">✕</span></button></div>${board}`
+    :`<div class="ptl">${nav}</div>${board}`;
+  $('#dc').innerHTML=`<div class="wrap"><button class="bk" id="bk">‹ 목록</button><div class="hdr">${hd}</div>${body}${S.edit?dock(c):''}</div>`;
+  layout();
   if(info()){fillDl();tiDraw()}
   drawBoard();
 }
 const kwBlocks=()=>KINDS.map(([k,n])=>`<div class="tl-t">${E(n)} 키워드</div><div class="ti" data-k="${k}"><input class="ti-in" data-k="${k}" list="dl-${k}" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div>`).join('');
 function infoPanel(c){
   const fnOK=hasFN(),sx=v=>`<button type="button" data-sex="${v}"${(c.sex||'')===v?' class="on"':''}>${SEXN[v]||'—'}</button>`;
-  return `<div class="info"><div class="card"><div class="ih"><b>기본 정보</b><small class="mut">입력하면 자동으로 저장돼요</small></div>
+  return `<div class="ipg area"><div class="ipc"><div class="ih"><b>기본 정보</b></div>
     <div class="fg">
       <label for="f-name">이름</label><input id="f-name" value="${E(c.name)}">
       <label for="f-full">풀네임</label><input id="f-full" value="${E(c.full_name||'')}" ${fnOK?'placeholder="예: 케이트 엘리스 블랑쉐"':'placeholder="SQL 실행 후 쓸 수 있어요" disabled'}>
       <label for="f-origin">출처</label><input id="f-origin" placeholder="소설·영화·현실…" value="${E(c.origin||'')}">
       <label>성별</label><div class="seg sm" id="f-sex" data-v="${E(c.sex||'')}">${sx('f')}${sx('m')}${sx('')}</div>
-      <label for="f-profile">프로필</label><input id="f-profile" class="s3" placeholder="프로필 한 줄" value="${E(c.profile||'')}">
-      <label for="f-quote" class="tp">어록</label><textarea id="f-quote" class="s3" rows="7" placeholder="한 줄에 하나, Enter로 구분">${E(c.quote||'')}</textarea>
+      <label for="f-profile">프로필</label><input id="f-profile" placeholder="프로필 한 줄" value="${E(c.profile||'')}">
+      <label for="f-quote" class="tp">어록</label><textarea id="f-quote" rows="7" placeholder="한 줄에 하나, Enter로 구분">${E(c.quote||'')}</textarea>
     </div></div>
-    <div class="card"><div class="ih"><b>키워드</b><small class="mut">띄어쓰기·쉼표·Enter로 넣어요</small></div>${kwBlocks()}</div></div>`;
+    <div class="ipc"><div class="ih"><b>키워드</b><small class="mut">띄어쓰기·쉼표·Enter로 넣어요</small></div>${kwBlocks()}</div></div>`;
 }
 /* 아래에 붙는 이미지·글감 띠 (편집 중 두 탭 모두) */
 function dock(c){
@@ -308,7 +318,7 @@ const infoFlush=guard(async()=>{
   try{
     await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name:c.name,origin:c.origin,sex:c.sex,quote:c.quote,profile:c.profile,...('full_name' in c?{full_name:c.full_name}:{}),updated_at:new Date().toISOString()});
     if(kd)await saveKw(c.id);
-    sortChars();renderList();drawBoard();const n=$('.nn');if(n)n.textContent=c.name;const h=$('.hdr');if(h){let f=h.querySelector('.hfn');if(c.full_name){if(!f){n.insertAdjacentHTML('afterend','<span class="hfn"></span>');f=h.querySelector('.hfn')}f.textContent=c.full_name}else if(f)f.remove()}const v=$('#sv');if(v)v.textContent='저장됨';
+    sortChars();renderList();drawBoard();const n=$('.nn');if(n)n.textContent=c.name;const h=$('.hdr');if(h){let f=h.querySelector('.hfn');if(c.full_name){if(!f){n.insertAdjacentHTML('afterend','<span class="hfn"></span>');f=h.querySelector('.hfn')}f.textContent=c.full_name}else if(f)f.remove();layout();drawBoard()}const v=$('#sv');if(v)v.textContent='저장됨';
   }catch(e){dirty=true;if(kd)kwDirty=true;const v=$('#sv');if(v)v.textContent='저장 실패';throw e}
   finally{saving=false}
   if(dirty)infoFlush();
@@ -412,15 +422,15 @@ let bsel=null,bt,bpg=0;
 const maxZ=b=>Math.max(0,...b.items.map(o=>o.z||0));
 const bget=c=>{let b=c.board;if(!b||Array.isArray(b))b=c.board={n:2,items:Array.isArray(b)?b:[]};b.items.forEach(o=>{if(!o.p)o.p=1});b.n=Math.max(2,b.n||2,...b.items.map(o=>o.p+1));return b};
 const bsave=()=>{clearTimeout(bt);bt=setTimeout(guard(async()=>{const c=cur();if(c)await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{board:c.board})}),700)};
-const stepOf=()=>($('#sbw')&&$('#sbw').clientWidth>=760?2:1);
+const stepOf=()=>(LAY.two?2:1);
 function drawBoard(){
   const c=cur(),w=$('#sbw');if(!c||!w)return;
   const b=bget(c);b.items=b.items.filter(o=>o.k==='t'||(o.k==='i'?S.imgs.some(x=>x.id===o.ref):S.texts.some(t=>t.id===o.ref)));
-  const W=w.clientWidth||PW,two=W>=760,pw=Math.min(PW,two?W/2:W),s=pw/PW,st=two?2:1;
+  const two=LAY.two,pw=LAY.pw,s=pw/PW,st=two?2:1;
   bpg=Math.max(0,Math.min(Math.floor(bpg/st)*st,Math.floor((b.n-1)/st)*st));
   const sb=$('#sb'),ps=two?[bpg,bpg+1]:[bpg];sb.className='sb'+(two?' two':'')+(S.edit?' ed':'');sb.innerHTML='';
   ps.forEach((pi,k)=>{
-    const pg=document.createElement('div');pg.className='pg'+(two?(k?' r':' l'):'')+(pi>=b.n?' blank':'');pg.style.cssText=`width:${pw}px;height:${PH*s}px`;
+    const pg=document.createElement('div');pg.className='pg'+(two?(k?' r':' l'):'')+(pi>=b.n?' blank':'');pg.style.cssText=`width:${pw}px;height:${LAY.ah}px`;
     if(pi<b.n){const inn=document.createElement('div');inn.className='pgi';inn.style.transform=`scale(${s})`;
       if(pi===0)inn.innerHTML=firstPage(c);else b.items.filter(o=>o.p===pi).forEach(o=>inn.appendChild(itemEl(o,s,b)));pg.appendChild(inn)}
     sb.appendChild(pg);
@@ -476,7 +486,7 @@ function pageAct(a){
   }else bpg+=(+a)*stepOf();
   drawBoard();if(a==='add'||a==='del')bsave();
 }
-addEventListener('resize',()=>{if(S.cur){fitW();drawBoard()}});
+addEventListener('resize',()=>{layout();if(S.cur)drawBoard()});
 
 /* ---------- 이벤트 ---------- */
 function startEdit(){const c=cur();S.edit=true;S.kw=kwInit(k=>charKw(c,k));renderDet()}
