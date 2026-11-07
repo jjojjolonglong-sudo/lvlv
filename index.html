@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lvlv</title>
+<script src="https://jjojjolonglong-sudo.github.io/mnmn/fonts.v1.js" data-app="lvlv"></script>
 <style>
 :root{--bg:#eef1f5;--paper:#fff;--ink:#26303b;--mut:#7a8794;--ln:#d5dce4;--ac:#4a6785;--tape:rgba(150,170,195,.5)}
 *{box-sizing:border-box}html,body{height:100%;margin:0}
@@ -12,13 +13,14 @@ button,input,select,textarea{font:inherit;color:inherit;background:var(--paper);
 button{cursor:pointer}button:hover{border-color:var(--ac)}.p{background:var(--ac);color:#fff;border-color:var(--ac)}
 textarea{width:100%;resize:vertical}[hidden]{display:none!important}.mut,small{color:var(--mut)}
 #login{max-width:300px;margin:18vh auto;display:grid;gap:8px;padding:0 14px}
-#app{display:grid;grid-template-columns:270px 1fr;height:100%}
+#app{display:grid;grid-template-columns:240px 1fr;height:100%}
 #list{border-right:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;padding:12px;gap:8px}
 #list h1{margin:0;font-size:21px;letter-spacing:2px;display:flex;gap:6px;align-items:center}#list h1 span{flex:1}
 #cl{overflow:auto;flex:1}
-.ci{display:flex;gap:10px;align-items:center;padding:7px;border-radius:6px;cursor:pointer}.ci:hover,.ci.on{background:#e2e9f1}
+.ci{padding:3px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ci:hover,.ci.on{background:#e2e9f1}.ci.on{color:var(--ac);font-weight:600}
+.gh{position:sticky;top:0;z-index:1;background:var(--bg);font-size:12px;color:var(--mut);padding:8px 10px 2px;border-bottom:1px solid var(--ln);margin-bottom:2px}.gh:first-child{padding-top:0}
 .th{width:44px;height:44px;border-radius:50%;background:#dbe3ec center/cover;flex:none;border:2px solid #fff;box-shadow:0 1px 3px #0003}
-#det{overflow:auto;padding:18px 24px;min-width:0}.bk{display:none;margin-bottom:8px}
+#det{overflow:auto;padding:18px 24px 0;min-width:0;scrollbar-gutter:stable;display:flex;flex-direction:column}#dc{flex:1;display:flex;flex-direction:column}.bk{display:none;margin-bottom:8px}
 .hd{display:flex;gap:8px}.nm{font-size:22px;font-weight:600;flex:1;background:none;border-color:transparent;border-bottom:1px dashed var(--ln)}
 .row{display:flex;gap:8px;margin:8px 0}.row input{flex:1}.kw{width:100%}
 .card{background:var(--paper);border:1px solid var(--ln);border-radius:3px;padding:12px 14px;margin:0 0 10px;box-shadow:0 1px 2px #0001}
@@ -42,7 +44,7 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 .pg.l{border-radius:3px 0 0 3px}.pg.r{border-radius:0 3px 3px 0}
 .pg.l:after,.pg.r:after{content:"";position:absolute;top:0;bottom:0;width:22px;pointer-events:none}
 .pg.l:after{right:0;background:linear-gradient(90deg,transparent,#0000001f)}.pg.r:after{left:0;background:linear-gradient(270deg,transparent,#0000001f)}
-.nn{font-size:22px;font-weight:600;flex:1}summary{cursor:pointer}
+.nn{font-size:22px;font-weight:600}summary{cursor:pointer}
 .ml,.tl{display:flex;flex-wrap:wrap;gap:8px;max-height:150px;overflow:auto;padding:4px}
 .mi{position:relative;width:64px;height:64px;border:2px solid #fff;box-shadow:0 1px 3px #0004;cursor:pointer;flex:none;background:#ddd}.mi img{width:100%;height:100%;object-fit:cover;display:block}
 .ad{position:absolute;right:2px;bottom:2px;width:20px;height:20px;border-radius:50%;background:var(--ac);color:#fff;font-style:normal;text-align:center;line-height:20px;cursor:pointer;font-size:14px}
@@ -52,8 +54,8 @@ h2.nm{margin:0;border:0}.th{display:flex;align-items:center;justify-content:cent
 .fp-ph{left:36px;top:40px;width:230px;padding:10px 10px 28px;background:#fff;box-shadow:0 3px 8px #0004;transform:rotate(-3deg)}
 .fp-ph:before{content:"";position:absolute;top:-10px;left:50%;width:56px;height:18px;margin-left:-28px;background:var(--tape);transform:rotate(-3deg)}
 .fp-ph img,.fp-ph span{width:100%;height:210px;display:flex;object-fit:cover;align-items:center;justify-content:center;color:var(--mut);background:#eee}.fp-ph img{cursor:zoom-in;background:none}
-.fp h2{left:296px;top:56px;width:270px;margin:0;font-size:34px;line-height:1.15}.fp-o{left:296px;top:140px;width:270px;color:var(--mut)}
-.fp-k{left:296px;top:176px;width:270px}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}.tg.st span{background:none;border:1px dashed var(--mut)}
+.fp-r{left:296px;top:56px;width:270px;max-height:290px;overflow:hidden}.fp-r h2{margin:0;font-size:34px;line-height:1.15}.fp-fn{margin-top:6px;font-size:15px;color:var(--ink)}.fp-o{margin:6px 0 12px;color:var(--mut)}
+.fp-k{}.fp-k .tg span{font-size:13px}.tg.lk span{background:none;border:1px solid var(--ac)}.tg.st span{background:none;border:1px dashed var(--mut)}
 .fp-c{padding:10px 14px;box-shadow:0 3px 8px #0003;cursor:pointer;overflow:hidden}.fp-c small{display:block;color:var(--mut);margin-bottom:4px;letter-spacing:2px}
 .fp-c p{margin:0;white-space:pre-wrap;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:7}
 .fp-c.b{left:36px;top:360px;width:528px;height:170px;background:#e1ebf6;transform:rotate(.8deg)}.fp-c.b .ql{margin:0 0 4px;-webkit-line-clamp:2}.fp-c.b small{margin:2px 0 0;letter-spacing:0}
@@ -66,10 +68,30 @@ dialog{border:1px solid var(--ln);border-radius:6px;background:var(--paper);colo
 dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{margin:0 0 8px}
 #lb{max-width:94vw;width:auto;text-align:center}#lb img{max-width:90vw;max-height:78vh;display:block;margin:0 auto 8px}
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#26303b;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;max-width:90vw}
-@media(max-width:760px){#app{display:block}#det{display:none;height:100%}body.det #list{display:none}body.det #det{display:block}.bk{display:block}}
+@media(max-width:760px){#app{display:block}#det{display:none;height:100%}body.det #list{display:none}body.det #det{display:flex}#det{padding:12px 12px 0}.bk{display:block}}
 #km{max-width:min(720px,96vw)}#km-b{max-height:68vh;overflow:auto}#km h4{margin:14px 0 4px}
 .kr{display:flex;gap:8px;align-items:center;margin:4px 0}.kr .kn{flex:1;min-width:0}.kr small{white-space:nowrap}.warn{color:#b0603a}
-#sv{margin-left:auto;font-size:12px}
+#sv{font-size:12px}
+.wrap{margin:0 auto;max-width:100%;flex:1;padding-bottom:18px}
+.hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;min-height:34px}.hfn{color:var(--mut);font-size:14px}
+.hdr .nn{margin-right:4px}.dl{background:none;border-color:transparent;color:var(--mut);font-size:12px;padding:4px 6px;margin-left:6px}.dl:hover{color:#b0603a;border-color:#e3c3b3}
+.seg{display:inline-flex;border:1px solid var(--ln);border-radius:6px;overflow:hidden;background:var(--paper);flex:none}
+.seg button{border:0;border-radius:0;padding:5px 12px;background:none}.seg button+button{border-left:1px solid var(--ln)}.seg button:hover{background:#eef2f6}.seg button.on{background:var(--ac);color:#fff}
+.seg.sm button{padding:3px 12px}
+.info{display:grid;gap:18px;align-items:start}.w2 .info{grid-template-columns:1fr 1fr;gap:24px}
+.info .card{margin:0}.ih{display:flex;align-items:center;gap:10px;margin-bottom:10px}.ih b{font-size:15px}
+.fg{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1.3fr);gap:10px 10px;align-items:center}
+.fg>label{font-size:13px;color:var(--mut);white-space:nowrap}.fg input,.fg textarea{width:100%;min-width:0}.fg .s3{grid-column:2/-1}.fg .tp{align-self:start;padding-top:6px}
+.wn .fg{grid-template-columns:auto minmax(0,1fr)}.wn .fg .s3{grid-column:2}
+.info .tl-t:first-of-type{margin-top:0}
+.ptl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 10px}.ptl .vr{width:1px;height:20px;background:var(--ln);margin:0 6px}.ptl small{margin-right:2px}
+.ptl button{padding:3px 9px}
+.dock{position:sticky;bottom:0;z-index:5;margin:0 auto;padding-bottom:10px;background:var(--bg)}
+.dock-in{background:var(--paper);border:1px solid var(--ln);border-radius:6px;box-shadow:0 -2px 10px #0000000f;padding:8px 10px}
+.dock-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.dock-h small{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dock-h .tg2{padding:3px 9px;margin-left:auto}.dock .ml,.dock .tl{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;margin-top:8px;padding:4px 2px 6px}
+.dock.ns .ad{display:none}
+#f-sex{justify-self:start}.wn .dock-h small,.wn .ptl .vr{display:none}
 .kc-r{display:flex;gap:6px;align-items:center;margin:4px 0;flex-wrap:wrap}.kc-r .cn{flex:1;min-width:110px}.kc-r.sub{margin-left:22px}.kc-r small{white-space:nowrap}.kr .kc{max-width:120px}.kr .mv{padding:3px 7px}
 </style>
 </head>
@@ -83,7 +105,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <div id="app" hidden>
   <aside id="list">
     <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="kmb" title="키워드 관리">#</button><button id="set" title="설정">⚙</button></h1>
-    <input id="q" placeholder="이름·출처·키워드 검색">
+    <input id="q" placeholder="이름·풀네임·출처·키워드 검색">
     <div id="cl"></div>
   </aside>
   <main id="det"><div id="dc"></div></main>
@@ -92,7 +114,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <dialog id="dlg"><form id="df"><h3 id="dlg-h"></h3><div id="dlg-b" style="display:grid;gap:8px"></div>
   <div class="row" style="justify-content:flex-end"><button type="button" id="dlg-d" hidden>삭제</button><button type="button" id="dlg-x">취소</button><button class="p">저장</button></div></form></dialog>
 <dialog id="nc"><form id="nf"><h3>새 인물</h3>
-  <input name="name" placeholder="이름 *" required>
+  <div class="row" style="margin:0"><input name="name" placeholder="이름 *" required><input name="full_name" id="nc-full" placeholder="풀네임 (선택)"></div>
   <div class="row"><input name="origin" placeholder="출처 (소설·영화·현실…)"><select name="sex"><option value="">성별</option><option value="f">여</option><option value="m">남</option></select></div>
   <div id="nc-kw"></div>
   <div><label class="btn">대표 사진 선택<input type="file" name="photo" id="nc-f" accept="image/*" hidden></label> <small id="nc-fn" class="mut"></small></div>
@@ -118,14 +140,14 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 <div id="toast" hidden></div>
 
 <script src="https://jjojjolonglong-sudo.github.io/mnmn/config.js"></script>
-<script src="https://jjojjolonglong-sudo.github.io/mnmn/media.v1.js"></script>
+<script src="https://jjojjolonglong-sudo.github.io/mnmn/media.v2.js"></script>
 <script>
 const CFG=window.APP_CONFIG||{};
 const SB=CFG.SB||'https://rtvvajhsnwkkrmncyfbs.supabase.co';
 const ANON=CFG.ANON||'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0dnZhamhzbndra3JtbmN5ZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NjkwMTEsImV4cCI6MjEwNzA0NTAxMX0.O2aLLeazv_FhUhbVAkp4vz3pw8GPb_683dUu7Et1Cwk';
 const W=CFG.MEDIA||'https://media.jjojjolonglong.workers.dev';
 const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-if(!window.Media){const f=async()=>{throw new Error('media.v1.js를 불러오지 못했어요')};window.Media={init(){},url:()=>'',newId:()=>crypto.randomUUID(),folder:{supported:false,name:async()=>''},save:f}}
+if(!window.Media){const f=async()=>{throw new Error('media.v2.js를 불러오지 못했어요')};window.Media={init(){},url:()=>'',newId:()=>crypto.randomUUID(),folder:{supported:false,name:async()=>''},save:f}}
 const toast=t=>{const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3000)};
 const guard=f=>async(...a)=>{try{return await f(...a)}catch(e){toast(e.message)}};
 
@@ -135,7 +157,7 @@ const saveSes=s=>{SES=s;try{s?localStorage.setItem('lvlv_ses',JSON.stringify(s))
 async function gotrue(grant,body){const r=await fetch(`${SB}/auth/v1/token?grant_type=${grant}`,{method:'POST',headers:{apikey:ANON,'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error_description||j.msg||'로그인 실패');j.expires_at=Date.now()+j.expires_in*1000;return j}
 let rf=null;
 async function token(){if(!SES)throw new Error('로그인이 필요해요');if(SES.expires_at-Date.now()<60000){rf=rf||gotrue('refresh_token',{refresh_token:SES.refresh_token}).then(saveSes).finally(()=>{rf=null});await rf}return SES.access_token}
-Media.init({getToken:token});
+Media.init({app:'lvlv',getToken:token});
 async function db(m,t,q,body){
   const r=await fetch(`${SB}/rest/v1/${t}${q||''}`,{method:m,headers:{apikey:ANON,Authorization:'Bearer '+await token(),'Content-Type':'application/json',Prefer:'return=representation'},body:body?JSON.stringify(body):undefined});
   const j=await r.json().catch(()=>null);if(!r.ok)throw new Error((j&&j.message)||'HTTP '+r.status);return j;
@@ -162,7 +184,10 @@ async function loadKinds(){
   if(add.length)KROWS.push(...await db('POST','lvlv_kind','',add));
   rebuildKinds();
 }
-const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{},q:''};
+const S={chars:[],imgs:[],texts:[],kwAll:[],links:[],cur:null,edit:false,kw:{},q:'',tab:'info',dtab:'i',dock:true};
+try{S.dock=localStorage.getItem('lvlv_dock')!=='0';S.tab=localStorage.getItem('lvlv_tab')==='page'?'page':'info'}catch(e){}
+const hasFN=()=>S.chars.some(c=>'full_name' in c);   // 풀네임 칸(SQL)이 있는지
+const SEXN={f:'여',m:'남'};
 const cur=()=>S.chars.find(c=>c.id===S.cur);
 const qLines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean),oneLine=s=>String(s||'').replace(/\s*\n\s*/g,' ').trim();
 const kws=s=>s.split(',').map(x=>x.trim()).filter(Boolean);
@@ -170,12 +195,18 @@ const sortChars=()=>S.chars.sort((a,b)=>a.name.localeCompare(b.name,'ko'));
 const charKw=(c,k)=>S.links.filter(l=>l.char_id===c.id).map(l=>S.kwAll.find(x=>x.id===l.keyword_id)).filter(x=>x&&x.kind===k).map(x=>x.name);
 async function loadAll(){
   const [c,i,k,l]=await Promise.all([db('GET','lvlv_char','?select=*&order=name'),db('GET','lvlv_image','?select=*&order=sort_order,created_at'),db('GET','lvlv_keyword','?select=*&order=name'),db('GET','lvlv_char_keyword','?select=char_id,keyword_id')]);
-  S.chars=c;S.imgs=i;S.kwAll=k;S.links=l;await loadKinds();if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
+  S.chars=c;sortChars();S.imgs=i;S.kwAll=k;S.links=l;await loadKinds();if(S.cur&&!cur())S.cur=null;renderList();S.cur?await pick(S.cur):emptyDet();
 }
+const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',CHO1={'ㄲ':'ㄱ','ㄸ':'ㄷ','ㅃ':'ㅂ','ㅆ':'ㅅ','ㅉ':'ㅈ'};
+const initial=n=>{const ch=String(n||'').trim()[0]||'',x=ch.charCodeAt(0);
+  if(x>=0xAC00&&x<=0xD7A3){const c=CHO[Math.floor((x-0xAC00)/588)];return CHO1[c]||c}
+  if(/[a-z]/i.test(ch))return ch.toUpperCase();return '#'};
 function renderList(){
-  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.origin,...KINDS.flatMap(([k])=>charKw(c,k))].join(' ').toLowerCase().includes(q));
-  $('#cl').innerHTML=L.map(c=>{const im=S.imgs.find(x=>x.id===c.cover_id);
-    return `<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"><div class="th"${im?` style="background-image:url('${Media.url(im.image)}')"`:''}>${im?'':E([...c.name][0]||'')}</div><div><b>${E(c.name)}</b><br><small>${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</small></div></div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
+  const q=S.q.trim().toLowerCase(),L=S.chars.filter(c=>!q||[c.name,c.full_name,c.origin,...KINDS.flatMap(([k])=>charKw(c,k))].join(' ').toLowerCase().includes(q));
+  let g=null;
+  $('#cl').innerHTML=L.map(c=>{const h=initial(c.name),gh=h!==g?`<div class="gh">${E(h)}</div>`:'';g=h;
+    const tip=[c.full_name,c.origin,SEXN[c.sex]].filter(Boolean).join(' · ');
+    return `${gh}<div class="ci${c.id===S.cur?' on':''}" data-id="${c.id}"${tip?` title="${E(tip)}"`:''}>${E(c.name)}</div>`}).join('')||'<p class="mut">인물이 없어요. ＋로 추가하세요</p>';
 }
 const emptyDet=()=>{$('#dc').innerHTML='<p class="mut">왼쪽에서 인물을 고르거나 ＋로 추가하세요</p>'};
 async function pick(id){
@@ -185,35 +216,58 @@ async function pick(id){
 }
 
 /* ---------- 인물 화면: 스크랩북 하나. 첫 페이지는 입력값으로 자동 생성, 편집 모드에서만 수정 ---------- */
+/* 폭: 스크랩북 페이지에 맞춰요. 넓으면 두 쪽(최대 1200px), 좁으면 한 쪽(최대 600px). 두 탭 모두 같은 폭 */
+function fitW(){
+  const d=$('#det');if(!d)return 600;const cs=getComputedStyle(d),av=d.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+  if(!(av>0))return 600;const two=av>=760,w=Math.floor(two?Math.min(av,PW*2):Math.min(av,PW));
+  document.querySelectorAll('#dc .wrap,#dc .dock').forEach(e=>{e.style.width=w+'px';e.classList.toggle('w2',two);e.classList.toggle('wn',w<520)});
+  return w;
+}
+const info=()=>S.edit&&S.tab==='info';
 function renderDet(){
   const c=cur();if(!c)return emptyDet();
-  $('#dc').innerHTML=`<button class="bk" id="bk">‹ 목록</button>
-  <div class="bar"><b class="nn">${E(c.name)}</b><button data-a="${S.edit?'ex':'ee'}"${S.edit?' class="p"':''}>${S.edit?'편집 끝내기':'편집'}</button>${S.edit?'<button id="del">인물 삭제</button>':''}</div>${S.edit?editPanel(c):''}
-  <div class="sbn"><button data-p="-1">‹</button><span id="pn"></span><button data-p="1">›</button>${S.edit?'<button data-p="add">＋ 페이지</button><button data-p="del">마지막 페이지 삭제</button>':''}</div>
-  <div id="sbw"><div class="sb" id="sb"></div></div>`;
-  if(S.edit){fillDl();tiDraw()}
+  const fn=c.full_name?`<span class="hfn">${E(c.full_name)}</span>`:'';
+  const hd=S.edit?`<b class="nn">${E(c.name)}</b>${fn}<div class="seg"><button data-tab="info"${S.tab==='info'?' class="on"':''}>인물 정보</button><button data-tab="page"${S.tab==='page'?' class="on"':''}>페이지 꾸미기</button></div><button data-a="ex" class="p">편집 끝내기</button><small id="sv" class="mut"></small><button id="del" class="dl" title="인물 삭제">인물 삭제</button>`
+    :`<b class="nn">${E(c.name)}</b>${fn}<button data-a="ee">편집</button>`;
+  const nav=`<button data-p="-1">‹</button><span id="pn"></span><button data-p="1">›</button>`;
+  const body=info()?infoPanel(c)
+    :S.edit?`<div class="ptl">${nav}<button data-p="add">＋ 페이지</button><button data-p="del">마지막 페이지 삭제</button><span class="vr"></span><small class="mut">선택한 오브젝트</small><button data-b="rl" title="왼쪽으로 돌리기">⟲</button><button data-b="rr" title="오른쪽으로 돌리기">⟳</button><button data-b="sm" title="작게">−</button><button data-b="bg" title="크게">＋</button><button data-b="fr">앞으로</button><button data-b="pl">◂ 앞 페이지로</button><button data-b="pr">뒤 페이지로 ▸</button><button data-b="rm">빼기</button></div><div id="sbw"><div class="sb" id="sb"></div></div>`
+    :`<div class="ptl">${nav}</div><div id="sbw"><div class="sb" id="sb"></div></div>`;
+  $('#dc').innerHTML=`<div class="wrap"><button class="bk" id="bk">‹ 목록</button><div class="hdr">${hd}</div>${body}</div>${S.edit?dock(c):''}`;
+  fitW();
+  if(info()){fillDl();tiDraw()}
   drawBoard();
 }
 const kwBlocks=()=>KINDS.map(([k,n])=>`<div class="tl-t">${E(n)} 키워드</div><div class="ti" data-k="${k}"><input class="ti-in" data-k="${k}" list="dl-${k}" placeholder="#키워드 (띄어쓰기·쉼표·Enter)"></div>`).join('');
-function editPanel(c){
-  const I=S.imgs.filter(x=>x.char_id===c.id),T=S.texts;
-  return `<div class="card"><div class="bar" style="margin-bottom:4px"><b>인물 정보</b><small class="mut">입력하면 자동으로 저장돼요</small><span id="sv" class="mut"></span></div>
-    <input id="f-name" value="${E(c.name)}" style="width:100%;margin:6px 0">
-    <div class="row"><input id="f-origin" placeholder="출처 (소설·영화·현실…)" value="${E(c.origin||'')}"><select id="f-sex"><option value="">성별</option><option value="f"${c.sex==='f'?' selected':''}>여</option><option value="m"${c.sex==='m'?' selected':''}>남</option></select></div>
-    <textarea id="f-quote" rows="4" placeholder="어록 (한 줄에 하나, Enter로 구분)">${E(c.quote||'')}</textarea>
-    <input id="f-profile" placeholder="프로필 한 줄" value="${E(c.profile||'')}" style="width:100%;margin-top:8px">
-    ${kwBlocks()}</div>
-  <div class="card"><div class="bar"><b>이미지</b><label class="btn">＋ 올리기<input type="file" id="fi" accept="image/*" multiple hidden></label><small class="mut">＋ 누르면 페이지에 붙이고, 더블클릭하면 설정(프로필 사진·캡션·삭제)</small></div>
-    <div class="ml">${I.map(x=>`<div class="mi" data-i="${x.id}"><img src="${Media.url(x.image)}" loading="lazy" alt="">${c.cover_id===x.id?'<b class="star">★</b>':''}<i class="ad" data-add="i:${x.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
-  <div class="card"><div class="bar"><b>글감</b><button data-a="tn">＋ 새 글감</button><small class="mut">＋ 누르면 붙이고, 더블클릭하면 설정(내용·삭제)</small></div>
-    <div class="tl">${T.map(t=>`<div class="tx2" data-t="${t.id}"><p>${E(t.body)}</p><i class="ad" data-add="q:${t.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div></div>
-  <div class="tb"><b>선택한 오브젝트</b><button data-b="rl">⟲</button><button data-b="rr">⟳</button><button data-b="sm">−</button><button data-b="bg">＋</button><button data-b="fr">앞으로</button><button data-b="pl">◂ 앞 페이지로</button><button data-b="pr">뒤 페이지로 ▸</button><button data-b="rm">빼기</button></div>`;
+function infoPanel(c){
+  const fnOK=hasFN(),sx=v=>`<button type="button" data-sex="${v}"${(c.sex||'')===v?' class="on"':''}>${SEXN[v]||'—'}</button>`;
+  return `<div class="info"><div class="card"><div class="ih"><b>기본 정보</b><small class="mut">입력하면 자동으로 저장돼요</small></div>
+    <div class="fg">
+      <label for="f-name">이름</label><input id="f-name" value="${E(c.name)}">
+      <label for="f-full">풀네임</label><input id="f-full" value="${E(c.full_name||'')}" ${fnOK?'placeholder="예: 케이트 엘리스 블랑쉐"':'placeholder="SQL 실행 후 쓸 수 있어요" disabled'}>
+      <label for="f-origin">출처</label><input id="f-origin" placeholder="소설·영화·현실…" value="${E(c.origin||'')}">
+      <label>성별</label><div class="seg sm" id="f-sex" data-v="${E(c.sex||'')}">${sx('f')}${sx('m')}${sx('')}</div>
+      <label for="f-profile">프로필</label><input id="f-profile" class="s3" placeholder="프로필 한 줄" value="${E(c.profile||'')}">
+      <label for="f-quote" class="tp">어록</label><textarea id="f-quote" class="s3" rows="7" placeholder="한 줄에 하나, Enter로 구분">${E(c.quote||'')}</textarea>
+    </div></div>
+    <div class="card"><div class="ih"><b>키워드</b><small class="mut">띄어쓰기·쉼표·Enter로 넣어요</small></div>${kwBlocks()}</div></div>`;
+}
+/* 아래에 붙는 이미지·글감 띠 (편집 중 두 탭 모두) */
+function dock(c){
+  const I=S.imgs.filter(x=>x.char_id===c.id),T=S.texts,im=S.dtab==='i',pg=S.tab==='page';
+  const hint=im?(pg?'＋ 누르면 페이지에 붙이고, 더블클릭하면 설정(프로필 사진·캡션·삭제)':'더블클릭하면 설정(프로필 사진·캡션·삭제) · 붙이기는 ‘페이지 꾸미기’ 탭에서')
+    :(pg?'＋ 누르면 페이지에 붙이고, 더블클릭하면 내용 고치기·삭제':'더블클릭하면 내용 고치기·삭제 · 붙이기는 ‘페이지 꾸미기’ 탭에서');
+  const list=im?`<div class="ml">${I.map(x=>`<div class="mi" data-i="${x.id}"><img src="${Media.url(x.image)}" loading="lazy" alt="">${c.cover_id===x.id?'<b class="star">★</b>':''}<i class="ad" data-add="i:${x.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div>`
+    :`<div class="tl">${T.map(t=>`<div class="tx2" data-t="${t.id}"><p>${E(t.body)}</p><i class="ad" data-add="q:${t.id}">＋</i></div>`).join('')||'<small class="mut">아직 없어요</small>'}</div>`;
+  return `<div class="dock${pg?'':' ns'}"><div class="dock-in"><div class="dock-h"><div class="seg sm"><button data-dt="i"${im?' class="on"':''}>이미지 ${I.length}</button><button data-dt="t"${im?'':' class="on"'}>글감 ${T.length}</button></div>
+    ${im?'<label class="btn" style="padding:3px 9px">＋ 올리기<input type="file" id="fi" accept="image/*" multiple hidden></label>':'<button data-a="tn" style="padding:3px 9px">＋ 새 글감</button>'}
+    <small class="mut">${hint}</small><button class="tg2" data-dk title="${S.dock?'접기':'펼치기'}">${S.dock?'▾ 접기':'▴ 펼치기'}</button></div>${S.dock?list:''}</div></div>`;
 }
 function firstPage(c){
   const im=S.imgs.find(x=>x.id===c.cover_id),Q=qLines(c.quote),chips=k=>charKw(c,k).map(n=>`<span>#${E(n)}</span>`).join('');
   const qh=Q.length?Q.slice(0,4).map(x=>`<p class="ql">${E(x)}</p>`).join('')+(Q.length>4?`<small>외 ${Q.length-4}개</small>`:''):'<span class="mut">편집에서 어록을 입력해 주세요</span>';
-  return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><h2>${E(c.name)}</h2><div class="fp-o">${E(c.origin||'')}${c.sex?' · '+(c.sex==='f'?'여':'남'):''}</div>
-  <div class="fp-k">${KINDS.filter(k=>!k[3].parent||!KROWS.some(x=>x.code===k[3].parent)).map((t,i)=>{const ch=KINDS.filter(k=>k[0]===t[0]||k[3].parent===t[0]).map(k=>chips(k[0])).join('');return ch?`<div class="tg ${['','lk','st'][i%3]}">${ch}</div>`:''}).join('')}</div>
+  return `<div class="fp"><div class="fp-ph">${im?`<img src="${Media.url(im.image)}" alt="" data-ri="${im.id}">`:'<span>프로필 사진</span>'}</div><div class="fp-r"><h2>${E(c.name)}</h2>${c.full_name?`<div class="fp-fn">${E(c.full_name)}</div>`:''}<div class="fp-o">${E(c.origin||'')}${c.sex?' · '+SEXN[c.sex]:''}</div>
+  <div class="fp-k">${KINDS.filter(k=>!k[3].parent||!KROWS.some(x=>x.code===k[3].parent)).map((t,i)=>{const ch=KINDS.filter(k=>k[0]===t[0]||k[3].parent===t[0]).map(k=>chips(k[0])).join('');return ch?`<div class="tg ${['','lk','st'][i%3]}">${ch}</div>`:''}).join('')}</div></div>
   <div class="fp-c b" data-r="quote"><small>어록</small>${qh}</div>
   <div class="fp-c c" data-r="profile"><small>프로필</small><p>${c.profile?E(c.profile):'<span class="mut">편집에서 프로필을 입력해 주세요</span>'}</p></div></div>`;
 }
@@ -243,7 +297,7 @@ async function saveKw(cid){   // S.kw → lvlv_keyword(없으면 생성) + lvlv_
 
 /* ---------- 인물 정보 자동 저장 (입력 후 0.8초) ---------- */
 let it=null,saving=false,dirty=false,kwDirty=false,infoCid=null;
-const readInfo=()=>{const c=cur();if(!c||!$('#f-name'))return;const n=$('#f-name').value.trim();if(n)c.name=n;c.origin=$('#f-origin').value.trim()||null;c.sex=$('#f-sex').value||null;c.quote=qLines($('#f-quote').value).join('\n')||null;c.profile=oneLine($('#f-profile').value)||null};
+const readInfo=()=>{const c=cur();if(!c||!$('#f-name'))return;const n=$('#f-name').value.trim();if(n)c.name=n;c.origin=$('#f-origin').value.trim()||null;c.sex=$('#f-sex').dataset.v||null;if(hasFN())c.full_name=$('#f-full').value.trim()||null;c.quote=qLines($('#f-quote').value).join('\n')||null;c.profile=oneLine($('#f-profile').value)||null};
 function infoDirty(){if(!S.edit||!$('#f-name'))return;readInfo();dirty=true;infoCid=S.cur;const v=$('#sv');if(v)v.textContent='저장 중…';clearTimeout(it);it=setTimeout(infoFlush,800)}
 const kwChanged=()=>{kwDirty=true;infoDirty()};
 const infoFlush=guard(async()=>{
@@ -252,9 +306,9 @@ const infoFlush=guard(async()=>{
   const c=S.chars.find(x=>x.id===infoCid);if(!c){dirty=false;return}
   saving=true;dirty=false;const kd=kwDirty;kwDirty=false;
   try{
-    await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name:c.name,origin:c.origin,sex:c.sex,quote:c.quote,profile:c.profile,updated_at:new Date().toISOString()});
+    await db('PATCH','lvlv_char',`?id=eq.${c.id}`,{name:c.name,origin:c.origin,sex:c.sex,quote:c.quote,profile:c.profile,...('full_name' in c?{full_name:c.full_name}:{}),updated_at:new Date().toISOString()});
     if(kd)await saveKw(c.id);
-    sortChars();renderList();drawBoard();const n=$('.nn');if(n)n.textContent=c.name;const v=$('#sv');if(v)v.textContent='저장됨';
+    sortChars();renderList();drawBoard();const n=$('.nn');if(n)n.textContent=c.name;const h=$('.hdr');if(h){let f=h.querySelector('.hfn');if(c.full_name){if(!f){n.insertAdjacentHTML('afterend','<span class="hfn"></span>');f=h.querySelector('.hfn')}f.textContent=c.full_name}else if(f)f.remove()}const v=$('#sv');if(v)v.textContent='저장됨';
   }catch(e){dirty=true;if(kd)kwDirty=true;const v=$('#sv');if(v)v.textContent='저장 실패';throw e}
   finally{saving=false}
   if(dirty)infoFlush();
@@ -422,13 +476,18 @@ function pageAct(a){
   }else bpg+=(+a)*stepOf();
   drawBoard();if(a==='add'||a==='del')bsave();
 }
-addEventListener('resize',()=>{if(S.cur)drawBoard()});
+addEventListener('resize',()=>{if(S.cur){fitW();drawBoard()}});
 
 /* ---------- 이벤트 ---------- */
 function startEdit(){const c=cur();S.edit=true;S.kw=kwInit(k=>charKw(c,k));renderDet()}
+const keep=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 document.addEventListener('click',guard(async e=>{
   const t=e.target,g=s=>t.closest(s);
   if(g('#bk')){document.body.classList.remove('det');return}
+  if(g('[data-tab]')){const v=g('[data-tab]').dataset.tab;if(v===S.tab)return;commitAll();S.tab=v;keep('lvlv_tab',v);bsel=null;return renderDet()}
+  if(g('[data-dt]')){S.dtab=g('[data-dt]').dataset.dt;if(!S.dock){S.dock=true;keep('lvlv_dock','1')}return renderDet()}
+  if(g('[data-dk]')){S.dock=!S.dock;keep('lvlv_dock',S.dock?'1':'0');return renderDet()}
+  if(g('[data-sex]')){const b=g('[data-sex]'),w=$('#f-sex');w.dataset.v=b.dataset.sex;w.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));return infoDirty()}
   if(g('.ci'))return pick(g('.ci').dataset.id);
   if(g('[data-add]')){const [k,r]=g('[data-add]').dataset.add.split(':');return addBoard(k,r)}
   if(g('[data-b]'))return boardAct(g('[data-b]').dataset.b);
@@ -464,21 +523,21 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Delete'&&S.edit&&bsel&&!e.target.isContentEditable&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))boardAct('rm');
 });
 document.addEventListener('focusout',e=>{if(isTi(e.target))tiCommit(e.target,true)});
-document.addEventListener('input',e=>{if(S.edit&&e.target.closest&&e.target.closest('#f-name,#f-origin,#f-quote,#f-profile'))infoDirty()});
-document.addEventListener('change',e=>{if(e.target.id==='f-sex')infoDirty()});
+document.addEventListener('input',e=>{if(S.edit&&e.target.closest&&e.target.closest('#f-name,#f-full,#f-origin,#f-quote,#f-profile'))infoDirty()});
 $('#q').oninput=e=>{S.q=e.target.value;renderList()};
 
 /* ---------- 새 인물: 대표 값을 입력하면 첫 페이지 + 빈 2쪽이 만들어짐 ---------- */
 $('#add').onclick=()=>{
   if(S.edit){S.edit=false;renderDet()}   // 편집 폼의 키워드 입력과 겹치지 않게
-  S.kw=kwInit();NC=null;$('#nf').reset();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
+  S.kw=kwInit();NC=null;$('#nf').reset();$('#nc-full').hidden=!hasFN();$('#nc-fn').textContent='';$('#nc-kw').innerHTML=kwBlocks();fillDl();tiDraw();$('#nc').showModal();
 };
 $('#nc-x').onclick=()=>$('#nc').close();
 $('#nf').onsubmit=guard(async e=>{
   e.preventDefault();commitAll();const f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;
   const btn=e.submitter;btn.disabled=true;
   try{
-    let r=await db('POST','lvlv_char','',{name,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,user_id:SES.user.id,board:{n:2,items:[]},quote:qLines(f.get('quote')).join('\n')||null,profile:oneLine(f.get('profile'))||null});
+    const full=hasFN()?{full_name:String(f.get('full_name')||'').trim()||null}:{};
+    let r=await db('POST','lvlv_char','',{name,...full,origin:String(f.get('origin')).trim()||null,sex:f.get('sex')||null,user_id:SES.user.id,board:{n:2,items:[]},quote:qLines(f.get('quote')).join('\n')||null,profile:oneLine(f.get('profile'))||null});
     const c=r[0],patch={};
     if(NC){const id=Media.newId(),x=await saveImg(NC.file,id,NC.r);
       if(x){const ir=await db('POST','lvlv_image','',{id,char_id:c.id,user_id:SES.user.id,image:x.hash,sort_order:0});S.imgs.push(ir[0]);patch.cover_id=id;if(x.original==='failed')toast('원본 보관에 실패했어요: '+x.err)}}
