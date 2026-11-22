@@ -122,7 +122,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
 </div>
 <div id="app" hidden>
   <aside id="list">
-    <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="kmb" title="키워드 관리">#</button><button id="set" title="설정">⚙</button></h1>
+    <h1><span>lvlv</span><button id="add" title="인물 추가">＋</button><button id="kmb" title="키워드 관리">#</button><button id="set" title="설정">⚙</button><button id="rl" title="새로고침">↻</button></h1>
     <input id="q" placeholder="이름·풀네임·출처·키워드 검색">
     <div class="seg sm lsort"><button data-ls="name">이름순</button><button data-ls="origin">출신별</button></div>
     <div id="cl"></div>
@@ -162,6 +162,7 @@ dialog::backdrop{background:#0006}dialog form{display:grid;gap:8px}dialog h3{mar
   <div class="ih"><b>원본 사진 폴더 (PC)</b></div><p class="stp"><small class="mut">이미지를 올릴 때 원본이 이 폴더에 저장돼요. 폰에서 올린 원본은 서버에 잠시 보관됐다가 여기서 받으면 폴더로 옮겨져요.</small></p>
   <p class="stp"><button id="st-dir">폴더 연결</button><button id="st-sync">원본 받기</button><small id="st-msg" class="mut"></small></p>
   <div class="ih"><b>연결 확인</b></div><p class="stp"><button id="st-test">테스트</button><small id="st-t" class="mut"></small></p>
+  <div class="ih"><b>앱 설치</b></div><p class="stp" id="st-inst"></p>
 </div></div>
 </div>
 <div id="toast" hidden></div>
@@ -699,7 +700,7 @@ $('#set').onclick=async()=>{
   $('#st-msg').textContent=$('#st-t').textContent='';
   $('#st-me').textContent=(SES&&SES.user&&SES.user.email)||'';
   $('#st-dir').textContent=await Media.folder.name().then(n=>n?'폴더: '+n+' (변경)':'폴더 연결').catch(()=>'폴더 연결');
-  await openPanel('st');
+  showInst();await openPanel('st');
 };
 $('#st-dir').onclick=async()=>{try{await Media.folder.connect();$('#st-dir').textContent='폴더: '+await Media.folder.name()+' (변경)'}catch(e){if(e.name!=='AbortError')$('#st-msg').textContent=e.message||'이 브라우저에서는 지원하지 않아요'}};
 $('#st-sync').onclick=async()=>{const m=$('#st-msg');try{m.textContent='받는 중…';const r=await Media.sync({onProgress:p=>m.textContent=p.done+'/'+p.total});m.textContent=r.total?`완료 ${r.done}/${r.total}`+(r.failed.length?` · 실패 ${r.failed.length}`:''):'받을 원본이 없어요'}catch(e){m.textContent=e.message}};
@@ -709,6 +710,14 @@ $('#st-test').onclick=async()=>{
   try{await db('GET','lvlv_char','?select=id&limit=1');out.push('Supabase ✓')}catch(e){out.push('Supabase ✗ '+e.message)}
   o.textContent=out.join(' · ');
 };
+$('#rl').onclick=()=>location.reload();
+/* 앱 설치: 크롬이 허락하면 설치 버튼, 이미 깔려 있으면 안내, 아이폰은 '공유 → 홈 화면에 추가' */
+let DP=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e;showInst()});
+async function showInst(){const el=$('#st-inst');if(!el)return;
+  if(matchMedia('(display-mode: standalone)').matches||navigator.standalone===true){el.innerHTML='<small class="mut">설치된 앱으로 열려 있어요.</small>';return}
+  if(DP){el.innerHTML='<button id="st-ib">앱 설치</button>';$('#st-ib').onclick=async()=>{DP.prompt();await DP.userChoice.catch(()=>{});DP=null;showInst()};return}
+  let ins=false;try{ins=!!(navigator.getInstalledRelatedApps&&(await navigator.getInstalledRelatedApps()).length)}catch(e){}
+  el.innerHTML='<small class="mut">'+(ins?'이미 이 기기에 설치돼 있어요. (설치 버튼이 필요하면 앱을 지우고 다시 열면 생겨요)':/iPhone|iPad|iPod/.test(navigator.userAgent)?'아이폰: 사파리 아래 공유 버튼 → 홈 화면에 추가':'브라우저 메뉴(⋮) → 앱 설치(또는 홈 화면에 추가)')+'</small>'}
 $('#st-out').onclick=()=>{saveSes(null);S.view=null;S.cur=null;document.body.classList.remove('det');show()};
 
 /* ---------- 시작 ---------- */
